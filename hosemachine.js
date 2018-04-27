@@ -30,11 +30,11 @@ client.on('message', function (message) {
 
   //hello aka me testing if BOT FUCKIN WORKS
   if (mess.startsWith(prefix + "hello")) {
-
-    message.channel.send("Hello!");
     if (!logsChannel) {
+      message.channel.send("Hello!");
       return message.channel.send("couldnt find logs channel");
     } else {
+      message.channel.send("Hello!");
       return logsChannel.send(`**${message.member.displayName}** said hello!!!`);
     }
   }
@@ -301,7 +301,7 @@ client.on('message', function (message) {
         .setThumbnail(botIcon)
         .addField("Commands", "serverinfo\ncowjoke\ndadjoke\nknockknock\nvine\nmeme", true)
         .addField("Other Features", "swear filter!!!\nsometimes words r actually emojis\nsometimes bot will yell things at u", true)
-        .addField("Code, if u want it lol", "https://tinyurl.com/hosemachine27-js")
+        .addField("Code, if u want it lol", "https://goo.gl/rua7h6")
         .setFooter(`Created by: Josephine#6301 on ${client.user.createdAt}`);
 
       message.channel.send(botEmbed);
@@ -315,7 +315,7 @@ client.on('message', function (message) {
         .setThumbnail(botIcon)
         .addField("Commands", "serverinfo\ncowjoke\ndadjoke\nknockknock\nvine\nmeme", true)
         .addField("Other Features", "swear filter!!!\nsometimes words r actually emojis\nsometimes bot will yell things at u", true)
-        .addField("Code, if u want it lol", "https://tinyurl.com/hosemachine27-js")
+        .addField("Code, if u want it lol", "https://goo.gl/rua7h6")
         .setFooter(`Created by: Josephine#6301 on ${client.user.createdAt}`);
 
       message.channel.send(botEmbed);
