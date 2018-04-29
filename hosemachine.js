@@ -21,7 +21,6 @@ client.on('ready', function () {
 });
 
 client.on('message', function (message) {
-  const memeber = message.member;
   const mess = message.content.toLowerCase();
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
@@ -32,7 +31,6 @@ client.on('message', function (message) {
   if (mess.startsWith(prefix + "hello")) {
     if (!logsChannel) {
       message.channel.send("Hello!");
-      return message.channel.send("couldnt find logs channel");
     } else {
       message.channel.send("Hello!");
       return logsChannel.send(`**${message.member.displayName}** said hello!!!`);
@@ -43,7 +41,6 @@ client.on('message', function (message) {
   if (mess.includes("heck") && message.member.id != client.user.id) {
     if (!logsChannel) {
       message.channel.send("watch ur FUCKIN language, whore");
-      return message.channel.send("couldnt find logs channel");
     } else {
       message.channel.send("watch ur FUCKIN language, whore");
       return logsChannel.send(`told **${message.member.displayName}** to watch their FUCKIN language: heck`);
@@ -53,7 +50,6 @@ client.on('message', function (message) {
   if (mess.includes("frick") && message.member.id != client.user.id) {
     if (!logsChannel) {
       message.channel.send("watch ur FUCKIN language, whore");
-      return message.channel.send("couldnt find logs channel");
     } else {
       message.channel.send("watch ur FUCKIN language, whore");
       return logsChannel.send(`told **${message.member.displayName}** to watch their FUCKIN language: frick`);
@@ -63,30 +59,46 @@ client.on('message', function (message) {
   if (mess.includes("binch") && message.member.id != client.user.id) {
     if (!logsChannel) {
       message.channel.send("watch ur FUCKIN language, whore");
-      return message.channel.send("couldnt find logs channel");
     } else {
       message.channel.send("watch ur FUCKIN language, whore");
       return logsChannel.send(`told **${message.member.displayName}** to watch their FUCKIN language: binch`);
     }
   }
 
+  if (mess.includes("pussy") && message.member.id != client.user.id) {
+    if (!logsChannel) {
+      message.channel.send("<@162655287021535232> ur a pussy");
+    } else {
+      message.channel.send("<@162655287021535232> ur a pussy");
+      return logsChannel.send(`**${message.member.displayName}** called blake a pussy`);
+    }
+  }
+
+
   //stupid reply shit for fun lmfao
   if (mess.includes("eyes emoji") && message.member.id) {
     if (!logsChannel) {
       message.channel.send(":eyes:");
-      return message.channel.send("couldnt find logs channel");
     } else {
       message.channel.send(":eyes:");
       return logsChannel.send(`**${message.member.displayName}** had their "eyes emoji" turned into :eyes:`);
     }
   }
 
+  if (mess.includes("wadu") && message.member.id) {
+    if (!logsChannel) {
+      message.channel.send("<@162655287021535232> shut the hell up");
+    } else {
+      message.channel.send("<@162655287021535232> shut the hell up");
+      return logsChannel.send(`told **${message.member.displayName}** to shut the hell up`);
+    }
+  }
+
   if (mess.includes("kink") && message.member.id != client.user.id) {
     if (!logsChannel) {
-      message.channel.send("im KINKSHAMING");
-      return message.channel.send("couldnt find logs channel");
+      message.channel.send("i am KINKSHAMING");
     } else {
-      message.channel.send("im KINKSHAMING");
+      message.channel.send("i am KINKSHAMING");
       return logsChannel.send(`**${message.member.displayName}** is being kinkshamed`);
     }
   }
@@ -94,7 +106,6 @@ client.on('message', function (message) {
   if (mess.includes("whomst") && message.member.id != client.user.id) {
     if (!logsChannel) {
       message.channel.send("the FUCK");
-      return message.channel.send("couldnt find logs channel");
     } else {
       message.channel.send("the FUCK");
       return logsChannel.send(`**${message.member.displayName}**... whoms't the FUCK`);
@@ -104,7 +115,6 @@ client.on('message', function (message) {
   if (mess.includes("fuck me") && message.member.id != client.user.id) {
     if (!logsChannel) {
       message.channel.send(":weary: :ok_hand: :sweat_drops:");
-      return message.channel.send("couldnt find logs channel");
     } else {
       message.channel.send(":weary: :ok_hand: :sweat_drops:");
       return logsChannel.send(`**${message.member.displayName}** said fuck me,,,,:weary: :ok_hand: :sweat_drops:`);
@@ -114,10 +124,9 @@ client.on('message', function (message) {
   //joke commands LOL
   if (mess.startsWith(prefix + "suckmydick")) {
     if (!logsChannel) {
-      message.channel.send(`u gotta ping jackie first, <@200837857214988298>`);
-      return message.channel.send("couldnt find logs channel");
+      message.channel.send(`u gotta ping jackie first, <@200837857214988298>\nhttps://youtu.be/OH35pNmEwh4?t=7s`);
     } else {
-      message.channel.send(`u gotta ping jackie first, <@200837857214988298>`);
+      message.channel.send(`u gotta ping jackie first, <@200837857214988298>\nhttps://youtu.be/OH35pNmEwh4?t=7s`);
       return logsChannel.send(`**${message.member.displayName}** told jackie to suck their dick`);
     }
   }
@@ -125,7 +134,6 @@ client.on('message', function (message) {
   if (mess.startsWith(prefix + "eatmyass")) {
     if (!logsChannel) {
       message.channel.send(`u should ping millie`);
-      return message.channel.send("couldnt find logs channel");
     } else {
       message.channel.send(`u should ping millie`);
       return logsChannel.send(`**${message.member.displayName}** told millie to eat their ass`);
@@ -151,7 +159,6 @@ client.on('message', function (message) {
         .setFooter(`Created by: Josephine#6301 on ${client.user.createdAt}`);
 
       message.channel.send(botEmbed);
-      return message.channel.send("couldnt find logs channel");
     } else {
       if (!message.member.hasPermission("MANAGE_MESSAGES")) {
         message.reply("lmao, u dont have perms for that. stupid bitch");
@@ -186,7 +193,6 @@ client.on('message', function (message) {
       message.channel.bulkDelete(args[0]).then(() => {
         message.channel.send(`cleared ${args[0]} messages, yikes`).then(msg => msg.delete(1500));
       });
-      return message.channel.send("couldnt find logs channel");
     } else {
       if (!message.member.hasPermission("MANAGE_MESSAGES")) {
         message.reply("lmao, u dont have perms for that. stupid bitch");
@@ -214,7 +220,6 @@ client.on('message', function (message) {
       message.delete().catch();
 
       message.channel.send(botMessage);
-      return message.channel.send("couldnt find logs channel");
     } else {
       if (!message.member.hasPermission("MANAGE_MESSAGES")) {
         message.reply("no perms 4 that, fucker");
@@ -224,7 +229,7 @@ client.on('message', function (message) {
       message.delete().catch();
 
       message.channel.send(botMessage);
-      return logsChannel.send(`**${message.member.displayName}** told hosemachine (27) to say ${botMessage}`);
+      return logsChannel.send(`**${message.member.displayName}** told hosemachine (27) to say *${botMessage}*`);
     }
   }
 
@@ -305,7 +310,6 @@ client.on('message', function (message) {
         .setFooter(`Created by: Josephine#6301 on ${client.user.createdAt}`);
 
       message.channel.send(botEmbed);
-      return message.channel.send("couldnt find logs channel");
     } else {
       let botIcon = client.user.displayAvatarURL;
       let botEmbed = new Discord.RichEmbed()
@@ -337,7 +341,6 @@ client.on('message', function (message) {
         .addField("You joined", message.member.joinedAt, true);
 
       message.channel.send(serverEmbed);
-      return message.channel.send("couldnt find logs channel");
     } else {
       let serverIcon = message.guild.iconURL;
       let serverEmbed = new Discord.RichEmbed()
@@ -359,7 +362,6 @@ client.on('message', function (message) {
   if (mess.startsWith(prefix + "ping")) {
     if (!logsChannel) {
       message.channel.send(((new Date().getTime() - message.createdTimestamp) * -1) + " ms");
-      return message.channel.send("couldnt find logs channel");
     } else {
       message.channel.send(((new Date().getTime() - message.createdTimestamp) * -1) + " ms");
       return logsChannel.send(`**${message.member.displayName}** used ping, it took ${((new Date().getTime() - message.createdTimestamp) * -1)}  ms to respond`);
@@ -402,7 +404,6 @@ client.on('message', function (message) {
         let eightBallQuestion = args.slice(1).join(" ");
 
         message.reply(eightBallReplies[eightBallResult]);
-        return message.channel.send("couldnt find logs channel");
       }
     } else {
       if (!args[1]) {
@@ -479,7 +480,6 @@ client.on('message', function (message) {
     if (!logsChannel) {
       var rand = cowJokes[Math.floor(Math.random() * cowJokes.length)];
       message.channel.send(rand);
-      return message.channel.send("couldnt find logs channel");
     } else {
       var rand = cowJokes[Math.floor(Math.random() * cowJokes.length)];
       message.channel.send(rand);
@@ -535,7 +535,6 @@ client.on('message', function (message) {
     if (!logsChannel) {
       var rand = dadJokes[Math.floor(Math.random() * dadJokes.length)];
       message.channel.send(rand);
-      return message.channel.send("couldnt find logs channel");
     } else {
       var rand = dadJokes[Math.floor(Math.random() * dadJokes.length)];
       message.channel.send(rand);
@@ -572,13 +571,22 @@ client.on('message', function (message) {
     if (!logsChannel) {
       var rand = knockKnockJokes[Math.floor(Math.random() * knockKnockJokes.length)];
       message.channel.send(rand);
-      return message.channel.send("couldnt find logs channel");
     } else {
       var rand = knockKnockJokes[Math.floor(Math.random() * knockKnockJokes.length)];
       message.channel.send(rand);
       return logsChannel.send(`**${message.member.displayName}** asked for a knock knock joke, LMAO NICE`);
     }
   }
+
+  if (mess.includes("knock knock") && message.member.id != client.user.id) {
+    if (!logsChannel) {
+      message.channel.send("whos there?");
+    } else {
+      message.channel.send("whos there?");
+      return logsChannel.send(`replied to **${message.member.displayName}**: whos there?`);
+    }
+  }
+
 
   //vines??? what more is there to say LOL
   if (mess.startsWith(prefix + "vine")) {
@@ -747,7 +755,6 @@ client.on('message', function (message) {
     if (!logsChannel) {
       var rand = vine[Math.floor(Math.random() * vine.length)];
       message.channel.send(rand);
-      return message.channel.send("couldnt find logs channel");
     } else {
       var rand = vine[Math.floor(Math.random() * vine.length)];
       message.channel.send(rand);
@@ -785,7 +792,6 @@ client.on('message', function (message) {
     if (!logsChannel) {
       var rand = memes[Math.floor(Math.random() * memes.length)];
       message.channel.send(rand);
-      return message.channel.send("couldnt find logs channel");
     } else {
       var rand = memes[Math.floor(Math.random() * memes.length)];
       message.channel.send(rand);
