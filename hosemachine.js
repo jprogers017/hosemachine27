@@ -70,7 +70,7 @@ client.on('message', function (message) {
       message.channel.send("<@162655287021535232> ur a pussy");
     } else {
       message.channel.send("<@162655287021535232> ur a pussy");
-      return logsChannel.send(`**${message.member.displayName}** called blake a pussy`);
+      return logsChannel.send(`**${message.member.displayName}** called <@162655287021535232> a pussy`);
     }
   }
 
