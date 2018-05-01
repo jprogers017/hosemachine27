@@ -56,6 +56,15 @@ client.on('message', function (message) {
     }
   }
 
+  if (mess.includes("darn") && message.member.id != client.user.id) {
+    if (!logsChannel) {
+      message.channel.send("watch ur FUCKIN language, whore");
+    } else {
+      message.channel.send("watch ur FUCKIN language, whore");
+      return logsChannel.send(`told **${message.member.displayName}** to watch their FUCKIN language: darn`);
+    }
+  }
+
   if (mess.includes("binch") && message.member.id != client.user.id) {
     if (!logsChannel) {
       message.channel.send("watch ur FUCKIN language, whore");
