@@ -207,7 +207,7 @@ client.on('message', function(message) {
         .setDescription("u need admin perms 4 this shit")
         .setColor("#7fc0ff")
         .setThumbnail(botIcon)
-        .addField("Commands", "purge\nsay\nkick and ban are # broke rn", true)
+        .addField("Commands", "purge\nsay\nidk lmao i havent added anything else", true)
         .addField("Other shit?", "nothing yet, lmao", true)
         .setFooter(`Created by: Josephine#6301 on ${client.user.createdAt}`);
 
@@ -269,67 +269,6 @@ client.on('message', function(message) {
       return logsChannel.send(`**${message.member.displayName}** told hosemachine (27) to say *${botMessage}*`);
     }
   }
-
-  /********************************************THIS SHIT BROKE AF RN AND IM TOO LAZY TO FIX IT LMAO RIP***********************************************************
-
-    //kick
-    if (mess.startsWith(prefix + "kick")) {
-      let kUser = message.guild.member(message.mentions.user.first() || message.guild.members.get(args[0]));
-      if (!kUser) {
-        message.channel.send("cant find user, dumbass");
-        return logsChannel.send(`**${message.member.displayName}** tried to kick a made up person?`);
-      }
-      let kReason = args.join(" ").slice(22);
-      if (!message.members.hasPermission("MANAGE_MESSAGES")) {
-        message.channel.send("nope, lmao. perms who? oh right u dont know them");
-        return logsChannel.send(`**${message.member.displayName}** tried to kick without PERMS LOL`);
-      }
-      if (kUser.hasPermission("MANAGE_MESSAGES")) {
-        message.channel.send("cant kick them, dumbass");
-        return logsChannel.send(`**${message.member.displayName}** tried to kick ${kUser} but they also have perms, LOL`);
-
-      }
-
-      let kickChannel = message.guild.channels.find(`name`, "join-leave-logs")
-      if (!kickChannel) {
-        message.channel.send("cant find logs channel")
-        return logsChannel.send(`coudlnt find logs channel to add kick message`);
-      }
-
-      message.guild.memeber(kUser).kick(kReason);
-      kickChannel.send(`@<${message.author.id}> kicked ${kUser} for ${kReason}`);
-      return logsChannel.send(`**${message.member.displayName}** kicked ${kUser} for ${kReason}`);
-    }
-
-    //ban
-    if (mess.startsWith(prefix + "ban")) {
-      let bUser = message.guild.member(message.mentions.user.first() || message.guild.members.get(args[0]));
-      if (!bUser) {
-        message.channel.send("cant find user, dumbass");
-        return logsChannel.send(`**${message.member.displayName}** tried to ban a made up person?`);
-      }
-      let bReason = args.join(" ").slice(22);
-      if (!message.members.hasPermission("MANAGE_MESSAGES")) {
-        message.channel.send("nope, lmao");
-        return logsChannel.send(`**${message.member.displayName}** tried to kick without perms, LOL`);
-      }
-      if (bUser.hasPermission("MANAGE_MESSAGES")) {
-        message.channel.send("cant ban them, dumbass");
-        return logsChannel.send(`**${message.member.displayName}** tried to ban ${bUser} but they also have perms, LOL`);
-      }
-
-      let banChannel = message.guild.channels.find(`name`, "join-leave-logs")
-      if (!banChannel) {
-        message.channel.send("cant find logs channel")
-        return logsChannel.send(`couldnt find logs channel to add ban message`);
-      }
-
-      message.guild.memeber(bUser).ban(bReason);
-      banChannel.send(`<@${message.author.id}> banned ${bUser} for ${bReason}`);
-      return logsChannel.send(`**${message.member.displayName}** banned ${bUser} for ${bReason}`);
-
-    }
-  ****************************************************************************************************************************************************/
 
   //commands
   //help
