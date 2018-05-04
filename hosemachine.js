@@ -15,12 +15,12 @@ const prefix = config.prefix;
 client.login(discordToken);
 
 //on message in console and activity
-client.on('ready', function () {
+client.on('ready', function() {
   console.log(`${client.user.username} is online in ${client.guilds.size} server(s)`);
   client.user.setActivity("type ;)cowjoke, i dare u");
 });
 
-client.on('message', function (message) {
+client.on('message', function(message) {
   const mess = message.content.toLowerCase();
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
@@ -74,27 +74,27 @@ client.on('message', function (message) {
     }
   }
 
-  if (mess.includes("pussy") && message.member.id != client.user.id) {
+  //stupid reply shit for fun lmfao, emojis
+  if (mess.includes("fuck me") && message.member.id != client.user.id) {
     if (!logsChannel) {
-      message.channel.send("<@162655287021535232> ur a pussy");
+      message.channel.send(":weary: :ok_hand: :sweat_drops:");
     } else {
-      message.channel.send("<@162655287021535232> ur a pussy");
-      return logsChannel.send(`**${message.member.displayName}** called <@162655287021535232> a pussy`);
+      message.channel.send(":weary: :ok_hand: :sweat_drops:");
+      return logsChannel.send(`**${message.member.displayName}** said fuck me,,,,:weary: :ok_hand: :sweat_drops:`);
     }
   }
 
-
-  //stupid reply shit for fun lmfao
-  if (mess.includes("eyes emoji") && message.member.id) {
+  if (mess.includes("yeehaw") && message.member.id != client.user.id) {
     if (!logsChannel) {
-      message.channel.send(":eyes:");
+      message.channel.send("YAWHEE :cowboy: :cowboy: :cowboy:");
     } else {
-      message.channel.send(":eyes:");
-      return logsChannel.send(`**${message.member.displayName}** had their "eyes emoji" turned into :eyes:`);
+      message.channel.send("YAWHEE :cowboy: :cowboy: :cowboy:");
+      return logsChannel.send(`**${message.member.displayName}** said yeehaw and got YAWHEE :cowboy: back`);
     }
   }
 
-  if (mess.includes("wadu") && message.member.id) {
+  //stupid reply shit for fun lmfao, no emojis
+  if (mess.includes("wadu") && message.member.id != client.user.id) {
     if (!logsChannel) {
       message.channel.send("<@162655287021535232> shut the hell up");
     } else {
@@ -121,12 +121,40 @@ client.on('message', function (message) {
     }
   }
 
-  if (mess.includes("fuck me") && message.member.id != client.user.id) {
+  if (mess.includes("pussy bitch") && message.member.id != client.user.id) {
     if (!logsChannel) {
-      message.channel.send(":weary: :ok_hand: :sweat_drops:");
+      message.channel.send("<@162655287021535232>, ur a pussy bitch");
     } else {
-      message.channel.send(":weary: :ok_hand: :sweat_drops:");
-      return logsChannel.send(`**${message.member.displayName}** said fuck me,,,,:weary: :ok_hand: :sweat_drops:`);
+      message.channel.send("<@162655287021535232>, ur a pussy bitch");
+      return logsChannel.send(`**${message.member.displayName}** called <@162655287021535232> a pussy bitch`);
+    }
+  }
+
+  //stupid react shit for fun lmfao
+  if (mess.includes("gay") && message.member.id != client.user.id) {
+    if (!logsChannel) {
+      message.react('🏳️‍🌈');
+    } else {
+      message.react('🏳️‍🌈');
+      return logsChannel.send(`**${message.member.displayName}** got a :gay_pride_flag:`);
+    }
+  }
+
+  if (mess.includes("eyes emoji") && message.member.id != client.user.id) {
+    if (!logsChannel) {
+      message.react("👀");
+    } else {
+      message.react("👀");
+      return logsChannel.send(`**${message.member.displayName}** got :eyes:`);
+    }
+  }
+
+  if (mess.includes("wet") && message.member.id != client.user.id) {
+    if (!logsChannel) {
+      message.react("💦");
+    } else {
+      message.react("💦");
+      return logsChannel.send(`**${message.member.displayName}** got :sweat_drops:`);
     }
   }
 
@@ -136,7 +164,7 @@ client.on('message', function (message) {
       message.channel.send(`u gotta ping jackie first, <@200837857214988298>\nhttps://youtu.be/OH35pNmEwh4?t=7s`);
     } else {
       message.channel.send(`u gotta ping jackie first, <@200837857214988298>\nhttps://youtu.be/OH35pNmEwh4?t=7s`);
-      return logsChannel.send(`**${message.member.displayName}** told jackie to suck their dick`);
+      return logsChannel.send(`**${message.member.displayName}** told jackie to suck their dick\nhttps://youtu.be/OH35pNmEwh4?t=7s`);
     }
   }
 
@@ -242,7 +270,7 @@ client.on('message', function (message) {
     }
   }
 
-  /***********************************************************THIS SHIT BROKE AF RN LMAO RIP***********************************************************
+  /********************************************THIS SHIT BROKE AF RN AND IM TOO LAZY TO FIX IT LMAO RIP***********************************************************
 
     //kick
     if (mess.startsWith(prefix + "kick")) {
