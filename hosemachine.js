@@ -15,12 +15,12 @@ const prefix = config.prefix;
 client.login(discordToken);
 
 //on message in console and activity
-client.on('ready', function() {
+client.on('ready', function () {
   console.log(`${client.user.username} is online in ${client.guilds.size} server(s)`);
   client.user.setActivity("type ;)cowjoke, i dare u");
 });
 
-client.on('message', function(message) {
+client.on('message', function (message) {
   const mess = message.content.toLowerCase();
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
@@ -401,10 +401,28 @@ client.on('message', function(message) {
     var cowJokes = [
       "WHY DO COWS HAVE HOOVES INSTEAD OF FEET? BECAUSE THEY LACTOSE",
       "WHAT DO YOU CALL A HERD OF COWS JACKING OFF? BEEF STROKIN OFF",
+      "WHAT DO YOU CALL A COW WITH TWO LEGS? YOUR MOM, **LMAO**",
+      "WHY DO COWS HAVE HOOVES INSTEAD OF FEET? BECAUSE THEY LACTOSE",
+      "WHAT DO YOU CALL A HERD OF COWS JACKING OFF? BEEF STROKIN OFF",
+      "WHAT DO YOU CALL A COW WITH TWO LEGS? YOUR MOM, **LMAO**",
+      "WHY DO COWS HAVE HOOVES INSTEAD OF FEET? BECAUSE THEY LACTOSE",
+      "WHAT DO YOU CALL A HERD OF COWS JACKING OFF? BEEF STROKIN OFF",
+      "WHAT DO YOU CALL A COW WITH TWO LEGS? YOUR MOM, **LMAO**",
+      "WHY DO COWS HAVE HOOVES INSTEAD OF FEET? BECAUSE THEY LACTOSE",
+      "WHAT DO YOU CALL A HERD OF COWS JACKING OFF? BEEF STROKIN OFF",
+      "WHAT DO YOU CALL A COW WITH TWO LEGS? YOUR MOM, **LMAO**",
+      "WHY DO COWS HAVE HOOVES INSTEAD OF FEET? BECAUSE THEY LACTOSE",
+      "WHAT DO YOU CALL A HERD OF COWS JACKING OFF? BEEF STROKIN OFF",
+      "WHAT DO YOU CALL A COW WITH TWO LEGS? YOUR MOM, **LMAO**",
+      "WHY DO COWS HAVE HOOVES INSTEAD OF FEET? BECAUSE THEY LACTOSE",
+      "WHAT DO YOU CALL A HERD OF COWS JACKING OFF? BEEF STROKIN OFF",
+      "WHAT DO YOU CALL A COW WITH TWO LEGS? YOUR MOM, **LMAO**",
+      "WHY DO COWS HAVE HOOVES INSTEAD OF FEET? BECAUSE THEY LACTOSE",
+      "WHAT DO YOU CALL A HERD OF COWS JACKING OFF? BEEF STROKIN OFF",
+      "WHAT DO YOU CALL A COW WITH TWO LEGS? YOUR MOM, **LMAO**",
       "WHAT DO YOU CALL A REALLY STRONG COW? BEEFY",
       "WHAT DO YOU CALL A COW WITH NO LEGS? GROUND BEEF",
       "WHAT DO YOU CALL A COW WITH THREE LEGS? LEAN BEEF",
-      "WHAT DO YOU CALL A COW WITH TWO LEGS? YOUR MOM, **LMAO**",
       "WHY DONT COWS HAVE ANY MONEY? CBECAUSE FARMERS MILK THEM DRY",
       "WHAT DID THE MAMA COW SAY TO THE BABY COW? ITS PASTURE BEDTIME",
       "WHAT DO YOU GET WHEN YOU CROSS AN ANGRY SHEEP WITH AN UPSET COW? AN ANIMAL THATS IN A BAAAAAAAAD MOOOOOOOOOD",
@@ -528,8 +546,14 @@ client.on('message', function(message) {
       "knock knock\nwhos there?\nrobin\nrobin who?\nrobin u, now gimme uR FUCKIN MONEY\n*https://www.youtube.com/watch?v=4asxm6susvA*",
       "knock knock\nwhos there?\nrobin\nrobin who?\nrobin u, now gimme uR FUCKIN MONEY\n*https://www.youtube.com/watch?v=4asxm6susvA*",
       "knock knock\nwhos there?\nrobin\nrobin who?\nrobin u, now gimme uR FUCKIN MONEY\n*https://www.youtube.com/watch?v=4asxm6susvA*",
-      "knock knock\nwhos there?\nmustache\nmustache who?\ni mustache u a question, but ill shave it for later",
       "knock knock\nwhos there?\ncow says\ncow says who?\nno, a cow says *mooooooo*",
+      "knock knock\nwhos there?\ncow says\ncow says who?\nno, a cow says *mooooooo*",
+      "knock knock\nwhos there?\ncow says\ncow says who?\nno, a cow says *mooooooo*",
+      "knock knock\nwhos there?\ncow says\ncow says who?\nno, a cow says *mooooooo*",
+      "knock knock\nwhos there?\ncow says\ncow says who?\nno, a cow says *mooooooo*",
+      "knock knock\nwhos there?\ncow says\ncow says who?\nno, a cow says *mooooooo*",
+      "knock knock\nwhos there?\ncow says\ncow says who?\nno, a cow says *mooooooo*",
+      "knock knock\nwhos there?\nmustache\nmustache who?\ni mustache u a question, but ill shave it for later",
       "knock knock\nwhos there?\netch\netch who?\nbless u",
       "knock knock\nwhos there?\ntank\ntank who?\nur welcome",
       "knock knock\nwhos there?\ni smell mop\ni smell mop who?\ny would u smell ur poo",
@@ -564,7 +588,7 @@ client.on('message', function(message) {
   }
 
 
-  //vines??? what more is there to say LOL
+  //vines??? what more is there to say LOL https://www.youtube.com/playlist?list=PLCRi2kg6z92FPyTu4ut49faqAYPS5eBsA
   if (mess.startsWith(prefix + "vine")) {
     var vine = [
       "https://youtu.be/y7LY46fyRVQ",
@@ -724,8 +748,28 @@ client.on('message', function(message) {
       "https://youtu.be/OrOEHFa_408",
       "https://youtu.be/MTIK8lKji_M",
       "https://youtu.be/5sIN0dwVhKA",
-      "https://youtu.be/64ucqo3g7Q8" //170
-
+      "https://youtu.be/64ucqo3g7Q8",
+      "https://youtu.be/LzS7FZTt1Pg",
+      "https://youtu.be/Rbi4PZBQaiM",
+      "https://youtu.be/t0IYw7ApKo0",
+      "https://youtu.be/8U0sjHxYqrw",
+      "https://youtu.be/rbZSi2Ju1_Q",
+      "https://youtu.be/QCG8EbEO9DI",
+      "https://youtu.be/c38_1E_esPc",
+      "https://youtu.be/b1FinfVUp38",
+      "https://youtu.be/9rg1GCeIYG8",
+      "https://youtu.be/nKGWzCZJiuA",
+      "https://youtu.be/DvT1v8WFkmI",
+      "https://youtu.be/UwVVZPzo8iM",
+      "https://youtu.be/XnVV65fck1g",
+      "https://youtu.be/FEkUWMq4HyI",
+      "https://youtu.be/QWbQ-h3_6tI",
+      "https://youtu.be/opljrfGx7aU",
+      "https://youtu.be/8BQcCI7rmIU",
+      "https://youtu.be/1w-o9KMJYzY",
+      "https://youtu.be/Ka89vyLH_aI",
+      "https://youtu.be/SrkX9WYmBdU",
+      "https://youtu.be/BEjwxz1OZsg"//198,
     ];
 
     if (!logsChannel) {
@@ -738,7 +782,7 @@ client.on('message', function(message) {
     }
   }
 
-  //important videos playlist basically and some
+  //important videos playlist basically and some other shit ppl sent me bc i asked for videos lmao https://www.youtube.com/playlist?list=PLFsQleAWXsj_4yDeebiIADdH5FMayBiJo
   if (mess.startsWith(prefix + "meme")) {
     var memes = [
       "https://youtu.be/yKC3F0rNnLE",
