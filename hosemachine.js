@@ -821,7 +821,7 @@ client.on('message', function (message) {
 
   //leave logs
   client.on('guildMemberRemove', member => {
-    return message.guild.channels.get('431647588262084608').send(`<@${member.user.id}> has left the server, what a fuckin loser lmao`);
+    message.guild.channels.get('431647588262084608').send(`<@${member.user.id}> has left the server, what a fuckin loser lmao`);
     return logsChannel.send(`<@${member.user.id}> has left the server, what a fuckin loser lmao`);
   });
 
