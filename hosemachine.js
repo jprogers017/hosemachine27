@@ -37,6 +37,72 @@ client.on('message', function (message) {
     }
   }
 
+  //dont say that, u piece of shit
+  if (mess.includes("retard")) {
+    if (!logsChannel) {
+      message.delete().catch();
+
+      message.channel.send(`<@${message.author.id}>, ???? don't fucking say that ????`);
+    } else {
+      message.delete().catch();
+
+      message.channel.send(`<@${message.author.id}>, ???? don't fucking say that ????`);
+      return logsChannel.send(`**${message.member.displayName}** said a bad thing and i'm gonna smack them for being a piece of shit : )`);
+    }
+  }
+
+  if (mess.includes("ni:b::b:a")) {
+    if (!logsChannel) {
+      message.delete().catch();
+
+      message.channel.send(`<@${message.author.id}>, ???? don't fucking say that ????`);
+    } else {
+      message.delete().catch();
+
+      message.channel.send(`<@${message.author.id}>, ???? don't fucking say that ????`);
+      return logsChannel.send(`**${message.member.displayName}** said a bad thing and i'm gonna smack them for being a piece of shit : )`);
+    }
+  }
+
+  if (mess.includes("nib")) {
+    if (!logsChannel) {
+      message.delete().catch();
+
+      message.channel.send(`<@${message.author.id}>, ???? don't fucking say that ????`);
+    } else {
+      message.delete().catch();
+
+      message.channel.send(`<@${message.author.id}>, ???? don't fucking say that ????`);
+      return logsChannel.send(`**${message.member.displayName}** said a bad thing and i'm gonna smack them for being a piece of shit : )`);
+    }
+  }
+
+  if (mess.includes("nigger")) {
+    if (!logsChannel) {
+      message.delete().catch();
+
+      message.channel.send(`<@${message.author.id}>, ???? don't fucking say that ????`);
+    } else {
+      message.delete().catch();
+
+      message.channel.send(`<@${message.author.id}>, ???? don't fucking say that ????`);
+      return logsChannel.send(`**${message.member.displayName}** said a bad thing and i'm gonna smack them for being a piece of shit : )`);
+    }
+  }
+
+  if (mess.includes("nigga")) {
+    if (!logsChannel) {
+      message.delete().catch();
+
+      message.channel.send(`<@${message.author.id}>, ???? don't fucking say that ????`);
+    } else {
+      message.delete().catch();
+
+      message.channel.send(`<@${message.author.id}>, ???? don't fucking say that ????`);
+      return logsChannel.send(`**${message.member.displayName}** said a bad thing and i'm gonna smack them for being a piece of shit : )`);
+    }
+  }
+
   //joke filter
   if (mess.includes("heck") && message.member.id != client.user.id) {
     if (!logsChannel) {
