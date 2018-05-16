@@ -227,10 +227,10 @@ client.on('message', function (message) {
   //joke commands LOL
   if (mess.startsWith(prefix + "suckmydick")) {
     if (!logsChannel) {
-      message.channel.send(`u gotta ping jackie first, <@200837857214988298>\nhttps://youtu.be/OH35pNmEwh4?t=7s`);
+      message.channel.send(`u gotta ping jackie first, <@200837857214988298>`);
     } else {
-      message.channel.send(`u gotta ping jackie first, <@200837857214988298>\nhttps://youtu.be/OH35pNmEwh4?t=7s`);
-      return logsChannel.send(`**${message.member.displayName}** told jackie to suck their dick\nhttps://youtu.be/OH35pNmEwh4?t=7s`);
+      message.channel.send(`u gotta ping jackie first, <@200837857214988298>`);
+      return logsChannel.send(`**${message.member.displayName}** told jackie to suck their dick`);
     }
   }
 
