@@ -150,14 +150,24 @@ client.on('message', function (message) {
     }
   }
 
-  if (mess.includes("show me ur tits") && message.member.id != client.user.id) {
+  if (mess.includes("show me ur tit") && message.member.id != client.user.id) {
     if (!logsChannel) {
-      message.channel.send("millie, fuck off");
+      message.reply("millie, shut up");
     } else {
-      message.channel.send("millie, fuck off");
+      message.reply("millie, shut up");
       return logsChannel.send(`**${message.member.displayName}** said show me ur tits,,,im assuming it was millie`);
     }
   }
+  
+  if (mess.includes("show me your tit") && message.member.id != client.user.id) {
+    if (!logsChannel) {
+      message.reply("millie, shut up");
+    } else {
+      message.reply("millie, shut up");
+      return logsChannel.send(`**${message.member.displayName}** said show me ur tits,,,im assuming it was millie`);
+    }
+  }
+
 
   if (mess.includes("yeehaw") && message.member.id != client.user.id) {
     if (!logsChannel) {
