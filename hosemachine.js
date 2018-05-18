@@ -51,7 +51,7 @@ client.on('message', function (message) {
     }
   }
 
-  if (mess.includes("ni:b::b:a")) {
+  if (mess.includes("nibba")) {
     if (!logsChannel) {
       message.delete().catch();
 
@@ -240,6 +240,34 @@ client.on('message', function (message) {
     } else {
       message.channel.send(`u should ping millie`);
       return logsChannel.send(`**${message.member.displayName}** told millie to eat their ass`);
+    }
+  }
+
+  //list of commands for fun
+  if (mess.startsWith(prefix + "commands")) {
+    if (!logsChannel) {
+      let commandEmbed = new Discord.RichEmbed()
+        .setTitle("# joke commands BOIII")
+        .setColor("#7fc0ff")
+        .addField("Auto Reply", "fuck me\nyeehaw\nwadu\nkink\nwhomst\npussy bitch", true)
+        .addField("Fake Filter", "heck\nfrick\ndarn\nbinch", true)
+        .addField("Reacts", "gay\neyes emoji\nwet\n", true)
+        .addField("Commands", "suckmydick\neatmyass", true)
+        .setFooter(`Created by: Josephine#6301 on ${client.user.createdAt}`);
+
+      message.channel.send(commandEmbed);
+    } else {
+      let commandEmbed = new Discord.RichEmbed()
+        .setTitle("# joke commands BOIII")
+        .setColor("#7fc0ff")
+        .addField("Auto Reply", "fuck me\nyeehaw\nwadu\nkink\nwhomst\npussy bitch", true)
+        .addField("Fake Filter", "heck\nfrick\ndarn\nbinch", true)
+        .addField("Reacts", "gay\neyes emoji\nwet\n", true)
+        .addField("Commands", "suckmydick\neatmyass", true)
+        .setFooter(`Created by: Josephine#6301 on ${client.user.createdAt}`);
+
+      message.channel.send(commandEmbed);
+      return logsChannel.send(`**${message.member.displayName}** asked for the joke commands not in "help"`);
     }
   }
 
