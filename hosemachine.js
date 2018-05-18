@@ -150,6 +150,15 @@ client.on('message', function (message) {
     }
   }
 
+  if (mess.includes("show me ur tits") && message.member.id != client.user.id) {
+    if (!logsChannel) {
+      message.channel.send("millie, fuck off");
+    } else {
+      message.channel.send("millie, fuck off");
+      return logsChannel.send(`**${message.member.displayName}** said show me ur tits,,,im assuming it was millie`);
+    }
+  }
+
   if (mess.includes("yeehaw") && message.member.id != client.user.id) {
     if (!logsChannel) {
       message.channel.send("YAWHEE :cowboy: :cowboy: :cowboy:");
