@@ -51,19 +51,6 @@ client.on('message', function (message) {
     }
   }
 
-  if (mess.includes("nibba")) {
-    if (!logsChannel) {
-      message.delete().catch();
-
-      message.channel.send(`<@${message.author.id}>, ???? don't fucking say that ????`);
-    } else {
-      message.delete().catch();
-
-      message.channel.send(`<@${message.author.id}>, ???? don't fucking say that ????`);
-      return logsChannel.send(`**${message.member.displayName}** said a bad thing and i'm gonna smack them for being a piece of shit : )`);
-    }
-  }
-
   if (mess.includes("nib")) {
     if (!logsChannel) {
       message.delete().catch();
@@ -77,7 +64,7 @@ client.on('message', function (message) {
     }
   }
 
-  if (mess.includes("nigger")) {
+  if (mess.includes("nibb")) {
     if (!logsChannel) {
       message.delete().catch();
 
@@ -90,7 +77,20 @@ client.on('message', function (message) {
     }
   }
 
-  if (mess.includes("nigga")) {
+  if (mess.includes("nigg")) {
+    if (!logsChannel) {
+      message.delete().catch();
+
+      message.channel.send(`<@${message.author.id}>, ???? don't fucking say that ????`);
+    } else {
+      message.delete().catch();
+
+      message.channel.send(`<@${message.author.id}>, ???? don't fucking say that ????`);
+      return logsChannel.send(`**${message.member.displayName}** said a bad thing and i'm gonna smack them for being a piece of shit : )`);
+    }
+  }
+
+  if (mess.includes("nigg")) {
     if (!logsChannel) {
       message.delete().catch();
 
@@ -931,11 +931,15 @@ client.on('message', function (message) {
       return logsChannel.send(`**${message.member.displayName}** asked for a meme, oh no`);
     }
   }
-
-  //leave logs
-  client.on('guildMemberRemove', member => {
-    message.guild.channels.get('431647588262084608').send(`<@${member.user.id}> has left the server, what a fuckin loser lmao`);
-    return logsChannel.send(`<@${member.user.id}> has left the server, what a fuckin loser lmao`);
-  });
-
 });
+
+//leave logs
+// client.on('guildMemberRemove', member => { 
+//   let joinChannel = message.guild.channels.find(`name`, "join-leave-logs");  
+
+//   if (!joinChannel){
+//     message.channel.send(`<@${member.user.id}> has left the server, what a fuckin loser lmao`);
+//   } else {
+//     joinChannel.send(`<@${member.user.id}> has left the server, what a fuckin loser lmao`);
+//   }
+// });
