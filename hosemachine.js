@@ -106,36 +106,36 @@ client.on('message', function (message) {
   //joke filter
   if (mess.includes("heck") && message.member.id != client.user.id) {
     if (!logsChannel) {
-      message.channel.send("watch ur FUCKIN language, whore");
+      message.channel.send("watch ur FUCKIN language");
     } else {
-      message.channel.send("watch ur FUCKIN language, whore");
+      message.channel.send("watch ur FUCKIN language");
       return logsChannel.send(`told **${message.member.displayName}** to watch their FUCKIN language: heck`);
     }
   }
 
   if (mess.includes("frick") && message.member.id != client.user.id) {
     if (!logsChannel) {
-      message.channel.send("watch ur FUCKIN language, whore");
+      message.channel.send("watch ur FUCKIN language");
     } else {
-      message.channel.send("watch ur FUCKIN language, whore");
+      message.channel.send("watch ur FUCKIN language");
       return logsChannel.send(`told **${message.member.displayName}** to watch their FUCKIN language: frick`);
     }
   }
 
   if (mess.includes("darn") && message.member.id != client.user.id) {
     if (!logsChannel) {
-      message.channel.send("watch ur FUCKIN language, whore");
+      message.channel.send("watch ur FUCKIN language");
     } else {
-      message.channel.send("watch ur FUCKIN language, whore");
+      message.channel.send("watch ur FUCKIN language");
       return logsChannel.send(`told **${message.member.displayName}** to watch their FUCKIN language: darn`);
     }
   }
 
   if (mess.includes("binch") && message.member.id != client.user.id) {
     if (!logsChannel) {
-      message.channel.send("watch ur FUCKIN language, whore");
+      message.channel.send("watch ur FUCKIN language");
     } else {
-      message.channel.send("watch ur FUCKIN language, whore");
+      message.channel.send("watch ur FUCKIN language");
       return logsChannel.send(`told **${message.member.displayName}** to watch their FUCKIN language: binch`);
     }
   }
