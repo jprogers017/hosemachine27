@@ -30,9 +30,9 @@ client.on('message', function (message) {
   //hello aka me testing if BOT FUCKIN WORKS
   if (mess.startsWith(prefix + "hello")) {
     if (!logsChannel) {
-      message.channel.send("Hello!");
+      message.channel.send("Hello!!!");
     } else {
-      message.channel.send("Hello!");
+      message.channel.send("Hello!!!");
       return logsChannel.send(`**${message.member.displayName}** said hello!!!`);
     }
   }
@@ -65,19 +65,6 @@ client.on('message', function (message) {
   }
 
   if (mess.includes("nibb")) {
-    if (!logsChannel) {
-      message.delete().catch();
-
-      message.channel.send(`<@${message.author.id}>, ???? don't fucking say that ????`);
-    } else {
-      message.delete().catch();
-
-      message.channel.send(`<@${message.author.id}>, ???? don't fucking say that ????`);
-      return logsChannel.send(`**${message.member.displayName}** said a bad thing and i'm gonna smack them for being a piece of shit : )`);
-    }
-  }
-
-  if (mess.includes("nigg")) {
     if (!logsChannel) {
       message.delete().catch();
 
@@ -141,32 +128,32 @@ client.on('message', function (message) {
   }
 
   //stupid reply shit for fun lmfao, emojis
-  if (mess.includes("fuck me") && message.member.id != client.user.id) {
-    if (!logsChannel) {
-      message.channel.send(":weary: :ok_hand: :sweat_drops:");
-    } else {
-      message.channel.send(":weary: :ok_hand: :sweat_drops:");
-      return logsChannel.send(`**${message.member.displayName}** said fuck me,,,,:weary: :ok_hand: :sweat_drops:`);
-    }
-  }
+  // if (mess.includes("fuck me") && message.member.id != client.user.id) {
+  //   if (!logsChannel) {
+  //     message.channel.send(":weary: :ok_hand: :sweat_drops:");
+  //   } else {
+  //     message.channel.send(":weary: :ok_hand: :sweat_drops:");
+  //     return logsChannel.send(`**${message.member.displayName}** said fuck me,,,,:weary: :ok_hand: :sweat_drops:`);
+  //   }
+  // }
 
-  if (mess.includes("show me ur tit") && message.member.id != client.user.id) {
-    if (!logsChannel) {
-      message.reply("millie, shut up");
-    } else {
-      message.reply("millie, shut up");
-      return logsChannel.send(`**${message.member.displayName}** said show me ur tits,,,im assuming it was millie`);
-    }
-  }
+  // if (mess.includes("show me ur tit") && message.member.id != client.user.id) {
+  //   if (!logsChannel) {
+  //     message.reply("millie, shut up");
+  //   } else {
+  //     message.reply("millie, shut up");
+  //     return logsChannel.send(`**${message.member.displayName}** said show me ur tits,,,im assuming it was millie`);
+  //   }
+  // }
   
-  if (mess.includes("show me your tit") && message.member.id != client.user.id) {
-    if (!logsChannel) {
-      message.reply("millie, shut up");
-    } else {
-      message.reply("millie, shut up");
-      return logsChannel.send(`**${message.member.displayName}** said show me ur tits,,,im assuming it was millie`);
-    }
-  }
+  // if (mess.includes("show me your tit") && message.member.id != client.user.id) {
+  //   if (!logsChannel) {
+  //     message.reply("millie, shut up");
+  //   } else {
+  //     message.reply("millie, shut up");
+  //     return logsChannel.send(`**${message.member.displayName}** said show me ur tits,,,im assuming it was millie`);
+  //   }
+  // }
 
 
   if (mess.includes("yeehaw") && message.member.id != client.user.id) {
@@ -179,21 +166,21 @@ client.on('message', function (message) {
   }
 
   //stupid reply shit for fun lmfao, no emojis
-  if (mess.includes("wadu") && message.member.id != client.user.id) {
-    if (!logsChannel) {
-      message.channel.send("<@162655287021535232> shut the hell up");
-    } else {
-      message.channel.send("<@162655287021535232> shut the hell up");
-      return logsChannel.send(`told **${message.member.displayName}** to shut the hell up`);
-    }
-  }
+  // if (mess.includes("wadu") && message.member.id != client.user.id) {
+  //   if (!logsChannel) {
+  //     message.channel.send("<@162655287021535232> shut the hell up");
+  //   } else {
+  //     message.channel.send("<@162655287021535232> shut the hell up");
+  //     return logsChannel.send(`told **${message.member.displayName}** to shut the hell up`);
+  //   }
+  // }
 
   if (mess.includes("kink") && message.member.id != client.user.id) {
     if (!logsChannel) {
-      message.channel.send("i am KINKSHAMING");
+      message.channel.send("should i be kinkshaming u for this?");
     } else {
-      message.channel.send("i am KINKSHAMING");
-      return logsChannel.send(`**${message.member.displayName}** is being kinkshamed`);
+      message.channel.send("should i be kinkshaming u for this?");
+      return logsChannel.send(`**${message.member.displayName}** is PROBABLY going to be kinkshamed`);
     }
   }
 
@@ -206,14 +193,14 @@ client.on('message', function (message) {
     }
   }
 
-  if (mess.includes("pussy bitch") && message.member.id != client.user.id) {
-    if (!logsChannel) {
-      message.channel.send("<@162655287021535232>, ur a pussy bitch");
-    } else {
-      message.channel.send("<@162655287021535232>, ur a pussy bitch");
-      return logsChannel.send(`**${message.member.displayName}** called <@162655287021535232> a pussy bitch`);
-    }
-  }
+  // if (mess.includes("pussy bitch") && message.member.id != client.user.id) {
+  //   if (!logsChannel) {
+  //     message.channel.send("<@162655287021535232>, ur a pussy bitch");
+  //   } else {
+  //     message.channel.send("<@162655287021535232>, ur a pussy bitch");
+  //     return logsChannel.send(`**${message.member.displayName}** called <@162655287021535232> a pussy bitch`);
+  //   }
+  // }
 
   //stupid react shit for fun lmfao
   if (mess.includes("gay") && message.member.id != client.user.id) {
@@ -243,24 +230,24 @@ client.on('message', function (message) {
     }
   }
 
-  //joke commands LOL
-  if (mess.startsWith(prefix + "suckmydick")) {
-    if (!logsChannel) {
-      message.channel.send(`u gotta ping jackie first, <@200837857214988298>`);
-    } else {
-      message.channel.send(`u gotta ping jackie first, <@200837857214988298>`);
-      return logsChannel.send(`**${message.member.displayName}** told jackie to suck their dick`);
-    }
-  }
+  // //joke commands LOL
+  // if (mess.startsWith(prefix + "suckmydick")) {
+  //   if (!logsChannel) {
+  //     message.channel.send(`u gotta ping jackie first, <@200837857214988298>`);
+  //   } else {
+  //     message.channel.send(`u gotta ping jackie first, <@200837857214988298>`);
+  //     return logsChannel.send(`**${message.member.displayName}** told jackie to suck their dick`);
+  //   }
+  // }
 
-  if (mess.startsWith(prefix + "eatmyass")) {
-    if (!logsChannel) {
-      message.channel.send(`u should ping millie`);
-    } else {
-      message.channel.send(`u should ping millie`);
-      return logsChannel.send(`**${message.member.displayName}** told millie to eat their ass`);
-    }
-  }
+  // if (mess.startsWith(prefix + "eatmyass")) {
+  //   if (!logsChannel) {
+  //     message.channel.send(`u should ping millie`);
+  //   } else {
+  //     message.channel.send(`u should ping millie`);
+  //     return logsChannel.send(`**${message.member.displayName}** told millie to eat their ass`);
+  //   }
+  // }
 
   //list of commands for fun
   if (mess.startsWith(prefix + "commands")) {
@@ -299,65 +286,65 @@ client.on('message', function (message) {
         return logsChannel.send(`lmao, **${message.member.displayName}** asked for admin commands, but doesnt have admin perms? fuckin loser`);
       };
       let botIcon = client.user.displayAvatarURL;
-      let botEmbed = new Discord.RichEmbed()
+      let helpEmbed = new Discord.RichEmbed()
         .setTitle("Admin Help")
         .setDescription("u need admin perms 4 this shit")
         .setColor("#7fc0ff")
         .setThumbnail(botIcon)
-        .addField("Commands", "purge\nsay\nkick and ban are # broke rn", true)
+        .addField("Commands", "say", true)
         .addField("Other shit?", "nothing yet, lmao", true)
         .setFooter(`Created by: Josephine#6301 on ${client.user.createdAt}`);
 
-      message.channel.send(botEmbed);
+      message.channel.send(helpEmbed);
     } else {
       if (!message.member.hasPermission("MANAGE_MESSAGES")) {
         message.reply("lmao, u dont have perms for that. stupid bitch");
         return logsChannel.send(`lmao, **${message.member.displayName}** asked for admin commands, but doesnt have admin perms? fuckin loser`);
       };
       let botIcon = client.user.displayAvatarURL;
-      let botEmbed = new Discord.RichEmbed()
+      let helpEmbed = new Discord.RichEmbed()
         .setTitle("Admin Help")
         .setDescription("u need admin perms 4 this shit")
         .setColor("#7fc0ff")
         .setThumbnail(botIcon)
-        .addField("Commands", "purge\nsay\nidk lmao i havent added anything else", true)
+        .addField("Commands", "say", true)
         .addField("Other shit?", "nothing yet, lmao", true)
         .setFooter(`Created by: Josephine#6301 on ${client.user.createdAt}`);
 
-      message.channel.send(botEmbed);
+      message.channel.send(helpEmbed);
       return logsChannel.send(`**${message.member.displayName}** needed admin help`);
     }
   }
 
-  //purge
-  if (mess.startsWith(prefix + "purge")) {
-    if (!logsChannel) {
-      if (!message.member.hasPermission("MANAGE_MESSAGES")) {
-        message.reply("lmao, u dont have perms for that. stupid bitch");
-        return logsChannel.send(`lmao, **${message.member.displayName}** purged ${args[0]} messages, but doesnt have perms for it`);
-      };
-      if (!args[0]) {
-        message.channel.send("yo, u cant clear 0 messages, dumb fuck");
-        return logsChannel.send(`**${message.member.displayName}** tried purging nothing? ok`);
-      };
-      message.channel.bulkDelete(args[0]).then(() => {
-        message.channel.send(`cleared ${args[0]} messages, yikes`).then(msg => msg.delete(1500));
-      });
-    } else {
-      if (!message.member.hasPermission("MANAGE_MESSAGES")) {
-        message.reply("lmao, u dont have perms for that. stupid bitch");
-        return logsChannel.send(`lmao, **${message.member.displayName}** purged ${args[0]} messages, but doesnt have perms for it`);
-      };
-      if (!args[0]) {
-        message.channel.send("yo, u cant clear 0 messages, dumb fuck");
-        return logsChannel.send(`**${message.member.displayName}** tried purging nothing? ok`);
-      };
-      message.channel.bulkDelete(args[0]).then(() => {
-        message.channel.send(`cleared ${args[0]} messages, yikes`).then(msg => msg.delete(1500));
-      });
-      return logsChannel.send(`**${message.member.displayName}** purged ${args[0]} messages`);
-    }
-  };
+  // //purge
+  // if (mess.startsWith(prefix + "purge")) {
+  //   if (!logsChannel) {
+  //     if (!message.member.hasPermission("MANAGE_MESSAGES")) {
+  //       message.reply("lmao, u dont have perms for that. stupid bitch");
+  //       return logsChannel.send(`lmao, **${message.member.displayName}** purged ${args[0]} messages, but doesnt have perms for it`);
+  //     };
+  //     if (!args[0]) {
+  //       message.channel.send("yo, u cant clear 0 messages, dumb fuck");
+  //       return logsChannel.send(`**${message.member.displayName}** tried purging nothing? ok`);
+  //     };
+  //     message.channel.bulkDelete(args[0]).then(() => {
+  //       message.channel.send(`cleared ${args[0]} messages, yikes`).then(msg => msg.delete(1500));
+  //     });
+  //   } else {
+  //     if (!message.member.hasPermission("MANAGE_MESSAGES")) {
+  //       message.reply("lmao, u dont have perms for that. stupid bitch");
+  //       return logsChannel.send(`lmao, **${message.member.displayName}** purged ${args[0]} messages, but doesnt have perms for it`);
+  //     };
+  //     if (!args[0]) {
+  //       message.channel.send("yo, u cant clear 0 messages, dumb fuck");
+  //       return logsChannel.send(`**${message.member.displayName}** tried purging nothing? ok`);
+  //     };
+  //     message.channel.bulkDelete(args[0]).then(() => {
+  //       message.channel.send(`cleared ${args[0]} messages, yikes`).then(msg => msg.delete(1500));
+  //     });
+  //     return logsChannel.send(`**${message.member.displayName}** purged ${args[0]} messages`);
+  //   }
+  // };
 
   //say
   if (mess.startsWith(prefix + "say")) {
@@ -388,7 +375,7 @@ client.on('message', function (message) {
   if (mess.startsWith(prefix + "help")) {
     if (!logsChannel) {
       let botIcon = client.user.displayAvatarURL;
-      let botEmbed = new Discord.RichEmbed()
+      let aHelpEmbed = new Discord.RichEmbed()
         .setTitle("hosemachine (27) help info :)")
         .setDescription("use the ;) prefix")
         .setColor("#7fc0ff")
@@ -398,10 +385,10 @@ client.on('message', function (message) {
         .addField("Code, if u want it lol", "https://goo.gl/rua7h6")
         .setFooter(`Created by: Josephine#6301 on ${client.user.createdAt}`);
 
-      message.channel.send(botEmbed);
+      message.channel.send(aHelpEmbed);
     } else {
       let botIcon = client.user.displayAvatarURL;
-      let botEmbed = new Discord.RichEmbed()
+      let aHelpEmbed = new Discord.RichEmbed()
         .setTitle("hosemachine (27) help info :)")
         .setDescription("use the ;) prefix")
         .setColor("#7fc0ff")
@@ -411,7 +398,7 @@ client.on('message', function (message) {
         .addField("Code, if u want it lol", "https://goo.gl/rua7h6")
         .setFooter(`Created by: Josephine#6301 on ${client.user.createdAt}`);
 
-      message.channel.send(botEmbed);
+      message.channel.send(aHelpEmbed);
       return logsChannel.send(`**${message.member.displayName}** needed help`);
     }
   }
@@ -486,7 +473,7 @@ client.on('message', function (message) {
 
     if (!logsChannel) {
       if (!args[1]) {
-        message.reply("more than a one worded question, hun");
+        message.reply("more than a one worded question");
         return logsChannel.send(`**${message.member.displayName}** tried to ask a question??? i think???`);
       } else {
         let eightBallResult = Math.floor((Math.random() * eightBallReplies.length));
@@ -496,7 +483,7 @@ client.on('message', function (message) {
       }
     } else {
       if (!args[1]) {
-        message.reply("more than a one worded question, hun");
+        message.reply("more than a one worded question");
         return logsChannel.send(`**${message.member.displayName}** tried to ask a question??? i think???`);
       } else {
         let eightBallResult = Math.floor((Math.random() * eightBallReplies.length));
