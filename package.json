@@ -1,12 +1,12 @@
 {
   "name": "hosemachine27",
   "version": "1.0.0",
-  "description": "",
+  "description": "this bot is literally my child",
   "main": "hosemachine.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Josephine#6301 on Discord",
+  "author": "Josephine#6301 on Discord / jprogers017 on github",
   "license": "ISC",
   "dependencies": {
     "discord.js": "^11.3.2",
