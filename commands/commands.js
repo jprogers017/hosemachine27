@@ -13,7 +13,6 @@ module.exports.run = async (client, message, args) => {
             .addField("Fake Filter", "heck\nfrick\ndarn\nbinch", true)
             .addField("Reacts", "gay\neyes emoji\nwet\n", true)
             .addField("Commands", "suckmydick\nkinkshame", true)
-            .setFooter(`Created by: Josephine#6301 on ${client.user.createdAt}`);
 
         message.channel.send(commandEmbed);
     } else {
@@ -24,7 +23,6 @@ module.exports.run = async (client, message, args) => {
             .addField("Fake Filter", "heck\nfrick\ndarn\nbinch", true)
             .addField("Reacts", "gay\neyes emoji\nwet\n", true)
             .addField("Commands", "suckmydick\nkinkshame", true)
-            .setFooter(`Created by: Josephine#6301 on ${client.user.createdAt}`);
 
         message.channel.send(commandEmbed);
         return logsChannel.send(`**${message.member.displayName}** asked for the joke commands not in "help"`);
