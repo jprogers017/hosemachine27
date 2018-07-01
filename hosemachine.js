@@ -37,11 +37,6 @@ client.on('ready', function () {
 });
 
 client.on('message', function (message) {
-
-  /////////////////////////////////////
-  ///ALL COMMANDS IN COMMAND HANDLER///
-  /////////////////////////////////////
-
   if (message.author.bot) return;
   if (message.channel.type === "dm") return message.channel.send("did u want an invite link? <https://discordapp.com/api/oauth2/authorize?client_id=433064995274883078&permissions=0&scope=bot>");
 
