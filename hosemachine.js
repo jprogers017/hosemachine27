@@ -43,7 +43,7 @@ client.on('message', function (message) {
   /////////////////////////////////////
 
   if (message.author.bot) return;
-  if (message.channel.type === "dm") return;
+  if (message.channel.type === "dm") return message.channel.send("did u want an invite link? <https://discordapp.com/api/oauth2/authorize?client_id=433064995274883078&permissions=0&scope=bot>");
 
   const mess = message.content.toLowerCase();
   let messageArray = message.content.split(" ");
@@ -169,14 +169,3 @@ client.on('message', function (message) {
     }
   }
 });
-
-//leave logs
-// client.on('guildMemberRemove', member => { 
-//   let joinChannel = message.guild.channels.find(`name`, "join-leave-logs");  
-
-//   if (!joinChannel){
-//     message.channel.send(`<@!${member.user.id}> has left the server, what a fuckin loser lmao`);
-//   } else {
-//     joinChannel.send(`<@!${member.user.id}> has left the server, what a fuckin loser lmao`);
-//   }
-// });
