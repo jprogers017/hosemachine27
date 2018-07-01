@@ -16,7 +16,6 @@ module.exports.run = async (client, message, args) => {
         message.channel.send(requestEmbed);
     } else {
         let requestPic = client.user.displayAvatarURL;
-        let myUserID = "<!@221116684864454657>";
         let requestEmbed = new Discord.RichEmbed()
             .setTitle("uh? requests? can u read?")
             .setDescription("give me suggetions to make my bot better")

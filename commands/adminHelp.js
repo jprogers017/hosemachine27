@@ -13,7 +13,7 @@ module.exports.run = async (client, message, args) => {
     //         return logsChannel.send(`lmao, **${message.member.displayName}** asked for admin commands, but doesnt have admin perms? fuckin loser`);
     //     };
     //     let botIcon = client.user.displayAvatarURL;
-    //     let helpEmbed = new Discord.RichEmbed()
+    //     let aHelpEmbed = new Discord.RichEmbed()
     //         .setTitle("Admin Help")
     //         .setDescription("u need admin perms 4 this shit")
     //         .setColor("#7fc0ff")
@@ -22,14 +22,14 @@ module.exports.run = async (client, message, args) => {
     //         .addField("Other shit?", "nothing yet, lmao", true)
     //         .setFooter(`Created by: Josephine#6301 on ${client.user.createdAt}`);
 
-    //     message.channel.send(helpEmbed);
+    //     message.channel.send(aHelpEmbed);
     // } else {
     //     if (!message.member.hasPermission("MANAGE_MESSAGES")) {
     //         message.reply("lmao, u dont have perms for that. stupid bitch");
     //         return logsChannel.send(`lmao, **${message.member.displayName}** asked for admin commands, but doesnt have admin perms? fuckin loser`);
     //     };
     //     let botIcon = client.user.displayAvatarURL;
-    //     let helpEmbed = new Discord.RichEmbed()
+    //     let aHelpEmbed = new Discord.RichEmbed()
     //         .setTitle("Admin Help")
     //         .setDescription("u need admin perms 4 this shit")
     //         .setColor("#7fc0ff")
@@ -38,7 +38,7 @@ module.exports.run = async (client, message, args) => {
     //         .addField("Other shit?", "nothing yet, lmao", true)
     //         .setFooter(`Created by: Josephine#6301 on ${client.user.createdAt}`);
 
-    //     message.channel.send(helpEmbed);
+    //     message.channel.send(aHelpEmbed);
     //     return logsChannel.send(`**${message.member.displayName}** needed admin help`);
     // }
 }

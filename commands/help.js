@@ -7,7 +7,7 @@ module.exports.run = async (client, message, args) => {
 
     if (!logsChannel) {
         let botIcon = client.user.displayAvatarURL;
-        let aHelpEmbed = new Discord.RichEmbed()
+        let helpEmbed = new Discord.RichEmbed()
             .setTitle("hosemachine (27) help info :)")
             .setDescription("use the ;) prefix")
             .setColor("#7fc0ff")
@@ -17,10 +17,10 @@ module.exports.run = async (client, message, args) => {
             .addField("Code, if u want it lol", "https://goo.gl/rua7h6")
             .setFooter(`Created by: Josephine#6301 on ${client.user.createdAt}`);
 
-        message.channel.send(aHelpEmbed);
+        message.channel.send(helpEmbed);
     } else {
         let botIcon = client.user.displayAvatarURL;
-        let aHelpEmbed = new Discord.RichEmbed()
+        let helpEmbed = new Discord.RichEmbed()
             .setTitle("hosemachine (27) help info :)")
             .setDescription("use the ;) prefix")
             .setColor("#7fc0ff")
@@ -30,7 +30,7 @@ module.exports.run = async (client, message, args) => {
             .addField("Code, if u want it lol", "https://goo.gl/rua7h6")
             .setFooter(`Created by: Josephine#6301 on ${client.user.createdAt}`);
 
-        message.channel.send(aHelpEmbed);
+        message.channel.send(helpEmbed);
         return logsChannel.send(`**${message.member.displayName}** needed help`);
     }
 }
