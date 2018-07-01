@@ -12,7 +12,7 @@ module.exports.run = async (client, message, args) => {
             .addField("Auto Reply", "its all apart of the game...u will not know what elicits an auto reply unless u say one of them ;)", true)
             .addField("Fake Filter", "heck\nfrick\ndarn\nbinch", true)
             .addField("Reacts", "gay\neyes emoji\nwet\n", true)
-            .addField("Commands", "suckmydick\nkinkshame", true)
+            .addField("Commands", "suckmydick\nkinkshame\npuppy", true)
 
         message.channel.send(commandEmbed);
     } else {
@@ -22,7 +22,7 @@ module.exports.run = async (client, message, args) => {
             .addField("Auto Reply", "its all apart of the game...u will not know what elicits an auto reply unless u say one of them ;)", true)
             .addField("Fake Filter", "heck\nfrick\ndarn\nbinch", true)
             .addField("Reacts", "gay\neyes emoji\nwet\n", true)
-            .addField("Commands", "suckmydick\nkinkshame", true)
+            .addField("Commands", "suckmydick\nkinkshame\npuppy", true)
 
         message.channel.send(commandEmbed);
         return logsChannel.send(`**${message.member.displayName}** asked for the joke commands not in "help"`);
