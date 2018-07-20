@@ -12,6 +12,7 @@ module.exports.run = async (client, message, args) => {
             .setColor("#7fc0ff")
             .setThumbnail(serverIcon)
             .addField("Server Name", message.guild.name, true)
+            .addField("Server Owner", message.guild.owner, true)
             .addField("Total Members", message.guild.memberCount, true)
             .addField("Created On", message.guild.createdAt, true)
             .addField("You joined", message.member.joinedAt, true);
@@ -24,6 +25,7 @@ module.exports.run = async (client, message, args) => {
             .setColor("#7fc0ff")
             .setThumbnail(serverIcon)
             .addField("Server Name", message.guild.name, true)
+            .addField("Server Owner", message.guild.owner, true)
             .addField("Total Members", message.guild.memberCount, true)
             .addField("Created On", message.guild.createdAt, true)
             .addField("You joined", message.member.joinedAt, true);
