@@ -163,4 +163,14 @@ client.on('message', function (message) {
       return logsChannel.send(`**${message.member.displayName}** got :sweat_drops:`);
     }
   }
+
+  // let nerdMsg = null;
+
+  // if (mess.startsWith(`console.writeline("`)) {
+  //   let botMessage = args.join("").nerdMsg.substring(0, nerdMsg.length - 3);
+  //   message.channel.send(`botMessage`);
+  //   // message.channel.send("idk if this is working at all");
+  //   console.log("fake console log test");
+  // }
+
 });
