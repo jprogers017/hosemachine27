@@ -46,7 +46,7 @@ client.on('message', function (message) {
   let args = messageArray.slice(1);
   let logsChannel = message.guild.channels.find(`name`, "bot-logs");
 
-  let commandFile = client.commands.get(cmd.slice(prefix.length));
+  let commandFile = client.commands.get(cmd);
   if (commandFile) commandFile.run(client, message, args);
 
   //joke filter
