@@ -31,7 +31,7 @@ module.exports.run = async (client, message, args) => {
             .setFooter(`Created by: Josephine#6301 on ${client.user.createdAt}`);
 
         message.channel.send(helpEmbed);
-        return logsChannel.send(`**${message.member.displayName}** needed help`);
+        return logsChannel.send(`<@${message.member.id}> needed help`);
     }
 }
 

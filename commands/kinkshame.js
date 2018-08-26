@@ -11,7 +11,7 @@ module.exports.run = async (client, message, args) => {
     } else {
         let kinkshamedUser = message.mentions.members.first();
         message.channel.send(`${kinkshamedUser}, should i be kinkshaming u? i think i should`);
-        return logsChannel.send(`**${message.member.displayName}** had ${kinkshamedUser} kinkshamed`);
+        return logsChannel.send(`<@${message.member.id}> had ${kinkshamedUser} kinkshamed`);
     }
 }
 

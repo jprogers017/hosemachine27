@@ -4,7 +4,6 @@ const fs = require("fs");
 const client = new Discord.Client({
   disableEveryone: true
 });
-
 client.commands = new Discord.Collection();
 
 fs.readdir("./commands/", (err, files) => {
@@ -28,12 +27,81 @@ var config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
 
 let prefix = config.prefix;
 const discordToken = config.discordToken;
+
 client.login(discordToken);
 
 //on message in console and activity
 client.on('ready', function () {
   console.log(`${client.user.username} is online in ${client.guilds.size} server(s)`);
   client.user.setActivity("type ;)cowjoke, i dare u");
+});
+
+//member joins
+client.on('guildMemberAdd', member => {
+  let joinChannel = member.guild.channels.find(`name`, "💾general💾");
+
+  if (!joinChannel) {
+    joinChannel.send(`<@${message.member.id}> just joined, i pray for their sanity tbh`);
+  } else {
+    joinChannel.send(`<@${message.member.id}> just joined, i pray for their sanity tbh`).catch(err => console.log(err));
+  }
+})
+
+//member leaves
+client.on('guildMemberRemove', member => {
+  let leaveChannel = member.guild.channels.find(`name`, "💾general💾");
+
+  if (!leaveChannel) {
+    leaveChannel.send(`<@${message.member.id}> just left, sucks for them. we're fun as FRICK`);
+  } else {
+    leaveChannel.send(`<@${message.member.id}> just left, sucks for them. we're fun as FRICK`).catch(err => console.log(err));
+  }
+})
+
+//role react settings
+const yourID = "221116684864454657";
+const setupCMD = "!roles"
+let initialMessage = `react to what roles u want or u cant see anything else sry (im rly not, do what i said, u fucking bitch)`;
+const roles = ["siege", "overwatch", "pubg", "csgo", "rocksmith", "minecraft"];
+const reactions = ["483146133305294848", "483146167396335652", "483146201739296778", "483146328843485205", "483146363048296478", "483146383906439168"];
+
+if (roles.length !== reactions.length) throw "Roles list and reactions list are not the same length!";
+
+//message generation function
+function generateMessages() {
+  var messages = [];
+  messages.push(initialMessage);
+  for (let role of roles) messages.push(`**${role}**`);
+  return messages;
+}
+
+//add the role after user reacts
+client.on('raw', event => {
+  if (event.t === 'MESSAGE_REACTION_ADD' || event.t == "MESSAGE_REACTION_REMOVE") {
+    let channel = client.channels.get(event.d.channel_id);
+    let message = channel.fetchMessage(event.d.message_id).then(message => {
+      let user = message.guild.members.get(event.d.user_id);
+
+      if (message.author.id == client.user.id && message.content != initialMessage) {
+
+        var re = `\\*\\*"(.+)?(?="\\*\\*)`;
+        var role = message.content.match(re)[1];
+
+        if (user.id != client.user.id) {
+          var memberObj = message.guild.members.get(user.id);
+          var roleObj = message.guild.roles.find('name', role);
+          var gameRole = message.guild.roles.find('name', 'gaymer');
+
+          if (event.t === "MESSAGE_REACTION_ADD") {
+            memberObj.addRole(roleObj);
+            memberObj.addRole(gameRole);
+          } else {
+            memberObj.removeRole(roleObj);
+          }
+        }
+      }
+    })
+  }
 });
 
 client.on('message', function (message) {
@@ -49,13 +117,28 @@ client.on('message', function (message) {
   let commandFile = client.commands.get(cmd);
   if (commandFile) commandFile.run(client, message, args);
 
+  //role react
+  if (message.author.id == yourID && message.content.toLowerCase() == setupCMD) {
+    var toSend = generateMessages();
+    let mappedArray = [
+      [toSend[0], false], ...toSend.slice(1).map((message, idx) => [message, reactions[idx]])
+    ];
+    for (let mapObj of mappedArray) {
+      message.channel.send(mapObj[0]).then(sent => {
+        if (mapObj[1]) {
+          sent.react(mapObj[1]);
+        }
+      });
+    }
+  }
+
   //joke filter
   if (mess.includes("heck") && message.member.id != client.user.id) {
     if (!logsChannel) {
       message.channel.send("watch ur FUCKIN language");
     } else {
       message.channel.send("watch ur FUCKIN language");
-      return logsChannel.send(`told **${message.member.displayName}** to watch their FUCKIN language: heck`);
+      return logsChannel.send(`told <@${message.member.id}> to watch their FUCKIN language: heck`);
     }
   }
 
@@ -64,7 +147,7 @@ client.on('message', function (message) {
       message.channel.send("watch ur FUCKIN language");
     } else {
       message.channel.send("watch ur FUCKIN language");
-      return logsChannel.send(`told **${message.member.displayName}** to watch their FUCKIN language: frick`);
+      return logsChannel.send(`told <@${message.member.id}> to watch their FUCKIN language: frick`);
     }
   }
 
@@ -73,7 +156,7 @@ client.on('message', function (message) {
       message.channel.send("watch ur FUCKIN language");
     } else {
       message.channel.send("watch ur FUCKIN language");
-      return logsChannel.send(`told **${message.member.displayName}** to watch their FUCKIN language: darn`);
+      return logsChannel.send(`told <@${message.member.id}> to watch their FUCKIN language: darn`);
     }
   }
 
@@ -82,7 +165,7 @@ client.on('message', function (message) {
       message.channel.send("watch ur FUCKIN language");
     } else {
       message.channel.send("watch ur FUCKIN language");
-      return logsChannel.send(`told **${message.member.displayName}** to watch their FUCKIN language: binch`);
+      return logsChannel.send(`told <@${message.member.id}> to watch their FUCKIN language: binch`);
     }
   }
 
@@ -92,7 +175,7 @@ client.on('message', function (message) {
       message.channel.send(":weary: :ok_hand: :sweat_drops:");
     } else {
       message.channel.send(":weary: :ok_hand: :sweat_drops:");
-      return logsChannel.send(`**${message.member.displayName}** said fuck me,,,,:weary: :ok_hand: :sweat_drops:`);
+      return logsChannel.send(`<@${message.member.id}> said fuck me,,,,:weary: :ok_hand: :sweat_drops:`);
     }
   }
 
@@ -101,7 +184,7 @@ client.on('message', function (message) {
       message.channel.send("YAWHEE :cowboy: :cowboy: :cowboy:");
     } else {
       message.channel.send("YAWHEE :cowboy: :cowboy: :cowboy:");
-      return logsChannel.send(`**${message.member.displayName}** said yeehaw and got YAWHEE :cowboy: back`);
+      return logsChannel.send(`<@${message.member.id}> said yeehaw and got YAWHEE :cowboy: back`);
     }
   }
 
@@ -110,7 +193,7 @@ client.on('message', function (message) {
       message.channel.send("the FUCK");
     } else {
       message.channel.send("the FUCK");
-      return logsChannel.send(`**${message.member.displayName}**... whoms't the FUCK`);
+      return logsChannel.send(`<@${message.member.id}>... whoms't the FUCK`);
     }
   }
 
@@ -122,7 +205,7 @@ client.on('message', function (message) {
         message.channel.send("should i be kinkshaming u for this?");
       } else {
         message.channel.send("should i be kinkshaming u for this?");
-        return logsChannel.send(`**${message.member.displayName}** is PROBABLY going to be kinkshamed`);
+        return logsChannel.send(`<@${message.member.id}> is PROBABLY going to be kinkshamed`);
       }
     }
   }
@@ -132,7 +215,7 @@ client.on('message', function (message) {
       message.channel.send("whos there?");
     } else {
       message.channel.send("whos there?");
-      return logsChannel.send(`replied to **${message.member.displayName}**: whos there?`);
+      return logsChannel.send(`replied to <@${message.member.id}>: whos there?`);
     }
   }
 
@@ -142,7 +225,7 @@ client.on('message', function (message) {
       message.react('🏳️‍🌈');
     } else {
       message.react('🏳️‍🌈');
-      return logsChannel.send(`**${message.member.displayName}** got a :gay_pride_flag:`);
+      return logsChannel.send(`<@${message.member.id}> got a :gay_pride_flag:`);
     }
   }
 
@@ -151,7 +234,7 @@ client.on('message', function (message) {
       message.react("👀");
     } else {
       message.react("👀");
-      return logsChannel.send(`**${message.member.displayName}** got :eyes:`);
+      return logsChannel.send(`<@${message.member.id}> got :eyes:`);
     }
   }
 
@@ -160,17 +243,7 @@ client.on('message', function (message) {
       message.react("💦");
     } else {
       message.react("💦");
-      return logsChannel.send(`**${message.member.displayName}** got :sweat_drops:`);
+      return logsChannel.send(`<@${message.member.id}> got :sweat_drops:`);
     }
   }
-
-  // let nerdMsg = null;
-
-  // if (mess.startsWith(`console.writeline("`)) {
-  //   let botMessage = args.join("").nerdMsg.substring(0, nerdMsg.length - 3);
-  //   message.channel.send(`botMessage`);
-  //   // message.channel.send("idk if this is working at all");
-  //   console.log("fake console log test");
-  // }
-
 });

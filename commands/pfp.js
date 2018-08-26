@@ -6,14 +6,13 @@ module.exports.run = async (client, message, args) => {
     let logsChannel = message.guild.channels.find(`name`, "bot-logs");
 
     if (!logsChannel) {
-        message.channel.send(`Hello!!!`);
+        message.reply(message.author.avatarURL);
     } else {
-        message.channel.send(`Hello!!!`);
-        
-        return logsChannel.send(`**${message.member.displayName}** said hello!!!`);
+        message.reply(message.author.avatarURL);
+        return logsChannel.send(`<@${message.member.id}> asked for their pfp`);
     }
 }
 
 module.exports.help = {
-    name: ";)hello"
+    name: ";)pfp"
 }

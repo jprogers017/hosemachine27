@@ -41,7 +41,7 @@ module.exports.run = async (client, message, args) => {
     } else {
         var rand = knockKnockJokes[Math.floor(Math.random() * knockKnockJokes.length)];
         message.channel.send(rand);
-        return logsChannel.send(`**${message.member.displayName}** asked for a knock knock joke, LMAO NICE`);
+        return logsChannel.send(`<@${message.member.id}> asked for a knock knock joke, LMAO NICE`);
     }
 }
 

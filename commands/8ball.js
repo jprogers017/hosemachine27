@@ -33,7 +33,7 @@ module.exports.run = async (client, message, args) => {
     if (!logsChannel) {
         if (!args[1]) {
             message.reply("more than a one worded question");
-            return logsChannel.send(`**${message.member.displayName}** tried to ask a question??? i think???`);
+            return logsChannel.send(`<@${message.member.id}> tried to ask a question??? i think???`);
         } else {
             let eightBallResult = Math.floor((Math.random() * eightBallReplies.length));
             let eightBallQuestion = args.slice(1).join(" ");
@@ -43,13 +43,13 @@ module.exports.run = async (client, message, args) => {
     } else {
         if (!args[1]) {
             message.reply("more than a one worded question");
-            return logsChannel.send(`**${message.member.displayName}** tried to ask a question??? i think???`);
+            return logsChannel.send(`<@${message.member.id}> tried to ask a question??? i think???`);
         } else {
             let eightBallResult = Math.floor((Math.random() * eightBallReplies.length));
             let eightBallQuestion = args.slice(1).join(" ");
 
             message.reply(eightBallReplies[eightBallResult]);
-            return logsChannel.send(`**${message.member.displayName}** asked the 8ball ${eightBallQuestion}`);
+            return logsChannel.send(`<@${message.member.id}> asked the 8ball ${eightBallQuestion}`);
         }
     }
 }

@@ -9,7 +9,7 @@ module.exports.run = async (client, message, args) => {
         message.channel.send(`u gotta ping jackie first, <@!200837857214988298>`);
     } else {
         message.channel.send(`u gotta ping jackie first, <@!200837857214988298>`);
-        return logsChannel.send(`**${message.member.displayName}** told jackie to suck their dick`);
+        return logsChannel.send(`<@${message.member.id}> told jackie to suck their dick`);
     }
 
 }

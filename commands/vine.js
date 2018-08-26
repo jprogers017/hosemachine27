@@ -194,7 +194,7 @@ module.exports.run = async (client, message, args) => {
     } else {
         var rand = vine[Math.floor(Math.random() * vine.length)];
         message.channel.send(rand);
-        return logsChannel.send(`**${message.member.displayName}** asked for a vine,,,,WHAT A SMART COOKIE`);
+        return logsChannel.send(`<@${message.member.id}> asked for a vine,,,,WHAT A SMART COOKIE`);
     }
 }
 

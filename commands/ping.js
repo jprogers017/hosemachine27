@@ -9,7 +9,7 @@ module.exports.run = async (client, message, args) => {
         message.channel.send(`hi, it took me ${((new Date().getTime() - message.createdTimestamp) * -1)}ms to respond to u`);
     } else {
         message.channel.send(`hi, it took me ${((new Date().getTime() - message.createdTimestamp) * -1)}ms to respond to u`);
-        return logsChannel.send(`**${message.member.displayName}** used ping, it took ${((new Date().getTime() - message.createdTimestamp) * -1)}  ms to respond`);
+        return logsChannel.send(`<@${message.member.id}> used ping, it took ${((new Date().getTime() - message.createdTimestamp) * -1)}  ms to respond`);
     }
 }
 

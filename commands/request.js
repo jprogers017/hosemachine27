@@ -23,7 +23,7 @@ module.exports.run = async (client, message, args) => {
             .setColor("#7fc0ff")
             .setThumbnail(requestPic)
         message.channel.send(requestEmbed);
-        return logsChannel.send(`**${message.member.displayName}** sent in a request? maybe? idk if they followed thru lmfao`);
+        return logsChannel.send(`<@${message.member.id}> sent in a request? maybe? idk if they followed thru lmfao`);
     }
 }
 

@@ -60,7 +60,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy1]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 2:
@@ -74,7 +74,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy2]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 3:
@@ -88,7 +88,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy3]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 4:
@@ -102,7 +102,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy4]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 5:
@@ -116,7 +116,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy5]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 6:
@@ -130,7 +130,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy6]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 7:
@@ -144,7 +144,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy7]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 8:
@@ -158,7 +158,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy8]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 9:
@@ -172,7 +172,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy9]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 10:
@@ -186,7 +186,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy10]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 11:
@@ -200,7 +200,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy11]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 12:
@@ -214,7 +214,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy12]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 13:
@@ -228,7 +228,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy13]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 14:
@@ -242,7 +242,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy14]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 15:
@@ -256,7 +256,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy15]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 16:
@@ -270,7 +270,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy16]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 17:
@@ -284,7 +284,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy17]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 18:
@@ -298,7 +298,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy18]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 19:
@@ -312,7 +312,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy19]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 20:
@@ -326,7 +326,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy20]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 21:
@@ -340,7 +340,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy21]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 22:
@@ -354,7 +354,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy22]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 23:
@@ -368,7 +368,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy23]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 24:
@@ -382,7 +382,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy24]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 25:
@@ -396,7 +396,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy25]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 26:
@@ -410,7 +410,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy26]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 27:
@@ -424,7 +424,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy27]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 28:
@@ -438,7 +438,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy28]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 29:
@@ -452,7 +452,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy29]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 30:
@@ -466,7 +466,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy30]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 31:
@@ -480,7 +480,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy31]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 32:
@@ -494,7 +494,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy32]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 33:
@@ -508,7 +508,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy33]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 34:
@@ -522,7 +522,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy34]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 35:
@@ -536,7 +536,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy35]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 36:
@@ -550,7 +550,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy36]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 37:
@@ -564,7 +564,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy37]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 38:
@@ -578,7 +578,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy38]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 39:
@@ -592,7 +592,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy39]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
         case 40:
@@ -606,7 +606,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send({
                     files: [puppy40]
                 });
-                return logsChannel.send(`**${message.member.displayName}** got a :dog:!!!`);
+                return logsChannel.send(`<@${message.member.id}> got a :dog:!!!`);
             }
             break;
     }

@@ -54,7 +54,7 @@ module.exports.run = async (client, message, args) => {
     } else {
         var rand = dadJokes[Math.floor(Math.random() * dadJokes.length)];
         message.channel.send(rand);
-        return logsChannel.send(`**${message.member.displayName}** asked for a dad joke, LMAO NICE`);
+        return logsChannel.send(`<@${message.member.id}> asked for a dad joke, LMAO NICE`);
     }
 }
 

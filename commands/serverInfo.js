@@ -31,7 +31,7 @@ module.exports.run = async (client, message, args) => {
             .addField("You joined", message.member.joinedAt, true);
 
         message.channel.send(serverEmbed);
-        return logsChannel.send(`**${message.member.displayName}** asked for server info`);
+        return logsChannel.send(`<@${message.member.id}> asked for server info`);
     }
 }
 

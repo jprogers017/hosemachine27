@@ -25,7 +25,7 @@ module.exports.run = async (client, message, args) => {
             .addField("Commands", "suckmydick\nkinkshame\npuppy", true)
 
         message.channel.send(commandEmbed);
-        return logsChannel.send(`**${message.member.displayName}** asked for the joke commands not in "help"`);
+        return logsChannel.send(`<@${message.member.id}> asked for the joke commands not in "help"`);
     }
 
 }

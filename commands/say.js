@@ -8,7 +8,7 @@ module.exports.run = async (client, message, args) => {
     if (!logsChannel) {
         if (!message.member.hasPermission("MANAGE_MESSAGES")) {
             message.reply("no perms 4 that, fucker");
-            return logsChannel.send(`**${message.member.displayName}** tried to say ${botMessage} but doesnt have perms`);
+            return logsChannel.send(`<@${message.member.id}> tried to say ${botMessage} but doesnt have perms`);
         }
         let botMessage = args.join(" ");
         message.delete().catch();
@@ -17,13 +17,13 @@ module.exports.run = async (client, message, args) => {
     } else {
         if (!message.member.hasPermission("MANAGE_MESSAGES")) {
             message.reply("no perms 4 that, fucker");
-            return logsChannel.send(`**${message.member.displayName}** tried to say ${botMessage} but doesnt have perms`);
+            return logsChannel.send(`<@${message.member.id}> tried to say ${botMessage} but doesnt have perms`);
         }
         let botMessage = args.join(" ");
         message.delete().catch();
 
         message.channel.send(botMessage);
-        return logsChannel.send(`**${message.member.displayName}** told hosemachine (27) to say *${botMessage}*`);
+        return logsChannel.send(`<@${message.member.id}> told hosemachine (27) to say *${botMessage}*`);
     }
 }
 
