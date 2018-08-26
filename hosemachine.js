@@ -71,7 +71,7 @@ if (roles.length !== reactions.length) throw "Roles list and reactions list are 
 function generateMessages() {
   var messages = [];
   messages.push(initialMessage);
-  for (let role of roles) messages.push(`**${role}**`);
+  for (let role of roles) messages.push(`react here to get the **"${role}"** role, u fucking pussy`);
   return messages;
 }
 
@@ -93,10 +93,18 @@ client.on('raw', event => {
           var gameRole = message.guild.roles.find('name', 'gaymer');
 
           if (event.t === "MESSAGE_REACTION_ADD") {
-            memberObj.addRole(roleObj);
-            memberObj.addRole(gameRole);
+            let logsChannel = message.guild.channels.find(`name`, "bot-logs");
+
+            memberObj.addRole(roleObj)
+            memberObj.addRole(gameRole)
+            // message.channel.send(`${memberObj} added ${roleObj}`);
+            if(logsChannel) logsChannel.send(`${memberObj} added ${roleObj}`);
           } else {
+            let logsChannel = message.guild.channels.find(`name`, "bot-logs");
+
             memberObj.removeRole(roleObj);
+            // message.channel.send(`${memberObj} removed ${roleObj}`);
+            if(logsChannel) logsChannel.send(`${memberObj} removed ${roleObj}`);
           }
         }
       }

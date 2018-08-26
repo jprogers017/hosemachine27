@@ -9,7 +9,7 @@
   "author": "Josephine#6301 on Discord / jprogers017 on github",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^11.3.2",
+    "discord.js": "^11.4.2",
     "fs": "0.0.1-security",
     "ms": "^2.1.1"
   }
