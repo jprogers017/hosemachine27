@@ -36,27 +36,28 @@ client.on('ready', function () {
   client.user.setActivity("type ;)cowjoke, i dare u");
 });
 
-//member joins
-client.on('guildMemberAdd', member => {
-  let joinChannel = member.guild.channels.find(`name`, "💾general💾");
+// BROKE BC I ADDED ROLE REACTIONS AND IDK HOW TO FIX IT RN LMFAO
+// //member joins
+// client.on('guildMemberAdd', member => {
+//   let joinChannel = member.guild.channels.find(`name`, "💾general💾");
 
-  if (!joinChannel) {
-    joinChannel.send(`<@${message.member.id}> just joined, i pray for their sanity tbh`);
-  } else {
-    joinChannel.send(`<@${message.member.id}> just joined, i pray for their sanity tbh`).catch(err => console.log(err));
-  }
-})
+//   if (!joinChannel) {
+//     joinChannel.send(`<@${message.member.id}> just joined, i pray for their sanity tbh`);
+//   } else {
+//     joinChannel.send(`<@${message.member.id}> just joined, i pray for their sanity tbh`).catch(err => console.log(err));
+//   }
+// })
 
-//member leaves
-client.on('guildMemberRemove', member => {
-  let leaveChannel = member.guild.channels.find(`name`, "💾general💾");
+// //member leaves
+// client.on('guildMemberRemove', member => {
+//   let leaveChannel = member.guild.channels.find(`name`, "💾general💾");
 
-  if (!leaveChannel) {
-    leaveChannel.send(`<@${message.member.id}> just left, sucks for them. we're fun as FRICK`);
-  } else {
-    leaveChannel.send(`<@${message.member.id}> just left, sucks for them. we're fun as FRICK`).catch(err => console.log(err));
-  }
-})
+//   if (!leaveChannel) {
+//     leaveChannel.send(`<@${message.member.id}> just left, sucks for them. we're fun as FRICK`);
+//   } else {
+//     leaveChannel.send(`<@${message.member.id}> just left, sucks for them. we're fun as FRICK`).catch(err => console.log(err));
+//   }
+// })
 
 //role react settings
 const yourID = "221116684864454657";
