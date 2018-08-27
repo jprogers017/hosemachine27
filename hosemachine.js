@@ -32,32 +32,21 @@ client.login(discordToken);
 
 //on message in console and activity
 client.on('ready', function () {
-  console.log(`${client.user.username} is online in ${client.guilds.size} server(s)`);
+  console.log(`${client.user.username} is online!!!!! GET FUCKIN LIT BOIS`);
   client.user.setActivity("type ;)cowjoke, i dare u");
 });
 
-// BROKE BC I ADDED ROLE REACTIONS AND IDK HOW TO FIX IT RN LMFAO
-// //member joins
-// client.on('guildMemberAdd', member => {
-//   let joinChannel = member.guild.channels.find(`name`, "💾general💾");
-
-//   if (!joinChannel) {
-//     joinChannel.send(`<@${message.member.id}> just joined, i pray for their sanity tbh`);
-//   } else {
-//     joinChannel.send(`<@${message.member.id}> just joined, i pray for their sanity tbh`).catch(err => console.log(err));
-//   }
-// })
+//member joins
+client.on('guildMemberAdd', member => {
+  member.guild.channels.get('431647588262084608').send(`<@${member.user.id}> just joined, i pray for their sanity tbh. anyways welcome to hell lmfao`).catch(err => console.log(err)); //join-leave-logs
+  member.guild.channels.get('431636767448498178').send(`<@${member.user.id}}> just joined, i pray for their sanity tbh. anyways welcome to hell lmfao`).catch(err => console.log(err)); //💾general💾
+});
 
 // //member leaves
-// client.on('guildMemberRemove', member => {
-//   let leaveChannel = member.guild.channels.find(`name`, "💾general💾");
-
-//   if (!leaveChannel) {
-//     leaveChannel.send(`<@${message.member.id}> just left, sucks for them. we're fun as FRICK`);
-//   } else {
-//     leaveChannel.send(`<@${message.member.id}> just left, sucks for them. we're fun as FRICK`).catch(err => console.log(err));
-//   }
-// })
+client.on('guildMemberRemove', member => {
+  member.guild.channels.get('431647588262084608').send(`<@${member.user.id}> just left, sucks for them. we're fun as FRICK`).catch(err => console.log(err)); //join-leave-logs
+  member.guild.channels.get('431636767448498178').send(`<@${member.user.id}}> just left, sucks for them. we're fun as FRICK`).catch(err => console.log(err)); //💾general💾
+});
 
 //role react settings
 const yourID = "221116684864454657";
