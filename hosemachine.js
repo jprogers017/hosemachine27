@@ -140,6 +140,15 @@ client.on('message', function (message) {
     }
   }
 
+  if (mess.includes("hecc") && message.member.id != client.user.id) {
+    if (!logsChannel) {
+      message.channel.send("watch ur FUCKIN language");
+    } else {
+      message.channel.send("watch ur FUCKIN language");
+      return logsChannel.send(`told <@${message.member.id}> to watch their FUCKIN language: hecc`);
+    }
+  }
+
   if (mess.includes("frick") && message.member.id != client.user.id) {
     if (!logsChannel) {
       message.channel.send("watch ur FUCKIN language");
