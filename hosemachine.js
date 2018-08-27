@@ -39,13 +39,13 @@ client.on('ready', function () {
 //member joins
 client.on('guildMemberAdd', member => {
   member.guild.channels.get('431647588262084608').send(`<@${member.user.id}> just joined, i pray for their sanity tbh. anyways welcome to hell lmfao`).catch(err => console.log(err)); //join-leave-logs
-  member.guild.channels.get('431636767448498178').send(`<@${member.user.id}}> just joined, i pray for their sanity tbh. anyways welcome to hell lmfao`).catch(err => console.log(err)); //💾general💾
+  member.guild.channels.get('431636767448498178').send(`<@${member.user.id}> just joined, i pray for their sanity tbh. anyways welcome to hell lmfao`).catch(err => console.log(err)); //💾general💾
 });
 
 // //member leaves
 client.on('guildMemberRemove', member => {
   member.guild.channels.get('431647588262084608').send(`<@${member.user.id}> just left, sucks for them. we're fun as FRICK`).catch(err => console.log(err)); //join-leave-logs
-  member.guild.channels.get('431636767448498178').send(`<@${member.user.id}}> just left, sucks for them. we're fun as FRICK`).catch(err => console.log(err)); //💾general💾
+  member.guild.channels.get('431636767448498178').send(`<@${member.user.id}> just left, sucks for them. we're fun as FRICK`).catch(err => console.log(err)); //💾general💾
 });
 
 //role react settings
