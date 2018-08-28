@@ -15,13 +15,13 @@ module.exports.run = async (client, message) => {
     } else {
         let botIcon = client.user.displayAvatarURL;
         let helpEmbed = new Discord.RichEmbed()
-            .setTitle("Admin Help")
+            .setTitle(`${client.user.name} admin help info :)`)
             .setDescription("you need a role with admin perms turned on")
             .setColor("#7fc0ff")
             .setThumbnail(botIcon)
             .addField("Commands", `${prefix}admin`, true)
-            .addField("Invite Link", "<https://discordapp.com/api/oauth2/authorize?client_id=433064995274883078&permissions=0&scope=bot>")
-            .addField("Github", "<https://goo.gl/rua7h6>")
+            .addField("Invite Link", `${prefix}invite`, true)
+            .addField("Github", `${prefix}github`, true)
             .setFooter(`Created by: Josephine#6301 on ${client.user.createdAt}`);
     
         message.channel.send(helpEmbed);

@@ -12,8 +12,9 @@ module.exports.run = async (client, message) => {
 
     let botIcon = client.user.displayAvatarURL;
     let helpEmbed = new Discord.RichEmbed()
-        .setTitle("hosemachine (27) help info :)")
+        .setTitle(`${client.user.name} help info :)`)
         .setDescription(`use the ${prefix} prefix!`)
+        
         .setColor("#7fc0ff")
         .setThumbnail(botIcon)
         .addField("Commands", `${prefix}commands`, true)

@@ -15,13 +15,13 @@ module.exports.run = async (client, message) => {
     } else {
         let botIcon = client.user.displayAvatarURL;
         let commandEmbed = new Discord.RichEmbed()
-            .setTitle("Admin Commands")
+            .setTitle(`${client.user.name} admin commands :)`)
             .setDescription("you need a role with admin perms turned on")
             .setColor("#7fc0ff")
             .setThumbnail(botIcon)
             .addField("Working Commands", "purge\nsay", true)
             .addField("Broken Commands", "nothing...yet", true)
-            .addField("Coming Soon", "music!!!", true)
+            .addField("Coming Soon", "i have absolutely no idea", true)
             .setFooter(`Created by: Josephine#6301 on ${client.user.createdAt}`);
 
         message.channel.send(commandEmbed);

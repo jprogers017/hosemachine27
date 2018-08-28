@@ -28,6 +28,8 @@ const discordToken = config.discordToken;
 const myServerID = config.myServerID;
 const myServerLogs = config.myServerLogs;
 const externalServerLogs = config.externalServerLogs;
+const joinLeaveChannel = config.joinLeaveChannel;
+const generalChat = config.generalChat;
 //role react variables and settings
 const myID = config.myID;
 const setupCMD = "!roles"
@@ -42,20 +44,20 @@ client.login(discordToken);
 
 //on message in console and activity
 client.on('ready', function () {
-  console.log(`${client.user.username} is online!!!!! GET FUCKIN LIT BOIS`);
-  client.user.setActivity("type ;)cowjoke, i dare u");
+  console.log(`${client.user.username} is online in ${client.guilds.size} server(s)!`);
+  client.user.setActivity(`type ${prefix}cowjoke, i dare u`);
 });
 
 //member joins
 client.on('guildMemberAdd', member => {
-  member.guild.channels.get('431647588262084608').send(`<@${member.user.id}> just joined the server!!! hello!!!!!`).catch(err => console.log(err)); //join-leave-logs
-  member.guild.channels.get('431636767448498178').send(`<@${member.user.id}> just joined the server!!! hello!!!!!`).catch(err => console.log(err)); //💾general💾
+  member.guild.channels.get(joinLeaveChannel).send(`<@${member.user.id}> just joined the server!!! hello!!!!!`).catch(err => console.log(err));
+  member.guild.channels.get(generalChat).send(`<@${member.user.id}> just joined the server!!! hello!!!!!`).catch(err => console.log(err));
 });
 
 //member leaves
 client.on('guildMemberRemove', member => {
-  member.guild.channels.get('431647588262084608').send(`<@${member.user.id}> just left, :(`).catch(err => console.log(err)); //join-leave-logs
-  member.guild.channels.get('431636767448498178').send(`<@${member.user.id}> just left, :(`).catch(err => console.log(err)); //💾general💾
+  member.guild.channels.get(joinLeaveChannel).send(`<@${member.user.id}> just left, :(`).catch(err => console.log(err));
+  member.guild.channels.get(generalChat).send(`<@${member.user.id}> just left, :(`).catch(err => console.log(err));
 });
 
 //message generation function
@@ -219,7 +221,7 @@ client.on('message', function (message) {
   }
 
   if (mess.includes("kink") && message.member.id != client.user.id) {
-    if (mess.includes(";)kinkshame") && message.member.id != client.user.id) {
+    if (mess.includes(`${prefix}kinkshame`) && message.member.id != client.user.id) {
       return;
     } else {
       message.channel.send("should i be kinkshaming u for this?");

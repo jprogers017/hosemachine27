@@ -11,7 +11,8 @@ module.exports.run = async (client, message) => {
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
 
     let commandEmbed = new Discord.RichEmbed()
-        .setTitle("# joke commands BOIII for the most part at least")
+        .setTitle(`${client.user.name} commands :)`)
+        .setDescription(`anyone can do these! use the ${prefix} prefix`)
         .setColor("#7fc0ff")
         .addField("Auto Reply", "its all apart of the game...u will not know what elicits an auto reply unless u say one of them ;)", true)
         .addField("Filter", "same as the auto-reply stuff, u wont know until u try :)", true)
