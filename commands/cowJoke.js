@@ -1,9 +1,13 @@
-const Discord = require("discord.js");
-const ms = require("ms");
 const fs = require("fs");
+const config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
+const prefix = config.prefix;
+const myServerID = config.myServerID;
+const myServerLogs = config.myServerLogs;
+const externalServerLogs = config.externalServerLogs;
 
-module.exports.run = async (client, message, args) => {
-    let logsChannel = message.guild.channels.find(`name`, "bot-logs");
+module.exports.run = async (client, message) => {
+    const serverLogs = client.channels.get(myServerLogs);
+    const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
 
     var cowJokes = [
         "WHY DO COWS HAVE HOOVES INSTEAD OF FEET? BECAUSE THEY LACTOSE",
@@ -78,16 +82,16 @@ module.exports.run = async (client, message, args) => {
         "WHAT DO YOU CALL A COW THATS AFRAID OF THE DARK? A COWARD"
     ];
 
-    if (!logsChannel) {
-        var rand = cowJokes[Math.floor(Math.random() * cowJokes.length)];
-        message.channel.send(rand);
+    var rand = cowJokes[Math.floor(Math.random() * cowJokes.length)];
+    message.channel.send(rand);
+
+    if (message.guild.id == myServerID) {
+        return serverLogs.send(`<@${message.member.id}> asked for a cowjoke!`);
     } else {
-        var rand = cowJokes[Math.floor(Math.random() * cowJokes.length)];
-        message.channel.send(rand);
-        return logsChannel.send(`<@${message.member.id}> asked for a cow joke, LMAO NICE`);
+        return externalLogs.send(`<@${message.member.id}> asked for a cowjoke!\n**SERVER**: *${message.guild.name}*  || **OWNED BY**: ${message.guild.owner}`);
     }
 }
 
 module.exports.help = {
-    name: ";)cowjoke"
+    name: `${prefix}cowjoke`
 }

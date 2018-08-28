@@ -1,32 +1,23 @@
-const Discord = require("discord.js");
-const ms = require("ms");
 const fs = require("fs");
+const config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
+const prefix = config.prefix;
+const myServerID = config.myServerID;
+const myServerLogs = config.myServerLogs;
+const externalServerLogs = config.externalServerLogs;
 
-module.exports.run = async (client, message, args) => {
-    let logsChannel = message.guild.channels.find(`name`, "bot-logs");
+module.exports.run = async (client, message) => {
+    const serverLogs = client.channels.get(myServerLogs);
+    const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
 
-    if (!logsChannel) {
-        let requestPic = client.user.displayAvatarURL;
-        let requestEmbed = new Discord.RichEmbed()
-            .setTitle("uh? requests? can u read?")
-            .setDescription("give me suggetions to make my bot better")
-            .addField("literally just dm me, lmfao", "Josephine#6301")
-            .setColor("#7fc0ff")
-            .setThumbnail(requestPic)
-        message.channel.send(requestEmbed);
+    message.channel.send(`just dm me!!! <@221116684864454657>`);
+
+    if (message.guild.id == myServerID) {
+        return serverLogs.send(`<@${message.member.id}> will hopefully make a request soon :)`);
     } else {
-        let requestPic = client.user.displayAvatarURL;
-        let requestEmbed = new Discord.RichEmbed()
-            .setTitle("uh? requests? can u read?")
-            .setDescription("give me suggetions to make my bot better")
-            .addField("literally just dm me, lmfao", "Josephine#6301")
-            .setColor("#7fc0ff")
-            .setThumbnail(requestPic)
-        message.channel.send(requestEmbed);
-        return logsChannel.send(`<@${message.member.id}> sent in a request? maybe? idk if they followed thru lmfao`);
+        return externalLogs.send(`<@${message.member.id}> will hopefully make a request soon :)\n**SERVER**: *${message.guild.name}*  || **OWNED BY**: ${message.guild.owner}`);
     }
 }
 
 module.exports.help = {
-    name: ";)request"
+    name: `${prefix}request`
 }

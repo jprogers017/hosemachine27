@@ -1,9 +1,13 @@
-const Discord = require("discord.js");
-const ms = require("ms");
 const fs = require("fs");
+const config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
+const prefix = config.prefix;
+const myServerID = config.myServerID;
+const myServerLogs = config.myServerLogs;
+const externalServerLogs = config.externalServerLogs;
 
-module.exports.run = async (client, message, args) => {
-    let logsChannel = message.guild.channels.find(`name`, "bot-logs");
+module.exports.run = async (client, message) => {
+    const serverLogs = client.channels.get(myServerLogs);
+    const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
 
     var dadJokes = [
         "Did you hear about the restaurant on the moon? Great food, no atmosphere.",
@@ -48,16 +52,16 @@ module.exports.run = async (client, message, args) => {
         "People don’t like having to bend over to get their drinks. We really need to raise the bar."
     ];
 
-    if (!logsChannel) {
-        var rand = dadJokes[Math.floor(Math.random() * dadJokes.length)];
-        message.channel.send(rand);
+    var rand = dadJokes[Math.floor(Math.random() * dadJokes.length)];
+    message.channel.send(rand);
+
+    if (message.guild.id == myServerID) {
+        return serverLogs.send(`<@${message.member.id}> asked for a dad joke!`);
     } else {
-        var rand = dadJokes[Math.floor(Math.random() * dadJokes.length)];
-        message.channel.send(rand);
-        return logsChannel.send(`<@${message.member.id}> asked for a dad joke, LMAO NICE`);
+        return externalLogs.send(`<@${message.member.id}> asked for a dad joke!\n**SERVER**: *${message.guild.name}*  || **OWNED BY**: ${message.guild.owner}`);
     }
 }
 
 module.exports.help = {
-    name: ";)dadjoke"
+    name: `${prefix}dadjoke`
 }

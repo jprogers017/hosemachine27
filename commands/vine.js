@@ -1,11 +1,15 @@
-const Discord = require("discord.js");
-const ms = require("ms");
 const fs = require("fs");
+const config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
+const prefix = config.prefix;
+const myServerID = config.myServerID;
+const myServerLogs = config.myServerLogs;
+const externalServerLogs = config.externalServerLogs;
 
-//https://www.youtube.com/playlist?list=PLCRi2kg6z92FPyTu4ut49faqAYPS5eBsA
-module.exports.run = async (client, message, args) => {
-    let logsChannel = message.guild.channels.find(`name`, "bot-logs");
+module.exports.run = async (client, message) => {
+    const serverLogs = client.channels.get(myServerLogs);
+    const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
 
+    //https://www.youtube.com/playlist?list=PLCRi2kg6z92FPyTu4ut49faqAYPS5eBsA
     var vine = [
         "https://youtu.be/y7LY46fyRVQ",
         "https://youtu.be/bFw5lrN-mig",
@@ -188,16 +192,16 @@ module.exports.run = async (client, message, args) => {
         "https://youtu.be/BEjwxz1OZsg" //198,
     ];
 
-    if (!logsChannel) {
-        var rand = vine[Math.floor(Math.random() * vine.length)];
-        message.channel.send(rand);
+    var rand = vine[Math.floor(Math.random() * vine.length)];
+    message.channel.send(rand);
+
+    if (message.guild.id == myServerID) {
+        return serverLogs.send(`<@${message.member.id}> asked for a vine`);
     } else {
-        var rand = vine[Math.floor(Math.random() * vine.length)];
-        message.channel.send(rand);
-        return logsChannel.send(`<@${message.member.id}> asked for a vine,,,,WHAT A SMART COOKIE`);
+        return externalLogs.send(`<@${message.member.id}> asked for a vine\n**SERVER**: *${message.guild.name}*  || **OWNED BY**: ${message.guild.owner}`);
     }
 }
 
 module.exports.help = {
-    name: ";)vine"
+    name: `${prefix}vine`
 }

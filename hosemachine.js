@@ -1,11 +1,11 @@
 const Discord = require("discord.js");
-const ms = require("ms");
 const fs = require("fs");
 const client = new Discord.Client({
   disableEveryone: true
 });
 client.commands = new Discord.Collection();
 
+//command handler
 fs.readdir("./commands/", (err, files) => {
   if (err) console.log(err);
 
@@ -21,13 +21,23 @@ fs.readdir("./commands/", (err, files) => {
   });
 });
 
-client.commands = new Discord.Collection();
-
-var config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
-
-let prefix = config.prefix;
+//variables 
+const config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
+const prefix = config.prefix;
 const discordToken = config.discordToken;
+const myServerID = config.myServerID;
+const myServerLogs = config.myServerLogs;
+const externalServerLogs = config.externalServerLogs;
+//role react variables and settings
+const myID = config.myID;
+const setupCMD = "!roles"
+const initialMessage = `react to what roles u want or u cant see anything else sry (im rly not, pls keep it organized!!!)`;
+const roles = ["siege", "overwatch", "pubg", "csgo", "rocksmith", "minecraft"];
+const reactions = ["483146133305294848", "483146167396335652", "483146201739296778", "483146328843485205", "483146363048296478", "483146383906439168"];
+//roles + reactions length check
+if (roles.length !== reactions.length) throw "roles and reactions length";
 
+//bot login
 client.login(discordToken);
 
 //on message in console and activity
@@ -38,30 +48,21 @@ client.on('ready', function () {
 
 //member joins
 client.on('guildMemberAdd', member => {
-  member.guild.channels.get('431647588262084608').send(`<@${member.user.id}> just joined, i pray for their sanity tbh. anyways welcome to hell lmfao`).catch(err => console.log(err)); //join-leave-logs
-  member.guild.channels.get('431636767448498178').send(`<@${member.user.id}> just joined, i pray for their sanity tbh. anyways welcome to hell lmfao`).catch(err => console.log(err)); //💾general💾
+  member.guild.channels.get('431647588262084608').send(`<@${member.user.id}> just joined the server!!! hello!!!!!`).catch(err => console.log(err)); //join-leave-logs
+  member.guild.channels.get('431636767448498178').send(`<@${member.user.id}> just joined the server!!! hello!!!!!`).catch(err => console.log(err)); //💾general💾
 });
 
-// //member leaves
+//member leaves
 client.on('guildMemberRemove', member => {
-  member.guild.channels.get('431647588262084608').send(`<@${member.user.id}> just left, sucks for them. we're fun as FRICK`).catch(err => console.log(err)); //join-leave-logs
-  member.guild.channels.get('431636767448498178').send(`<@${member.user.id}> just left, sucks for them. we're fun as FRICK`).catch(err => console.log(err)); //💾general💾
+  member.guild.channels.get('431647588262084608').send(`<@${member.user.id}> just left, :(`).catch(err => console.log(err)); //join-leave-logs
+  member.guild.channels.get('431636767448498178').send(`<@${member.user.id}> just left, :(`).catch(err => console.log(err)); //💾general💾
 });
-
-//role react settings
-const yourID = "221116684864454657";
-const setupCMD = "!roles"
-let initialMessage = `react to what roles u want or u cant see anything else sry (im rly not, do what i said, u fucking bitch)`;
-const roles = ["siege", "overwatch", "pubg", "csgo", "rocksmith", "minecraft"];
-const reactions = ["483146133305294848", "483146167396335652", "483146201739296778", "483146328843485205", "483146363048296478", "483146383906439168"];
-
-if (roles.length !== reactions.length) throw "Roles list and reactions list are not the same length!";
 
 //message generation function
 function generateMessages() {
   var messages = [];
   messages.push(initialMessage);
-  for (let role of roles) messages.push(`react here to get the **"${role}"** role, u fucking pussy`);
+  for (let role of roles) messages.push(`react here to get the **"${role}"** role!!!`);
   return messages;
 }
 
@@ -80,21 +81,19 @@ client.on('raw', event => {
         if (user.id != client.user.id) {
           var memberObj = message.guild.members.get(user.id);
           var roleObj = message.guild.roles.find('name', role);
-          var gameRole = message.guild.roles.find('name', 'gaymer');
+          var memberRole = message.guild.roles.find('name', 'member');
 
           if (event.t === "MESSAGE_REACTION_ADD") {
-            let logsChannel = message.guild.channels.find(`name`, "bot-logs");
+            const serverLogs = client.channels.get(myServerLogs);
 
             memberObj.addRole(roleObj)
-            memberObj.addRole(gameRole)
-            // message.channel.send(`${memberObj} added ${roleObj}`);
-            if(logsChannel) logsChannel.send(`${memberObj} added ${roleObj}`);
+            memberObj.addRole(memberRole)
+            if (message.guild.id == myServerID) serverLogs.send(`${memberObj} added ${roleObj}`);
           } else {
-            let logsChannel = message.guild.channels.find(`name`, "bot-logs");
+            const serverLogs = client.channels.get(myServerLogs);
 
             memberObj.removeRole(roleObj);
-            // message.channel.send(`${memberObj} removed ${roleObj}`);
-            if(logsChannel) logsChannel.send(`${memberObj} removed ${roleObj}`);
+            if (message.guild.id == myServerID) serverLogs.send(`${memberObj} removed ${roleObj}`);
           }
         }
       }
@@ -103,20 +102,26 @@ client.on('raw', event => {
 });
 
 client.on('message', function (message) {
-  if (message.author.bot) return;
-  if (message.channel.type === "dm") return message.channel.send("did u want an invite link? <https://discordapp.com/api/oauth2/authorize?client_id=433064995274883078&permissions=0&scope=bot>");
-
+  //variables
   const mess = message.content.toLowerCase();
   let messageArray = message.content.split(" ");
-  let cmd = messageArray[0];
   let args = messageArray.slice(1);
-  let logsChannel = message.guild.channels.find(`name`, "bot-logs");
-
+  const serverLogs = client.channels.get(myServerLogs);
+  const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
+  let cmd = messageArray[0];
   let commandFile = client.commands.get(cmd);
   if (commandFile) commandFile.run(client, message, args);
 
+  //crashing? not on my watch
+  if (message.author.bot) return;
+  if (message.channel.type === "dm") {
+    externalLogs.send(`someone slid into my dm's :eyes: :eyes: :eyes:\ni gave them an invite link :)`)
+    message.channel.send("did u want an invite link? <https://discordapp.com/api/oauth2/authorize?client_id=433064995274883078&permissions=0&scope=bot>");
+    return;
+  }
+
   //role react
-  if (message.author.id == yourID && message.content.toLowerCase() == setupCMD) {
+  if ((message.author.id == myID) && (message.content.toLowerCase() == setupCMD) && (message.guild.id == myServerID)) {
     var toSend = generateMessages();
     let mappedArray = [
       [toSend[0], false], ...toSend.slice(1).map((message, idx) => [message, reactions[idx]])
@@ -132,75 +137,84 @@ client.on('message', function (message) {
 
   //joke filter
   if (mess.includes("heck") && message.member.id != client.user.id) {
-    if (!logsChannel) {
-      message.channel.send("watch ur FUCKIN language");
+    message.channel.send("watch ur FUCKIN language");
+    if (message.guild.id == myServerID) {
+      return serverLogs.send(`told <@${message.member.id}> to watch their FUCKIN language: heck`);
     } else {
-      message.channel.send("watch ur FUCKIN language");
-      return logsChannel.send(`told <@${message.member.id}> to watch their FUCKIN language: heck`);
+      return externalLogs.send(`told <@${message.member.id}> to watch their FUCKIN language: heck\n**SERVER**: *${message.guild.name}*  || **OWNED BY**: ${message.guild.owner}`);
     }
   }
 
   if (mess.includes("hecc") && message.member.id != client.user.id) {
-    if (!logsChannel) {
-      message.channel.send("watch ur FUCKIN language");
+    message.channel.send("watch ur FUCKIN language");
+    if (message.guild.id == myServerID) {
+      return serverLogs.send(`told <@${message.member.id}> to watch their FUCKIN language: hecc`);
     } else {
-      message.channel.send("watch ur FUCKIN language");
-      return logsChannel.send(`told <@${message.member.id}> to watch their FUCKIN language: hecc`);
+      return externalLogs.send(`told <@${message.member.id}> to watch their FUCKIN language: hecc\n**SERVER**: *${message.guild.name}*  || **OWNED BY**: ${message.guild.owner}`);
     }
   }
 
   if (mess.includes("frick") && message.member.id != client.user.id) {
-    if (!logsChannel) {
-      message.channel.send("watch ur FUCKIN language");
+    message.channel.send("watch ur FUCKIN language");
+    if (message.guild.id == myServerID) {
+      return serverLogs.send(`told <@${message.member.id}> to watch their FUCKIN language: frick`);
     } else {
-      message.channel.send("watch ur FUCKIN language");
-      return logsChannel.send(`told <@${message.member.id}> to watch their FUCKIN language: frick`);
+      return externalLogs.send(`told <@${message.member.id}> to watch their FUCKIN language: frick\n**SERVER**: *${message.guild.name}*  || **OWNED BY**: ${message.guild.owner}`);
     }
   }
 
   if (mess.includes("darn") && message.member.id != client.user.id) {
-    if (!logsChannel) {
-      message.channel.send("watch ur FUCKIN language");
+    message.channel.send("watch ur FUCKIN language");
+    if (message.guild.id == myServerID) {
+      return serverLogs.send(`told <@${message.member.id}> to watch their FUCKIN language: darn`);
     } else {
-      message.channel.send("watch ur FUCKIN language");
-      return logsChannel.send(`told <@${message.member.id}> to watch their FUCKIN language: darn`);
+      return externalLogs.send(`told <@${message.member.id}> to watch their FUCKIN language: darn\n**SERVER**: *${message.guild.name}*  || **OWNED BY**: ${message.guild.owner}`);
+    }
+  }
+
+  if (mess.includes("dang") && message.member.id != client.user.id) {
+    message.channel.send("watch ur FUCKIN language");
+    if (message.guild.id == myServerID) {
+      return serverLogs.send(`told <@${message.member.id}> to watch their FUCKIN language: dang`);
+    } else {
+      return externalLogs.send(`told <@${message.member.id}> to watch their FUCKIN language: dang\n**SERVER**: *${message.guild.name}*  || **OWNED BY**: ${message.guild.owner}`);
     }
   }
 
   if (mess.includes("binch") && message.member.id != client.user.id) {
-    if (!logsChannel) {
-      message.channel.send("watch ur FUCKIN language");
+    message.channel.send("watch ur FUCKIN language");
+    if (message.guild.id == myServerID) {
+      return serverLogs.send(`told <@${message.member.id}> to watch their FUCKIN language: binch`);
     } else {
-      message.channel.send("watch ur FUCKIN language");
-      return logsChannel.send(`told <@${message.member.id}> to watch their FUCKIN language: binch`);
+      return externalLogs.send(`told <@${message.member.id}> to watch their FUCKIN language: binch\n**SERVER**: *${message.guild.name}*  || **OWNED BY**: ${message.guild.owner}`);
     }
   }
 
   //stupid reply shit for fun lmfao
   if (mess.includes("fuck me") && message.member.id != client.user.id) {
-    if (!logsChannel) {
-      message.channel.send(":weary: :ok_hand: :sweat_drops:");
+    message.channel.send(":weary: :ok_hand: :sweat_drops:");
+    if (message.guild.id == myServerID) {
+      return serverLogs.send(`<@${message.member.id}> got :weary: :ok_hand: :sweat_drops:`);
     } else {
-      message.channel.send(":weary: :ok_hand: :sweat_drops:");
-      return logsChannel.send(`<@${message.member.id}> said fuck me,,,,:weary: :ok_hand: :sweat_drops:`);
+      return externalLogs.send(`<@${message.member.id}> got :weary: :ok_hand: :sweat_drops:\n**SERVER**: *${message.guild.name}*  || **OWNED BY**: ${message.guild.owner}`);
     }
   }
 
   if (mess.includes("yeehaw") && message.member.id != client.user.id) {
-    if (!logsChannel) {
-      message.channel.send("YAWHEE :cowboy: :cowboy: :cowboy:");
+    message.channel.send("YAWHEE :cowboy: :cowboy: :cowboy:");
+    if (message.guild.id == myServerID) {
+      return serverLogs.send(`<@${message.member.id}> got YAWHEE :cowboy: :cowboy: :cowboy:`);
     } else {
-      message.channel.send("YAWHEE :cowboy: :cowboy: :cowboy:");
-      return logsChannel.send(`<@${message.member.id}> said yeehaw and got YAWHEE :cowboy: back`);
+      return externalLogs.send(`<@${message.member.id}> got YAWHEE :cowboy: :cowboy: :cowboy:\n**SERVER**: *${message.guild.name}*  || **OWNED BY**: ${message.guild.owner}`);
     }
   }
 
   if (mess.includes("whomst") && message.member.id != client.user.id) {
-    if (!logsChannel) {
-      message.channel.send("the FUCK");
+    message.channel.send("the FUCK");
+    if (message.guild.id == myServerID) {
+      return serverLogs.send(`<@${message.member.id}> : WHOMST THE FUCK`);
     } else {
-      message.channel.send("the FUCK");
-      return logsChannel.send(`<@${message.member.id}>... whoms't the FUCK`);
+      return externalLogs.send(`<@${message.member.id}> : WHOMST THE FUCK\n**SERVER**: *${message.guild.name}*  || **OWNED BY**: ${message.guild.owner}`);
     }
   }
 
@@ -208,49 +222,49 @@ client.on('message', function (message) {
     if (mess.includes(";)kinkshame") && message.member.id != client.user.id) {
       return;
     } else {
-      if (!logsChannel) {
-        message.channel.send("should i be kinkshaming u for this?");
+      message.channel.send("should i be kinkshaming u for this?");
+      if (message.guild.id == myServerID) {
+        return serverLogs.send(`<@${message.member.id}> might be getting kinkshamed :eyes:`);
       } else {
-        message.channel.send("should i be kinkshaming u for this?");
-        return logsChannel.send(`<@${message.member.id}> is PROBABLY going to be kinkshamed`);
+        return externalLogs.send(`<@${message.member.id}> might be getting kinkshamed :eyes:\n**SERVER**: *${message.guild.name}*  || **OWNED BY**: ${message.guild.owner}`);
       }
     }
   }
 
   if (mess.includes("knock knock") && message.member.id != client.user.id) {
-    if (!logsChannel) {
-      message.channel.send("whos there?");
+    message.channel.send("whos there?");
+    if (message.guild.id == myServerID) {
+      return serverLogs.send(`<@${message.member.id}> said knock knock !!!`);
     } else {
-      message.channel.send("whos there?");
-      return logsChannel.send(`replied to <@${message.member.id}>: whos there?`);
+      return externalLogs.send(`<@${message.member.id}> said knock knock !!!\n**SERVER**: *${message.guild.name}*  || **OWNED BY**: ${message.guild.owner}`);
     }
   }
 
   //stupid react shit for fun lmfao
   if (mess.includes("gay") && message.member.id != client.user.id) {
-    if (!logsChannel) {
-      message.react('🏳️‍🌈');
+    message.react('🏳️‍🌈');
+    if (message.guild.id == myServerID) {
+      return serverLogs.send(`<@${message.member.id}> got a :gay_pride_flag: !!!`);
     } else {
-      message.react('🏳️‍🌈');
-      return logsChannel.send(`<@${message.member.id}> got a :gay_pride_flag:`);
+      return externalLogs.send(`<@${message.member.id}> got a :gay_pride_flag: !!!\n**SERVER**: *${message.guild.name}*  || **OWNED BY**: ${message.guild.owner}`);
     }
   }
 
   if (mess.includes("eyes emoji") && message.member.id != client.user.id) {
-    if (!logsChannel) {
-      message.react("👀");
+    message.react("👀");
+    if (message.guild.id == myServerID) {
+      return serverLogs.send(`<@${message.member.id}> got :eyes:`);
     } else {
-      message.react("👀");
-      return logsChannel.send(`<@${message.member.id}> got :eyes:`);
+      return externalLogs.send(`<@${message.member.id}> got :eyes:\n**SERVER**: *${message.guild.name}*  || **OWNED BY**: ${message.guild.owner}`);
     }
   }
 
   if (mess.includes("wet") && message.member.id != client.user.id) {
-    if (!logsChannel) {
-      message.react("💦");
+    message.react("💦");
+    if (message.guild.id == myServerID) {
+      return serverLogs.send(`<@${message.member.id}> got some :sweat_drops:`);
     } else {
-      message.react("💦");
-      return logsChannel.send(`<@${message.member.id}> got :sweat_drops:`);
+      return externalLogs.send(`<@${message.member.id}> got some :sweat_drops:\n**SERVER**: *${message.guild.name}*  || **OWNED BY**: ${message.guild.owner}`);
     }
   }
 });

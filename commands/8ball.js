@@ -1,9 +1,13 @@
-const Discord = require("discord.js");
-const ms = require("ms");
 const fs = require("fs");
+const config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
+const prefix = config.prefix;
+const myServerID = config.myServerID;
+const myServerLogs = config.myServerLogs;
+const externalServerLogs = config.externalServerLogs;
 
 module.exports.run = async (client, message, args) => {
-    let logsChannel = message.guild.channels.find(`name`, "bot-logs");
+    const serverLogs = client.channels.get(myServerLogs);
+    const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
 
     var eightBallReplies = [
         "It is certain",
@@ -30,30 +34,21 @@ module.exports.run = async (client, message, args) => {
         "No"
     ];
 
-    if (!logsChannel) {
-        if (!args[1]) {
-            message.reply("more than a one worded question");
-            return logsChannel.send(`<@${message.member.id}> tried to ask a question??? i think???`);
-        } else {
-            let eightBallResult = Math.floor((Math.random() * eightBallReplies.length));
-            let eightBallQuestion = args.slice(1).join(" ");
-
-            message.reply(eightBallReplies[eightBallResult]);
-        }
+    if (!args[1]) {
+        message.reply("more than a one worded question");
     } else {
-        if (!args[1]) {
-            message.reply("more than a one worded question");
-            return logsChannel.send(`<@${message.member.id}> tried to ask a question??? i think???`);
-        } else {
-            let eightBallResult = Math.floor((Math.random() * eightBallReplies.length));
-            let eightBallQuestion = args.slice(1).join(" ");
+        let eightBallResult = Math.floor((Math.random() * eightBallReplies.length));
+        let eightBallQuestion = args.slice(1).join(" ");
+        message.reply(eightBallReplies[eightBallResult]);
 
-            message.reply(eightBallReplies[eightBallResult]);
-            return logsChannel.send(`<@${message.member.id}> asked the 8ball ${eightBallQuestion}`);
+        if (message.guild.id == myServerID) {
+            return serverLogs.send(`<@${message.member.id}> asked for guidance from the 8 ball`);
+        } else {
+            return externalLogs.send(`<@${message.member.id}> asked for guidance from the 8 ball\n**SERVER**: *${message.guild.name}*  || **OWNED BY**: ${message.guild.owner}`);
         }
     }
 }
 
 module.exports.help = {
-    name: ";)8ball"
+    name: `${prefix}8ball`
 }

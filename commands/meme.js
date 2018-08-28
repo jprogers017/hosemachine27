@@ -1,11 +1,16 @@
-const Discord = require("discord.js");
-const ms = require("ms");
 const fs = require("fs");
+const config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
+const prefix = config.prefix;
+const myServerID = config.myServerID;
+const myServerLogs = config.myServerLogs;
+const externalServerLogs = config.externalServerLogs;
 
-//https://www.youtube.com/playlist?list=PLFsQleAWXsj_4yDeebiIADdH5FMayBiJo
-module.exports.run = async (client, message, args) => {
-    let logsChannel = message.guild.channels.find(`name`, "bot-logs");
 
+module.exports.run = async (client, message) => {
+    const serverLogs = client.channels.get(myServerLogs);
+    const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
+
+    //https://www.youtube.com/playlist?list=PLFsQleAWXsj_4yDeebiIADdH5FMayBiJo
     var memes = [
         "https://youtu.be/yKC3F0rNnLE",
         "https://youtu.be/GPRD90nOKYQ",
@@ -31,16 +36,17 @@ module.exports.run = async (client, message, args) => {
         "https://youtu.be/FdSa0c_Xj3k"
     ];
 
-    if (!logsChannel) {
-        var rand = memes[Math.floor(Math.random() * memes.length)];
-        message.channel.send(rand);
+
+    var rand = memes[Math.floor(Math.random() * memes.length)];
+    message.channel.send(rand);
+
+    if (message.guild.id == myServerID) {
+        return serverLogs.send(`<@${message.member.id}> asked for a meme!`);
     } else {
-        var rand = memes[Math.floor(Math.random() * memes.length)];
-        message.channel.send(rand);
-        return logsChannel.send(`<@${message.member.id}> asked for a meme, oh no`);
+        return externalLogs.send(`<@${message.member.id}> asked for a meme!\n**SERVER**: *${message.guild.name}*  || **OWNED BY**: ${message.guild.owner}`);
     }
 }
 
 module.exports.help = {
-    name: ";)meme"
+    name: `${prefix}meme`
 }

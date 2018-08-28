@@ -9,15 +9,20 @@ module.exports.run = async (client, message) => {
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
 
-    message.channel.send(`Hello!!!`);
+    var chance = Math.floor(Math.random() * 2);
+    if (chance == 0) {
+        message.reply(`heads`);
+    } else {
+        message.reply(`tails`);
+    }
 
     if (message.guild.id == myServerID) {
-        return serverLogs.send(`<@${message.member.id}> said hello!`);
+        return serverLogs.send(`<@${message.member.id}> flipped a coin`);
     } else {
-        return externalLogs.send(`<@${message.member.id}> said hello!\n**SERVER**: *${message.guild.name}*  || **OWNED BY**: ${message.guild.owner}`);
+        return externalLogs.send(`<@${message.member.id}> flipped a coin\n**SERVER**: *${message.guild.name}*  || **OWNED BY**: ${message.guild.owner}`);
     }
 }
 
 module.exports.help = {
-    name: `${prefix}hello`
+    name: `${prefix}coinflip`
 }
