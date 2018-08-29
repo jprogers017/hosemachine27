@@ -30,7 +30,7 @@ module.exports.run = async (client, message) => {
     if (message.guild.id == myServerID) {
         return serverLogs.send(`<@${message.member.id}> rolled a ${roll}`);
     } else {
-        return externalLogs.send(`<@${message.member.id}> rolled a ${roll}\n**SERVER**: *${message.guild.name}*  || **OWNED BY**: ${message.guild.owner}`);
+        return externalLogs.send(`<@${message.member.id}> rolled a ${roll}\n**SERVER**: *${message.guild.name}* || **CHANNEL**: ${message.channel.name} || **OWNED BY**: ${message.guild.owner}`);
     }
 }
 

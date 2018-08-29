@@ -30,7 +30,7 @@ module.exports.run = async (client, message) => {
     if (message.guild.id == myServerID) {
         return serverLogs.send(`<@${message.member.id}> asked for the admin commands`);
     } else {
-        return externalLogs.send(`<@${message.member.id}> asked for the admin commands\n**SERVER**: *${message.guild.name}*  || **OWNED BY**: ${message.guild.owner}`);
+        return externalLogs.send(`<@${message.member.id}> asked for the admin commands\n**SERVER**: *${message.guild.name}* || **CHANNEL**: ${message.channel.name} || **OWNED BY**: ${message.guild.owner}`);
     }
 }
 

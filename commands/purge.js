@@ -20,7 +20,7 @@ module.exports.run = async (client, message, args) => {
     if (message.guild.id == myServerID) {
         return serverLogs.send(`<@${message.member.id}> cleared ${args[0]} messages`);
     } else {
-        return externalLogs.send(`<@${message.member.id}> cleared ${args[0]} messages\n**SERVER**: *${message.guild.name}*  || **OWNED BY**: ${message.guild.owner}`);
+        return externalLogs.send(`<@${message.member.id}> cleared ${args[0]} messages\n**SERVER**: *${message.guild.name}* || **CHANNEL**: ${message.channel.name} || **OWNED BY**: ${message.guild.owner}`);
     }
 }
 

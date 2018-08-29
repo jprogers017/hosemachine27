@@ -14,7 +14,7 @@ module.exports.run = async (client, message) => {
     if (message.guild.id == myServerID) {
         return serverLogs.send(`<@${message.member.id}> asked to see their profile picture`);
     } else {
-        return externalLogs.send(`<@${message.member.id}> asked to see their profile picture\n**SERVER**: *${message.guild.name}*  || **OWNED BY**: ${message.guild.owner}`);
+        return externalLogs.send(`<@${message.member.id}> asked to see their profile picture\n**SERVER**: *${message.guild.name}* || **CHANNEL**: ${message.channel.name} || **OWNED BY**: ${message.guild.owner}`);
     }
 }
 

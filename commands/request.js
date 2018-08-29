@@ -14,7 +14,7 @@ module.exports.run = async (client, message) => {
     if (message.guild.id == myServerID) {
         return serverLogs.send(`<@${message.member.id}> will hopefully make a request soon :)`);
     } else {
-        return externalLogs.send(`<@${message.member.id}> will hopefully make a request soon :)\n**SERVER**: *${message.guild.name}*  || **OWNED BY**: ${message.guild.owner}`);
+        return externalLogs.send(`<@${message.member.id}> will hopefully make a request soon :)\n**SERVER**: *${message.guild.name}* || **CHANNEL**: ${message.channel.name} || **OWNED BY**: ${message.guild.owner}`);
     }
 }
 
