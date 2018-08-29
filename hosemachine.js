@@ -172,8 +172,7 @@ client.on('message', function (message) {
     const logContent = `told <@${message.member.id}> to watch their FUCKIN language: heck`;
     if (message.guild.id == myServerID) {
       let logsEmbed = new Discord.RichEmbed()
-        .setTitle(logContent)
-        .setDescription(`who: <@${message.member.id}>`)
+        .setDescription(logContent)
         .addField('channel:', message.channel.name)
         .setColor(message.member.displayHexColor)
         .setThumbnail(message.author.avatarURL)
@@ -182,11 +181,9 @@ client.on('message', function (message) {
       serverLogs.send(logsEmbed);
     } else {
       let logsEmbed = new Discord.RichEmbed()
-        .setTitle(logContent)
-        .setDescription(`who: <@${message.member.id}>`)
-        .addField('server:', message.guild.name)
-        .addField('channel:', message.channel.name)
-        .addField('owner:', message.guild.owner)
+        .setDescription(logContent)
+        .addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
+        .addField('channel:', message.channel.name, true)
         .setColor(message.member.displayHexColor)
         .setThumbnail(message.author.avatarURL)
         .setTimestamp();
@@ -200,8 +197,7 @@ client.on('message', function (message) {
     const logContent = `told <@${message.member.id}> to watch their FUCKIN language: hecc`;
     if (message.guild.id == myServerID) {
       let logsEmbed = new Discord.RichEmbed()
-        .setTitle(logContent)
-        .setDescription(`who: <@${message.member.id}>`)
+        .setDescription(logContent)
         .addField('channel:', message.channel.name)
         .setColor(message.member.displayHexColor)
         .setThumbnail(message.author.avatarURL)
@@ -210,11 +206,9 @@ client.on('message', function (message) {
       serverLogs.send(logsEmbed);
     } else {
       let logsEmbed = new Discord.RichEmbed()
-        .setTitle(logContent)
-        .setDescription(`who: <@${message.member.id}>`)
-        .addField('server:', message.guild.name)
-        .addField('channel:', message.channel.name)
-        .addField('owner:', message.guild.owner)
+        .setDescription(logContent)
+        .addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
+        .addField('channel:', message.channel.name, true)
         .setColor(message.member.displayHexColor)
         .setThumbnail(message.author.avatarURL)
         .setTimestamp();
@@ -228,8 +222,7 @@ client.on('message', function (message) {
     const logContent = `told <@${message.member.id}> to watch their FUCKIN language: frick`;
     if (message.guild.id == myServerID) {
       let logsEmbed = new Discord.RichEmbed()
-        .setTitle(logContent)
-        .setDescription(`who: <@${message.member.id}>`)
+        .setDescription(logContent)
         .addField('channel:', message.channel.name)
         .setColor(message.member.displayHexColor)
         .setThumbnail(message.author.avatarURL)
@@ -238,11 +231,9 @@ client.on('message', function (message) {
       serverLogs.send(logsEmbed);
     } else {
       let logsEmbed = new Discord.RichEmbed()
-        .setTitle(logContent)
-        .setDescription(`who: <@${message.member.id}>`)
-        .addField('server:', message.guild.name)
-        .addField('channel:', message.channel.name)
-        .addField('owner:', message.guild.owner)
+        .setDescription(logContent)
+        .addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
+        .addField('channel:', message.channel.name, true)
         .setColor(message.member.displayHexColor)
         .setThumbnail(message.author.avatarURL)
         .setTimestamp();
@@ -256,8 +247,7 @@ client.on('message', function (message) {
     const logContent = `told <@${message.member.id}> to watch their FUCKIN language: darn`;
     if (message.guild.id == myServerID) {
       let logsEmbed = new Discord.RichEmbed()
-        .setTitle(logContent)
-        .setDescription(`who: <@${message.member.id}>`)
+        .setDescription(logContent)
         .addField('channel:', message.channel.name)
         .setColor(message.member.displayHexColor)
         .setThumbnail(message.author.avatarURL)
@@ -266,11 +256,9 @@ client.on('message', function (message) {
       serverLogs.send(logsEmbed);
     } else {
       let logsEmbed = new Discord.RichEmbed()
-        .setTitle(logContent)
-        .setDescription(`who: <@${message.member.id}>`)
-        .addField('server:', message.guild.name)
-        .addField('channel:', message.channel.name)
-        .addField('owner:', message.guild.owner)
+        .setDescription(logContent)
+        .addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
+        .addField('channel:', message.channel.name, true)
         .setColor(message.member.displayHexColor)
         .setThumbnail(message.author.avatarURL)
         .setTimestamp();
@@ -284,8 +272,7 @@ client.on('message', function (message) {
     const logContent = `told <@${message.member.id}> to watch their FUCKIN language: dang`;
     if (message.guild.id == myServerID) {
       let logsEmbed = new Discord.RichEmbed()
-        .setTitle(logContent)
-        .setDescription(`who: <@${message.member.id}>`)
+        .setDescription(logContent)
         .addField('channel:', message.channel.name)
         .setColor(message.member.displayHexColor)
         .setThumbnail(message.author.avatarURL)
@@ -294,11 +281,9 @@ client.on('message', function (message) {
       serverLogs.send(logsEmbed);
     } else {
       let logsEmbed = new Discord.RichEmbed()
-        .setTitle(logContent)
-        .setDescription(`who: <@${message.member.id}>`)
-        .addField('server:', message.guild.name)
-        .addField('channel:', message.channel.name)
-        .addField('owner:', message.guild.owner)
+        .setDescription(logContent)
+        .addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
+        .addField('channel:', message.channel.name, true)
         .setColor(message.member.displayHexColor)
         .setThumbnail(message.author.avatarURL)
         .setTimestamp();
@@ -312,8 +297,7 @@ client.on('message', function (message) {
     const logContent = `told <@${message.member.id}> to watch their FUCKIN language: binch`;
     if (message.guild.id == myServerID) {
       let logsEmbed = new Discord.RichEmbed()
-        .setTitle(logContent)
-        .setDescription(`who: <@${message.member.id}>`)
+        .setDescription(logContent)
         .addField('channel:', message.channel.name)
         .setColor(message.member.displayHexColor)
         .setThumbnail(message.author.avatarURL)
@@ -322,11 +306,9 @@ client.on('message', function (message) {
       serverLogs.send(logsEmbed);
     } else {
       let logsEmbed = new Discord.RichEmbed()
-        .setTitle(logContent)
-        .setDescription(`who: <@${message.member.id}>`)
-        .addField('server:', message.guild.name)
-        .addField('channel:', message.channel.name)
-        .addField('owner:', message.guild.owner)
+        .setDescription(logContent)
+        .addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
+        .addField('channel:', message.channel.name, true)
         .setColor(message.member.displayHexColor)
         .setThumbnail(message.author.avatarURL)
         .setTimestamp();
@@ -341,8 +323,7 @@ client.on('message', function (message) {
     const logContent = `told <@${message.member.id}> got :weary: :ok_hand: :sweat_drops:`;
     if (message.guild.id == myServerID) {
       let logsEmbed = new Discord.RichEmbed()
-        .setTitle(logContent)
-        .setDescription(`who: <@${message.member.id}>`)
+        .setDescription(logContent)
         .addField('channel:', message.channel.name)
         .setColor(message.member.displayHexColor)
         .setThumbnail(message.author.avatarURL)
@@ -351,11 +332,9 @@ client.on('message', function (message) {
       serverLogs.send(logsEmbed);
     } else {
       let logsEmbed = new Discord.RichEmbed()
-        .setTitle(logContent)
-        .setDescription(`who: <@${message.member.id}>`)
-        .addField('server:', message.guild.name)
-        .addField('channel:', message.channel.name)
-        .addField('owner:', message.guild.owner)
+        .setDescription(logContent)
+        .addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
+        .addField('channel:', message.channel.name, true)
         .setColor(message.member.displayHexColor)
         .setThumbnail(message.author.avatarURL)
         .setTimestamp();
@@ -369,8 +348,7 @@ client.on('message', function (message) {
     const logContent = `<@${message.member.id}> got YAWHEE :cowboy: :cowboy: :cowboy:`;
     if (message.guild.id == myServerID) {
       let logsEmbed = new Discord.RichEmbed()
-        .setTitle(logContent)
-        .setDescription(`who: <@${message.member.id}>`)
+        .setDescription(logContent)
         .addField('channel:', message.channel.name)
         .setColor(message.member.displayHexColor)
         .setThumbnail(message.author.avatarURL)
@@ -379,11 +357,9 @@ client.on('message', function (message) {
       serverLogs.send(logsEmbed);
     } else {
       let logsEmbed = new Discord.RichEmbed()
-        .setTitle(logContent)
-        .setDescription(`who: <@${message.member.id}>`)
-        .addField('server:', message.guild.name)
-        .addField('channel:', message.channel.name)
-        .addField('owner:', message.guild.owner)
+        .setDescription(logContent)
+        .addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
+        .addField('channel:', message.channel.name, true)
         .setColor(message.member.displayHexColor)
         .setThumbnail(message.author.avatarURL)
         .setTimestamp();
@@ -397,8 +373,7 @@ client.on('message', function (message) {
     const logContent = `<@${message.member.id}> : WHOMST THE FUCK`;
     if (message.guild.id == myServerID) {
       let logsEmbed = new Discord.RichEmbed()
-        .setTitle(logContent)
-        .setDescription(`who: <@${message.member.id}>`)
+        .setDescription(logContent)
         .addField('channel:', message.channel.name)
         .setColor(message.member.displayHexColor)
         .setThumbnail(message.author.avatarURL)
@@ -407,11 +382,9 @@ client.on('message', function (message) {
       serverLogs.send(logsEmbed);
     } else {
       let logsEmbed = new Discord.RichEmbed()
-        .setTitle(logContent)
-        .setDescription(`who: <@${message.member.id}>`)
-        .addField('server:', message.guild.name)
-        .addField('channel:', message.channel.name)
-        .addField('owner:', message.guild.owner)
+        .setDescription(logContent)
+        .addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
+        .addField('channel:', message.channel.name, true)
         .setColor(message.member.displayHexColor)
         .setThumbnail(message.author.avatarURL)
         .setTimestamp();
@@ -428,8 +401,7 @@ client.on('message', function (message) {
       const logContent = `<@${message.member.id}> might be getting kinkshamed :eyes:`;
       if (message.guild.id == myServerID) {
         let logsEmbed = new Discord.RichEmbed()
-          .setTitle(logContent)
-          .setDescription(`who: <@${message.member.id}>`)
+          .setDescription(logContent)
           .addField('channel:', message.channel.name)
           .setColor(message.member.displayHexColor)
           .setThumbnail(message.author.avatarURL)
@@ -438,11 +410,9 @@ client.on('message', function (message) {
         serverLogs.send(logsEmbed);
       } else {
         let logsEmbed = new Discord.RichEmbed()
-          .setTitle(logContent)
-          .setDescription(`who: <@${message.member.id}>`)
-          .addField('server:', message.guild.name)
-          .addField('channel:', message.channel.name)
-          .addField('owner:', message.guild.owner)
+          .setDescription(logContent)
+          .addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
+          .addField('channel:', message.channel.name, true)
           .setColor(message.member.displayHexColor)
           .setThumbnail(message.author.avatarURL)
           .setTimestamp();
@@ -457,8 +427,7 @@ client.on('message', function (message) {
     const logContent = `<@${message.member.id}> said knock knock !!!`;
     if (message.guild.id == myServerID) {
       let logsEmbed = new Discord.RichEmbed()
-        .setTitle(logContent)
-        .setDescription(`who: <@${message.member.id}>`)
+        .setDescription(logContent)
         .addField('channel:', message.channel.name)
         .setColor(message.member.displayHexColor)
         .setThumbnail(message.author.avatarURL)
@@ -467,11 +436,9 @@ client.on('message', function (message) {
       serverLogs.send(logsEmbed);
     } else {
       let logsEmbed = new Discord.RichEmbed()
-        .setTitle(logContent)
-        .setDescription(`who: <@${message.member.id}>`)
-        .addField('server:', message.guild.name)
-        .addField('channel:', message.channel.name)
-        .addField('owner:', message.guild.owner)
+        .setDescription(logContent)
+        .addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
+        .addField('channel:', message.channel.name, true)
         .setColor(message.member.displayHexColor)
         .setThumbnail(message.author.avatarURL)
         .setTimestamp();
@@ -486,8 +453,7 @@ client.on('message', function (message) {
     const logContent = `<@${message.member.id}> got a :gay_pride_flag: !!!`;
     if (message.guild.id == myServerID) {
       let logsEmbed = new Discord.RichEmbed()
-        .setTitle(logContent)
-        .setDescription(`who: <@${message.member.id}>`)
+        .setDescription(logContent)
         .addField('channel:', message.channel.name)
         .setColor(message.member.displayHexColor)
         .setThumbnail(message.author.avatarURL)
@@ -496,11 +462,9 @@ client.on('message', function (message) {
       serverLogs.send(logsEmbed);
     } else {
       let logsEmbed = new Discord.RichEmbed()
-        .setTitle(logContent)
-        .setDescription(`who: <@${message.member.id}>`)
-        .addField('server:', message.guild.name)
-        .addField('channel:', message.channel.name)
-        .addField('owner:', message.guild.owner)
+        .setDescription(logContent)
+        .addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
+        .addField('channel:', message.channel.name, true)
         .setColor(message.member.displayHexColor)
         .setThumbnail(message.author.avatarURL)
         .setTimestamp();
@@ -514,8 +478,7 @@ client.on('message', function (message) {
     const logContent = `<@${message.member.id}> got :eyes:`;
     if (message.guild.id == myServerID) {
       let logsEmbed = new Discord.RichEmbed()
-        .setTitle(logContent)
-        .setDescription(`who: <@${message.member.id}>`)
+        .setDescription(logContent)
         .addField('channel:', message.channel.name)
         .setColor(message.member.displayHexColor)
         .setThumbnail(message.author.avatarURL)
@@ -524,11 +487,9 @@ client.on('message', function (message) {
       serverLogs.send(logsEmbed);
     } else {
       let logsEmbed = new Discord.RichEmbed()
-        .setTitle(logContent)
-        .setDescription(`who: <@${message.member.id}>`)
-        .addField('server:', message.guild.name)
-        .addField('channel:', message.channel.name)
-        .addField('owner:', message.guild.owner)
+        .setDescription(logContent)
+        .addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
+        .addField('channel:', message.channel.name, true)
         .setColor(message.member.displayHexColor)
         .setThumbnail(message.author.avatarURL)
         .setTimestamp();
@@ -542,8 +503,7 @@ client.on('message', function (message) {
     const logContent = `<@${message.member.id}> got some :sweat_drops:`;
     if (message.guild.id == myServerID) {
       let logsEmbed = new Discord.RichEmbed()
-        .setTitle(logContent)
-        .setDescription(`who: <@${message.member.id}>`)
+        .setDescription(logContent)
         .addField('channel:', message.channel.name)
         .setColor(message.member.displayHexColor)
         .setThumbnail(message.author.avatarURL)
@@ -552,11 +512,9 @@ client.on('message', function (message) {
       serverLogs.send(logsEmbed);
     } else {
       let logsEmbed = new Discord.RichEmbed()
-        .setTitle(logContent)
-        .setDescription(`who: <@${message.member.id}>`)
-        .addField('server:', message.guild.name)
-        .addField('channel:', message.channel.name)
-        .addField('owner:', message.guild.owner)
+        .setDescription(logContent)
+        .addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
+        .addField('channel:', message.channel.name, true)
         .setColor(message.member.displayHexColor)
         .setThumbnail(message.author.avatarURL)
         .setTimestamp();
