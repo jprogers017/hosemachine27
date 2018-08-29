@@ -101,15 +101,13 @@ client.on('raw', event => {
             if (message.guild.id == myServerID) {
               const logContent = `${memberObj} added ${roleObj}`;
               let logsEmbed = new Discord.RichEmbed()
-                .setTitle(logContent)
-                .setDescription(`who: <@${message.member.id}>`)
+                .setDescription(logContent)
                 .addField('channel:', message.channel.name)
                 .setColor(message.member.displayHexColor)
                 .setThumbnail(message.author.avatarURL)
                 .setTimestamp();
 
               serverLogs.send(logsEmbed);
-              serverLogs.send(`${memberObj} added ${roleObj}`);
             }
           } else {
             const serverLogs = client.channels.get(myServerLogs);
@@ -118,17 +116,16 @@ client.on('raw', event => {
             if (message.guild.id == myServerID) {
               const logContent = `${memberObj} removed ${roleObj}`;
               let logsEmbed = new Discord.RichEmbed()
-                .setTitle(logContent)
-                .setDescription(`who: <@${message.member.id}>`)
+                .setDescription(logContent)
                 .addField('channel:', message.channel.name)
                 .setColor(message.member.displayHexColor)
                 .setThumbnail(message.author.avatarURL)
                 .setTimestamp();
 
               serverLogs.send(logsEmbed);
+            }
           }
         }
-      }
       }
     })
   }
@@ -143,7 +140,7 @@ client.on('message', function (message) {
   const serverLogs = client.channels.get(myServerLogs);
   const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
   let commandFile = client.commands.get(command);
-  
+
   if (commandFile) commandFile.run(client, message, args);
 
   //crashing? not on my watch
