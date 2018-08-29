@@ -1,3 +1,4 @@
+const Discord = require("discord.js");
 const fs = require("fs");
 const config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
 const prefix = config.prefix;
@@ -8,6 +9,7 @@ const externalServerLogs = config.externalServerLogs;
 module.exports.run = async (client, message, args) => {
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
+    const logContent = `<@${message.member.id}> cleared ${args[0]} messages`;
 
     if (!message.member.hasPermission("MANAGE_MESSAGES")) message.reply("lmao, u dont have perms for that. stupid bitch");
     if (!args[0]) message.channel.send("yo, u cant clear 0 messages, dumb fuck");
@@ -18,9 +20,24 @@ module.exports.run = async (client, message, args) => {
     }
 
     if (message.guild.id == myServerID) {
-        return serverLogs.send(`<@${message.member.id}> cleared ${args[0]} messages`);
+        let logsEmbed = new Discord.RichEmbed()
+            .setDescription(logContent)
+            .addField('channel:', message.channel.name)
+            .setColor(message.member.displayHexColor)
+            .setThumbnail(message.author.avatarURL)
+            .setTimestamp();
+
+        serverLogs.send(logsEmbed);
     } else {
-        return externalLogs.send(`<@${message.member.id}> cleared ${args[0]} messages\n**SERVER**: *${message.guild.name}* || **CHANNEL**: ${message.channel.name} || **OWNED BY**: ${message.guild.owner}`);
+        let logsEmbed = new Discord.RichEmbed()
+            .setDescription(logContent)
+            .addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
+            .addField('channel:', message.channel.name, true)
+            .setColor(message.member.displayHexColor)
+            .setThumbnail(message.author.avatarURL)
+            .setTimestamp();
+
+        externalLogs.send(logsEmbed);
     }
 }
 

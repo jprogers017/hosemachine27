@@ -6,10 +6,11 @@ const myServerID = config.myServerID;
 const myServerLogs = config.myServerLogs;
 const externalServerLogs = config.externalServerLogs;
 
-module.exports.run = async (client, message) => {
+module.exports.run = async (client, message, args) => {
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
-    
+    const logContent = `<@${message.member.id}> asked for admin help`;
+
     if (!message.member.hasPermission("MANAGE_MESSAGES")) {
         message.reply("u dont have perms for that, sorry");
     } else {
@@ -23,14 +24,29 @@ module.exports.run = async (client, message) => {
             .addField("Invite Link", `${prefix}invite`, true)
             .addField("Github", `${prefix}github`, true)
             .setFooter(`Created by: Josephine#6301 on ${client.user.createdAt}`);
-    
+
         message.channel.send(helpEmbed);
     }
 
     if (message.guild.id == myServerID) {
-        return serverLogs.send(`<@${message.member.id}> asked for admin help`);
+        let logsEmbed = new Discord.RichEmbed()
+            .setDescription(logContent)
+            .addField('channel:', message.channel.name)
+            .setColor(message.member.displayHexColor)
+            .setThumbnail(message.author.avatarURL)
+            .setTimestamp();
+
+        serverLogs.send(logsEmbed);
     } else {
-        return externalLogs.send(`<@${message.member.id}> asked for admin help\n**SERVER**: *${message.guild.name}* || **CHANNEL**: ${message.channel.name} || **OWNED BY**: ${message.guild.owner}`);
+        let logsEmbed = new Discord.RichEmbed()
+            .setDescription(logContent)
+            .addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
+            .addField('channel:', message.channel.name, true)
+            .setColor(message.member.displayHexColor)
+            .setThumbnail(message.author.avatarURL)
+            .setTimestamp();
+
+        externalLogs.send(logsEmbed);
     }
 }
 
