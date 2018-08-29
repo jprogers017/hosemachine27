@@ -146,8 +146,13 @@ client.on('message', function (message) {
   //crashing? not on my watch
   if (message.author.bot) return;
   if (message.channel.type === "dm") {
-    externalLogs.send(`someone slid into my dm's :eyes: :eyes: :eyes:\ni gave them an invite link :)`)
     message.channel.send("did u want an invite link? <https://discordapp.com/api/oauth2/authorize?client_id=433064995274883078&permissions=0&scope=bot>");
+    let dmEmbed = new Discord.RichEmbed()
+      .setDescription(`someone dm'd me :)\ni sent them my invite link!\n\n<https://discordapp.com/api/oauth2/authorize?client_id=433064995274883078&permissions=0&scope=bot>`)
+      .setColor(`#73b6ff`)
+      .setThumbnail(message.author.avatarURL)
+      .setTimestamp();
+    externalLogs.send(dmEmbed)
     return;
   }
 
