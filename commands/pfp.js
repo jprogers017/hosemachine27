@@ -36,5 +36,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}pfp`
+    name: `${prefix}pfp`,
+    description: `sends ur profile pic into chat, or whoever u tagged afterwards`,
+    type: `member`,
+    usage: `${prefix}pfp [user]`
 }

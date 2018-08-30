@@ -47,5 +47,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}server`
+    name: `${prefix}serverinfo`,
+    description: `sends information about the server`,
+    type: `member`,
+    usage: `${prefix}serverinfo`
 }

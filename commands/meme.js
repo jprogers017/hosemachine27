@@ -64,5 +64,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}meme`
+    name: `${prefix}meme`,
+    description: `sends a random video from the "important videos" playlist on youtube`,
+    type: `member`,
+    usage: `${prefix}meme`
 }

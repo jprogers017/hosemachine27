@@ -41,5 +41,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}coinflip`
+    name: `${prefix}coinflip`,
+    description: `flips a coin for u, assuming u did the command because u dont have a coin`,
+    type: `member`,
+    usage: `${prefix}coinflip`
 }

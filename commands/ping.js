@@ -36,5 +36,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}ping`
+    name: `${prefix}ping`,
+    description: `checks bot response time`,
+    type: `member`,
+    usage: `${prefix}ping`
 }

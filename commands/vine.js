@@ -220,5 +220,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}vine`
+    name: `${prefix}vine`,
+    description: `sends a random, top notch, high quality, vine...more will be added soon`,
+    type: `member`,
+    usage: `${prefix}vine`
 }

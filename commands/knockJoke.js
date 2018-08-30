@@ -67,5 +67,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}knock`
+    name: `${prefix}knockknock`,
+    description: `sends a random knock knock joke`,
+    type: `member`,
+    usage: `${prefix}knockknock`
 }

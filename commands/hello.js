@@ -36,5 +36,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}hello`
+    name: `${prefix}hello`,
+    description: `just says hello back!`,
+    type: `member`,
+    usage: `${prefix}hello`
 }

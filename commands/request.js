@@ -36,5 +36,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}request`
+    name: `${prefix}request`,
+    description: `if u have any requests, just sends my discord so u can message me and do so`,
+    type: `member`,
+    usage: `${prefix}request`
 }

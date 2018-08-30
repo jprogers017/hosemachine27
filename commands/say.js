@@ -12,7 +12,7 @@ module.exports.run = async (client, message, args) => {
     const botMessage = args.join(" ");
     const logContent = `<@${message.member.id}> just had me say ${botMessage}`;
 
-    if (!message.member.hasPermission("MANAGE_MESSAGES")) {
+    if (!message.member.hasPermission("ADMINISTRATOR")) {
         message.reply("no perms for that!!! sorry!!!");
     } else {
         message.delete().catch();
@@ -42,5 +42,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}say`
+    name: `${prefix}say`,
+    description: `has the bot repeat after u`,
+    type: `admin`,
+    usage: `${prefix}say <what u want the bot to say>`
 }

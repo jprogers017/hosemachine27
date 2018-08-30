@@ -42,5 +42,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}puppy`
+    name: `${prefix}puppy`,
+    description: `sends u a random puppy picture`,
+    type: `member`,
+    usage: `${prefix}puppy`
 }

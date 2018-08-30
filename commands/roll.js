@@ -52,5 +52,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}roll`
+    name: `${prefix}roll`,
+    description: `rolls a number between 1 and 100`,
+    type: `member`,
+    usage: `${prefix}roll`
 }

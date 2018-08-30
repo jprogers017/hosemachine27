@@ -9,24 +9,9 @@ const externalServerLogs = config.externalServerLogs;
 module.exports.run = async (client, message, args) => {
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
-    const logContent = `<@${message.member.id}> asked for the admin commands`;
+    const logContent = `<@${message.member.id}> had ${client.user.username} join the voice channel`;
 
-    if (!message.member.hasPermission("MANAGE_MESSAGES")) {
-        message.reply("u dont have perms for that, sorry");
-    } else {
-        let botIcon = client.user.displayAvatarURL;
-        let commandEmbed = new Discord.RichEmbed()
-            .setTitle(`${client.user.name} admin commands :)`)
-            .setDescription("you need a role with admin perms turned on")
-            .setColor("#7fc0ff")
-            .setThumbnail(botIcon)
-            .addField("Working Commands", "purge\nsay", true)
-            .addField("Broken Commands", "nothing...yet", true)
-            .addField("Coming Soon", "i have absolutely no idea", true)
-            .setFooter(`Created by: Josephine#6301 on ${client.user.createdAt}`);
-
-        message.channel.send(commandEmbed);
-    }
+    message.channel.send(`i haven't worked on this yet, it's non-functional`);
 
     if (message.guild.id == myServerID) {
         let logsEmbed = new Discord.RichEmbed()
@@ -51,5 +36,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}admin`
+    name: `${prefix}join`,
+    description: `has the bot join the voice channel ur currently in`,
+    type: `member`,
+    usage: `${prefix}join`
 }

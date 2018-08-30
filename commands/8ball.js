@@ -9,7 +9,6 @@ const externalServerLogs = config.externalServerLogs;
 module.exports.run = async (client, message, args) => {
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
-    const logContent = `<@${message.member.id}> asked for guidance from the 8 ball`;
 
     var eightBallReplies = [
         "It is certain",
@@ -40,8 +39,9 @@ module.exports.run = async (client, message, args) => {
         message.reply("more than a one worded question");
     } else {
         let eightBallResult = Math.floor((Math.random() * eightBallReplies.length));
-        let eightBallQuestion = args.slice(1).join(" ");
+        let eightBallQuestion = args.slice().join(" ");
         message.reply(eightBallReplies[eightBallResult]);
+        const logContent = `<@${message.member.id}> asked the magic 8 ball "${eightBallQuestion}"`;
 
         if (message.guild.id == myServerID) {
             let logsEmbed = new Discord.RichEmbed()
@@ -67,5 +67,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}8ball`
+    name: `${prefix}8ball`,
+    description: `ask the magic 8 ball for some guidance`,
+    type: `member`,
+    usage: `${prefix}8ball <question>`
 }

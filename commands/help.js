@@ -11,17 +11,25 @@ module.exports.run = async (client, message, args) => {
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
     const logContent = `<@${message.member.id}> asked for help!`;
 
-    let botIcon = client.user.displayAvatarURL;
+    let msg = `__**help!**__`;
+    client.commands.forEach(c => {
+        msg = msg + `\n**${c.help.name}**, usage: ${c.help.usage} *(${c.help.type})*\n${c.help.description}`;
+    });
+
+    if (message.member.nickname) {
+        var authorName = message.member.nickname;
+    } else {
+        var authorName = message.author.username;
+    }
     let helpEmbed = new Discord.RichEmbed()
-        .setTitle(`${client.user.name} help info :)`)
-        .setDescription(`use the ${prefix} prefix!`)
-
-        .setColor("#7fc0ff")
-        .setThumbnail(botIcon)
-        .addField("Commands", `${prefix}commands`, true)
-        .addField("Github", "<https://goo.gl/rua7h6>")
-        .setFooter(`Created by: Josephine#6301 on ${client.user.createdAt}`);
-
+        .setAuthor(`i heard u needed help, ${authorName}?`, message.author.avatarURL)
+        .setTitle(`heres some helpful information about all of my commands!`)
+        .setDescription(msg)
+        // .addField(`${client.user.username}'s github:`, `this bot doesnt have a github, i use it to test before pushing it to my main bots`)
+        // .addField(`${client.user.username}'s invite:`, `i use it to test before pushing it to my main bots...u can have their invite links if u do *${prefix}invite*`)
+        .setColor(message.member.displayHexColor)
+        .setFooter(`hope this was enough help! feel free to do ${prefix}questions if you need anymore help!`)
+        .setTimestamp();
     message.channel.send(helpEmbed);
 
     if (message.guild.id == myServerID) {
@@ -47,5 +55,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}help`
+    name: `${prefix}help`,
+    description: `shows the list of all the commands`,
+    type: `member`,
+    usage: `${prefix}help`
 }

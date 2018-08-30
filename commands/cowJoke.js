@@ -110,5 +110,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}cowjoke`
+    name: `${prefix}cowjoke`,
+    description: `sends a random cow joke, this is my pride and joy TBH`,
+    type: `member`,
+    usage: `${prefix}cowjoke`
 }

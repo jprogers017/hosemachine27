@@ -41,5 +41,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}kinkshame`
+    name: `${prefix}kinkshame`,
+    description: `kinkshames the tagged user`,
+    type: `member`,
+    usage: `${prefix}kinkshame <user>`
 }
