@@ -9,7 +9,7 @@ const externalServerLogs = config.externalServerLogs;
 module.exports.run = async (client, message, args) => {
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
-    const logContent = `<@${message.member.id}> asked for hosemachine's and machinehose's invite links`;
+    const logContent = `<@${message.member.id}> my invite link!`;
 
     if (message.member.nickname) {
         var authorName = message.member.nickname;
@@ -18,7 +18,7 @@ module.exports.run = async (client, message, args) => {
     }
     let inviteEmbed = new Discord.RichEmbed()
         .setAuthor(authorName, message.author.avatarURL)
-        .setDescription(`i dont want my test bot on any other servers, u can add the real ones though\nhosemachine (27): <https://discordapp.com/api/oauth2/authorize?client_id=433064995274883078&permissions=0&scope=bot>\nmachinehose (72): <https://discordapp.com/api/oauth2/authorize?client_id=463086178757771264&permissions=0&scope=bot>`)
+        .setDescription(`here u go!!!\n<https://discordapp.com/api/oauth2/authorize?client_id=433064995274883078&permissions=0&scope=bot>`)
         .setColor(`#73b6ff`)
         .setThumbnail(message.author.avatarURL)
         .setTimestamp();
