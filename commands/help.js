@@ -25,8 +25,6 @@ module.exports.run = async (client, message, args) => {
         .setAuthor(`i heard u needed help, ${authorName}?`, message.author.avatarURL)
         .setTitle(`heres some helpful information about all of my commands!`)
         .setDescription(msg)
-        // .addField(`${client.user.username}'s github:`, `this bot doesnt have a github, i use it to test before pushing it to my main bots`)
-        // .addField(`${client.user.username}'s invite:`, `i use it to test before pushing it to my main bots...u can have their invite links if u do *${prefix}invite*`)
         .setColor(message.member.displayHexColor)
         .setFooter(`hope this was enough help! feel free to do ${prefix}questions if you need anymore help!`)
         .setTimestamp();
@@ -34,6 +32,7 @@ module.exports.run = async (client, message, args) => {
 
     if (message.guild.id == myServerID) {
         let logsEmbed = new Discord.RichEmbed()
+            .setAuthor(client.user.username, client.user.avatarURL)
             .setDescription(logContent)
             .addField('channel:', message.channel.name)
             .setColor(message.member.displayHexColor)
@@ -43,6 +42,7 @@ module.exports.run = async (client, message, args) => {
         serverLogs.send(logsEmbed);
     } else {
         let logsEmbed = new Discord.RichEmbed()
+            .setAuthor(client.user.username, client.user.avatarURL)
             .setDescription(logContent)
             .addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
             .addField('channel:', message.channel.name, true)

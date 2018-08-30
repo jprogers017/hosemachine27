@@ -21,6 +21,7 @@ module.exports.run = async (client, message, args) => {
 
     if (message.guild.id == myServerID) {
         let logsEmbed = new Discord.RichEmbed()
+            .setAuthor(client.user.username, client.user.avatarURL)
             .setDescription(logContent)
             .addField('channel:', message.channel.name)
             .setColor(message.member.displayHexColor)
@@ -30,6 +31,7 @@ module.exports.run = async (client, message, args) => {
         serverLogs.send(logsEmbed);
     } else {
         let logsEmbed = new Discord.RichEmbed()
+            .setAuthor(client.user.username, client.user.avatarURL)
             .setDescription(logContent)
             .addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
             .addField('channel:', message.channel.name, true)
