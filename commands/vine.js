@@ -195,7 +195,9 @@ module.exports.run = async (client, message, args) => {
     ];
 
     var rand = vine[Math.floor(Math.random() * vine.length)];
-    message.channel.send(rand);
+    message.channel.send(rand).catch(error => {
+        console.log(error);
+    });
 
     if (message.guild.id == myServerID) {
         let logsEmbed = new Discord.RichEmbed()
@@ -225,5 +227,5 @@ module.exports.help = {
     name: `${prefix}vine`,
     description: `sends a random, top notch, high quality, vine...more will be added soon`,
     type: `member`,
-    usage: `${prefix}vine`
+    usage: `${prefix}vine, ${prefix}vine [?]`
 }

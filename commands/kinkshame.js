@@ -13,9 +13,13 @@ module.exports.run = async (client, message, args) => {
 
     let kinkshamedUser = message.mentions.members.first();
     if (kinkshamedUser == undefined) {
-        return message.reply(`who am i kinkshaming?`);
+        return message.reply(`who am i kinkshaming?`).catch(error => {
+            console.log(error);
+        });
     } else {
-        message.channel.send(`${kinkshamedUser}, should i be kinkshaming u? i think i should`);
+        message.channel.send(`${kinkshamedUser}, should i be kinkshaming u? i think i should`).catch(error => {
+            console.log(error);
+        });
     }
 
     if (message.guild.id == myServerID) {
@@ -46,5 +50,5 @@ module.exports.help = {
     name: `${prefix}kinkshame`,
     description: `kinkshames the tagged user`,
     type: `member`,
-    usage: `${prefix}kinkshame <user>`
+    usage: `${prefix}kinkshame <user>, ${prefix}kinkshame [?]`
 }

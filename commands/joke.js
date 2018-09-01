@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
+const oneLinerJoke = require('one-liner-joke');
 const config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
 const prefix = config.prefix;
 const myServerID = config.myServerID;
@@ -9,20 +10,17 @@ const externalServerLogs = config.externalServerLogs;
 module.exports.run = async (client, message, args) => {
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
-    const logContent = `<@${message.member.id}> asked for the server information`;
+    const logContent = `<@${message.member.id}> asked for a one-liner joke!`;
 
-    let serverIcon = message.guild.iconURL;
-    let serverEmbed = new Discord.RichEmbed()
-        .setTitle("Server Information")
-        .setColor("#7fc0ff")
-        .setThumbnail(serverIcon)
-        .addField("Server Name", message.guild.name, true)
-        .addField("Server Owner", message.guild.owner, true)
-        .addField("Total Members", message.guild.memberCount, true)
-        .addField("Created On", message.guild.createdAt, true)
-        .addField("You joined", message.member.joinedAt, true);
-
-    message.channel.send(serverEmbed);
+    var randomJoke = oneLinerJoke.getRandomJoke();
+    let jokeEmbed = new Discord.RichEmbed()
+        .setAuthor(`joke's source (click on me)`, `https://hackadaycom.files.wordpress.com/2018/06/git1_logo1.png`, 'https://github.com/faiyaz26/one-liner-joke')
+        .setColor('#73b6ff')
+        .setDescription(`${randomJoke.body}`)
+        .setTimestamp();
+    message.channel.send(jokeEmbed).catch(error => {
+        console.log(error);
+    });
 
     if (message.guild.id == myServerID) {
         let logsEmbed = new Discord.RichEmbed()
@@ -49,8 +47,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}serverinfo`,
-    description: `sends information about the server`,
+    name: `${prefix}joke`,
+    description: `sends a random one-liner joke!`,
     type: `member`,
-    usage: `${prefix}serverinfo`
+    usage: `${prefix}joke, ${prefix}joke [?]`
 }

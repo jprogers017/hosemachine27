@@ -14,9 +14,13 @@ module.exports.run = async (client, message, args) => {
     number = 40;
     var randomDog = Math.floor(Math.random() * (number - 1 + 1)) + 1;
 
-    message.channel.send("did someone mention...dogs?");
+    message.channel.send("did someone mention...dogs?").catch(error => {
+        console.log(error);
+    });
     message.channel.send({
         files: ["./puppies/" + randomDog + ".jpg"]
+    }).catch(error => {
+        console.log(error);
     });
 
     if (message.guild.id == myServerID) {
@@ -47,5 +51,5 @@ module.exports.help = {
     name: `${prefix}puppy`,
     description: `sends u a random puppy picture`,
     type: `member`,
-    usage: `${prefix}puppy`
+    usage: `${prefix}puppy, ${prefix}puppy [?]`
 }

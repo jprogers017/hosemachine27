@@ -13,10 +13,14 @@ module.exports.run = async (client, message, args) => {
     const logContent = `<@${message.member.id}> just had me say "${botMessage}"`;
 
     if (!message.member.hasPermission("ADMINISTRATOR")) {
-        message.reply("no perms for that!!! sorry!!!");
+        message.reply("no perms for that!!! sorry!!!").catch(error => {
+            console.log(error);
+        });
     } else {
         message.delete().catch();
-        message.channel.send(botMessage);
+        message.channel.send(botMessage).catch(error => {
+            console.log(error);
+        });
     }
 
     if (message.guild.id == myServerID) {
@@ -45,7 +49,7 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
     name: `${prefix}say`,
-    description: `has the bot repeat after u`,
+    description: `has the bot repeat after u - ADMINISTRATOR PERMISSIONS REQUIRED`,
     type: `admin`,
-    usage: `${prefix}say <what u want the bot to say>`
+    usage: `${prefix}say <message>, ${prefix}say [?]`
 }

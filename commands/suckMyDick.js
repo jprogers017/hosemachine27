@@ -12,9 +12,13 @@ module.exports.run = async (client, message, args) => {
     const logContent = `<@${message.member.id}> told <@!200837857214988298> to suck a dick`;
 
     if (!message.member.hasPermission("ADMINISTRATOR")) {
-        message.reply("u cant say that to jackie :(");
+        message.reply("u cant say that to jackie :(").catch(error => {
+            console.log(error);
+        });
     } else {
-        message.channel.send(`<@!200837857214988298>, suck my dick`);
+        message.channel.send(`<@!200837857214988298>, suck my dick`).catch(error => {
+            console.log(error);
+        });
     }
 
     if (message.guild.id == myServerID) {
@@ -45,5 +49,5 @@ module.exports.help = {
     name: `${prefix}smd`,
     description: `tells ninjackoff peeno to suck ur dick`,
     type: `admin`,
-    usage: `${prefix}smd`
+    usage: `${prefix}smd, ${prefix}smd [?]`
 }

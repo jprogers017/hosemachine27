@@ -23,7 +23,9 @@ module.exports.run = async (client, message, args) => {
         .setThumbnail(message.author.avatarURL)
         .setTimestamp();
 
-    message.channel.send(gitEmbed);
+    message.channel.send(gitEmbed).catch(error => {
+        console.log(error);
+    });
 
     if (message.guild.id == myServerID) {
         let logsEmbed = new Discord.RichEmbed()
@@ -53,5 +55,5 @@ module.exports.help = {
     name: `${prefix}github`,
     description: `heres a link for my github page!`,
     type: `member`,
-    usage: `${prefix}github`
+    usage: `${prefix}github, ${prefix}github [?]`
 }

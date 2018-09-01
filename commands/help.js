@@ -11,9 +11,9 @@ module.exports.run = async (client, message, args) => {
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
     const logContent = `<@${message.member.id}> asked for help!`;
 
-    let msg = `__**help!**__`;
+    let msg = `__**usage: ${prefix}command *<required>, [optional]***__`;
     client.commands.forEach(c => {
-        msg = msg + `\n**${c.help.name}**, usage: ${c.help.usage} *(${c.help.type})*\n${c.help.description}`;
+        msg = msg + `\n**${c.help.name}** || usage: ${c.help.usage}\n${c.help.description}`;
     });
 
     if (message.member.nickname) {
@@ -22,13 +22,13 @@ module.exports.run = async (client, message, args) => {
         var authorName = message.author.username;
     }
     let helpEmbed = new Discord.RichEmbed()
-        .setAuthor(`i heard u needed help, ${authorName}?`, message.author.avatarURL)
-        .setTitle(`heres some helpful information about all of my commands!`)
+        .setAuthor(`${client.user.username}'s help page! u need help, ${authorName}?`, message.author.avatarURL)
         .setDescription(msg)
         .setColor(message.member.displayHexColor)
-        .setFooter(`hope this was enough help! feel free to do ${prefix}questions if you need anymore help!`)
-        .setTimestamp();
-    message.channel.send(helpEmbed);
+        .setFooter(`UNDER CONSTRUCTION: for command specific help, do the command with "?" afterwards, for example, ${prefix}hello ?`);
+    message.channel.send(helpEmbed).catch(error => {
+        console.log(error);
+    });
 
     if (message.guild.id == myServerID) {
         let logsEmbed = new Discord.RichEmbed()

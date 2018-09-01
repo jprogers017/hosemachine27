@@ -55,7 +55,9 @@ module.exports.run = async (client, message, args) => {
     ];
 
     var rand = dadJokes[Math.floor(Math.random() * dadJokes.length)];
-    message.channel.send(rand);
+    message.channel.send(rand).catch(error => {
+        console.log(error);
+    });
 
     if (message.guild.id == myServerID) {
         let logsEmbed = new Discord.RichEmbed()
@@ -85,5 +87,5 @@ module.exports.help = {
     name: `${prefix}dadjoke`,
     description: `sends a random dad joke`,
     type: `member`,
-    usage: `${prefix}dadjoke`
+    usage: `${prefix}dadjoke, ${prefix}dadjoke [?]`
 }

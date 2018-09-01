@@ -11,11 +11,17 @@ module.exports.run = async (client, message, args) => {
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
     const logContent = `<@${message.member.id}> cleared ${args[0]} messages`;
 
-    if (!message.member.hasPermission("ADMINISTRATOR")) message.reply("lmao, u dont have perms for that. stupid bitch");
-    if (!args[0]) message.channel.send("yo, u cant clear 0 messages, dumb fuck");
+    if (!message.member.hasPermission("ADMINISTRATOR")) message.reply("lmao, u dont have perms for that. stupid bitch").catch(error => {
+        console.log(error);
+    });
+    if (!args[0]) message.channel.send("yo, u cant clear 0 messages, dumb fuck").catch(error => {
+        console.log(error);
+    });
     if ((message.member.hasPermission("ADMINISTRATOR")) && (args[0])) {
         message.channel.bulkDelete(args[0]).then(() => {
             message.channel.send(`cleared ${args[0]} messages, yikes`).then(msg => msg.delete(2500));
+        }).catch(error => {
+            console.log(error);
         });
     }
 
@@ -45,7 +51,7 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
     name: `${prefix}purge`,
-    description: `purges a set set of messages`,
+    description: `purges a set set of messages - ADMINISTRATOR PERMISSIONS REQUIRED`,
     type: `admin`,
-    usage: `${prefix}purge <number of messages>`
+    usage: `${prefix}purge <number of messages>, ${prefix}purge [?]`
 }

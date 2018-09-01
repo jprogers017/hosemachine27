@@ -39,7 +39,9 @@ module.exports.run = async (client, message, args) => {
 
 
     var rand = memes[Math.floor(Math.random() * memes.length)];
-    message.channel.send(rand);
+    message.channel.send(rand).catch(error => {
+        console.log(error);
+    });
 
     if (message.guild.id == myServerID) {
         let logsEmbed = new Discord.RichEmbed()
@@ -69,5 +71,5 @@ module.exports.help = {
     name: `${prefix}meme`,
     description: `sends a random video from the "important videos" playlist on youtube`,
     type: `member`,
-    usage: `${prefix}meme`
+    usage: `${prefix}meme, ${prefix}meme [?]`
 }

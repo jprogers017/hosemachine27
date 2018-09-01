@@ -23,13 +23,13 @@ fs.readdir("./commands/", (err, files) => {
 
 //variables 
 const config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
-const prefix = config.prefix;
-const discordToken = config.discordToken;
-const myServerID = config.myServerID;
-const myServerLogs = config.myServerLogs;
-const externalServerLogs = config.externalServerLogs;
-const joinLeaveChannel = config.joinLeaveChannel;
-const generalChat = config.generalChat;
+const prefix = config.prefix; //prefix
+const discordToken = config.discordToken; //token for login
+const myServerID = config.myServerID; //for bot logs
+const myServerLogs = config.myServerLogs; //for bot's logs (my server)
+const externalServerLogs = config.externalServerLogs; //for bot's logs (other servers)
+const joinLeaveChannel = config.joinLeaveChannel; //for join leave logs
+const generalChat = config.generalChat; //for join leave logs
 //role react variables and settings
 const myID = config.myID;
 const setupCMD = "!roles"

@@ -13,9 +13,13 @@ module.exports.run = async (client, message, args) => {
 
     var chance = Math.floor(Math.random() * 2);
     if (chance == 0) {
-        message.reply(`heads`);
+        message.reply(`heads`).catch(error => {
+            console.log(error);
+        });
     } else {
-        message.reply(`tails`);
+        message.reply(`tails`).catch(error => {
+            console.log(error);
+        });
     }
 
     if (message.guild.id == myServerID) {
@@ -46,5 +50,5 @@ module.exports.help = {
     name: `${prefix}coinflip`,
     description: `flips a coin for u, assuming u did the command because u dont have a coin`,
     type: `member`,
-    usage: `${prefix}coinflip`
+    usage: `${prefix}coinflip, ${prefix}coinflip [?]`
 }

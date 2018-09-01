@@ -36,11 +36,15 @@ module.exports.run = async (client, message, args) => {
     ];
 
     if (!args[1]) {
-        message.reply("more than a one worded question");
+        message.reply("more than a one worded question").catch(error => {
+            console.log(error);
+        });
     } else {
         let eightBallResult = Math.floor((Math.random() * eightBallReplies.length));
         let eightBallQuestion = args.slice().join(" ");
-        message.reply(eightBallReplies[eightBallResult]);
+        message.reply(eightBallReplies[eightBallResult]).catch(error => {
+            console.log(error);
+        });
         const logContent = `<@${message.member.id}> asked the magic 8 ball "${eightBallQuestion}"`;
 
         if (message.guild.id == myServerID) {
@@ -72,5 +76,5 @@ module.exports.help = {
     name: `${prefix}8ball`,
     description: `ask the magic 8 ball for some guidance`,
     type: `member`,
-    usage: `${prefix}8ball <question>`
+    usage: `${prefix}8ball <question>, ${prefix}8ball [?]`
 }

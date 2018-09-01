@@ -11,7 +11,9 @@ module.exports.run = async (client, message, args) => {
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
     const logContent = `<@${message.member.id}> asked to see their profile picture`;
 
-    message.reply(message.author.avatarURL);
+    message.reply(message.author.avatarURL).catch(error => {
+        console.log(error);
+    });
 
     if (message.guild.id == myServerID) {
         let logsEmbed = new Discord.RichEmbed()
@@ -41,5 +43,5 @@ module.exports.help = {
     name: `${prefix}pfp`,
     description: `sends ur profile pic into chat, or whoever u tagged afterwards`,
     type: `member`,
-    usage: `${prefix}pfp [user]`
+    usage: `${prefix}pfp [user], ${prefix}pfp [?]`
 }

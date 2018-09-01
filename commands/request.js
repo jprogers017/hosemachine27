@@ -11,7 +11,9 @@ module.exports.run = async (client, message, args) => {
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
     const logContent = `<@${message.member.id}> will hopefully make a request soon :)`;
 
-    message.channel.send(`just dm me!!! <@221116684864454657>`);
+    message.channel.send(`just dm me!!! <@221116684864454657>`).catch(error => {
+        console.log(error);
+    });
 
     if (message.guild.id == myServerID) {
         let logsEmbed = new Discord.RichEmbed()
@@ -41,5 +43,5 @@ module.exports.help = {
     name: `${prefix}request`,
     description: `if u have any requests, just sends my discord so u can message me and do so`,
     type: `member`,
-    usage: `${prefix}request`
+    usage: `${prefix}request, ${prefix}request [?]`
 }

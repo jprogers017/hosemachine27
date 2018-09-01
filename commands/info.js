@@ -9,9 +9,23 @@ const externalServerLogs = config.externalServerLogs;
 module.exports.run = async (client, message, args) => {
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
-    const logContent = `<@${message.member.id}> had ${client.user.username} leave the voice channel`;
+    const logContent = `<@${message.member.id}> asked for the server information`;
 
-    message.channel.send(`i haven't worked on this yet, it's non-functional`);
+    let serverIcon = message.guild.iconURL;
+    let serverEmbed = new Discord.RichEmbed()
+        .setAuthor(client.user.username, serverIcon)
+        .setTitle("Server Information")
+        .setColor("#7fc0ff")
+        .addField("Server Name", message.guild.name, true)
+        .addField("Server Owner", message.guild.owner, true)
+        .addField("Total Members", message.guild.memberCount, true)
+        .addField("Created On", message.guild.createdAt, true)
+        .addField("You joined", message.member.joinedAt, true)
+        .setTimestamp();
+
+    message.channel.send(serverEmbed).catch(error => {
+        console.log(error);
+    });
 
     if (message.guild.id == myServerID) {
         let logsEmbed = new Discord.RichEmbed()
@@ -38,8 +52,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}leave`,
-    description: `makes the bot leave the current voice channel its in`,
+    name: `${prefix}info`,
+    description: `sends information about the server`,
     type: `member`,
-    usage: `${prefix}leave`
+    usage: `${prefix}info, ${prefix}info [?]`
 }

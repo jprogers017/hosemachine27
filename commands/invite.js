@@ -23,7 +23,9 @@ module.exports.run = async (client, message, args) => {
         .setThumbnail(message.author.avatarURL)
         .setTimestamp();
 
-    message.channel.send(inviteEmbed);
+    message.channel.send(inviteEmbed).catch(error => {
+        console.log(error);
+    });
 
     if (message.guild.id == myServerID) {
         let logsEmbed = new Discord.RichEmbed()
@@ -53,5 +55,5 @@ module.exports.help = {
     name: `${prefix}invite`,
     description: `gets u a link to invite the bot to ur server`,
     type: `member`,
-    usage: `${prefix}invite`
+    usage: `${prefix}invite, ${prefix}invite [?]`
 }

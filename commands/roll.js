@@ -12,19 +12,31 @@ module.exports.run = async (client, message, args) => {
 
     var roll = Math.floor(Math.random() * 100) + 1;
     if (roll <= 1) {
-        message.reply(`${roll}, ouch`)
+        message.reply(`${roll}, ouch`).catch(error => {
+            console.log(error);
+        });
     } else if (roll >= 2 && roll <= 19) {
-        message.reply(`${roll}, yikes, better luck next time`);
+        message.reply(`${roll}, yikes, better luck next time`).catch(error => {
+            console.log(error);
+        });
     } else if (roll >= 20 && roll <= 39) {
-        message.reply(`${roll}, ehhh, couldve been better`);
+        message.reply(`${roll}, ehhh, couldve been better`).catch(error => {
+            console.log(error);
+        });
     } else if (roll >= 40 && roll <= 59) {
-        message.reply(`${roll}, not too bad`);
+        message.reply(`${roll}, not too bad`).catch(error => {
+            console.log(error);
+        });
     } else if (roll >= 60 && roll <= 79) {
         message.reply(`${roll}, NOW we're getting somewhere`);
     } else if (roll >= 80 && roll <= 99) {
-        message.reply(`${roll}, god damn`);
+        message.reply(`${roll}, god damn`).catch(error => {
+            console.log(error);
+        });
     } else {
-        message.reply(`${roll} how'd u do that? did u hack me???`)
+        message.reply(`${roll} how'd u do that? did u hack me???`).catch(error => {
+            console.log(error);
+        });
     }
 
     const logContent = `<@${message.member.id}> rolled a ${roll}`;
@@ -56,5 +68,5 @@ module.exports.help = {
     name: `${prefix}roll`,
     description: `rolls a number between 1 and 100`,
     type: `member`,
-    usage: `${prefix}roll`
+    usage: `${prefix}roll, ${prefix}roll [?]`
 }

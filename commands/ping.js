@@ -11,7 +11,9 @@ module.exports.run = async (client, message, args) => {
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
     const logContent = `<@${message.member.id}> checked my response time, ${((new Date().getTime() - message.createdTimestamp) * -1)}ms`;
 
-    message.channel.send(`hi, it took me ${((new Date().getTime() - message.createdTimestamp) * -1)}ms to respond to u`);
+    message.channel.send(`hi, it took me ${((new Date().getTime() - message.createdTimestamp) * -1)}ms to respond to u`).catch(error => {
+        console.log(error);
+    });
 
     if (message.guild.id == myServerID) {
         let logsEmbed = new Discord.RichEmbed()
@@ -41,5 +43,5 @@ module.exports.help = {
     name: `${prefix}ping`,
     description: `checks bot response time`,
     type: `member`,
-    usage: `${prefix}ping`
+    usage: `${prefix}ping, ${prefix}ping [?]`
 }
