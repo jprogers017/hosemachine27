@@ -9,7 +9,7 @@ const externalServerLogs = config.externalServerLogs;
 module.exports.run = async (client, message, c, args) => {
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
-    const helpMsg = args.join(" ");
+    // const helpMsg = args.join(" ");
     var logContent = `<@${message.member.id}> said hello!`;
 
     // if (message.content === `${prefix}hello ???`) {
