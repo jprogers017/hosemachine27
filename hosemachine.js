@@ -398,6 +398,56 @@ client.on('message', function (message) {
     }
   }
 
+  if (mess.includes("yeehaw") && message.member.id != client.user.id) {
+    message.channel.send("YAWHEE :cowboy: :cowboy: :cowboy:");
+    const logContent = `<@${message.member.id}> got YAWHEE :cowboy: :cowboy: :cowboy:`;
+    if (message.guild.id == myServerID) {
+      let logsEmbed = new Discord.RichEmbed()
+        .setDescription(logContent)
+        .addField('channel:', message.channel.name)
+        .setColor(message.member.displayHexColor)
+        .setThumbnail(message.author.avatarURL)
+        .setTimestamp();
+
+      serverLogs.send(logsEmbed);
+    } else {
+      let logsEmbed = new Discord.RichEmbed()
+        .setDescription(logContent)
+        .addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
+        .addField('channel:', message.channel.name, true)
+        .setColor(message.member.displayHexColor)
+        .setThumbnail(message.author.avatarURL)
+        .setTimestamp();
+
+      externalLogs.send(logsEmbed);
+    }
+  }
+
+  if (mess.includes("press f to pay respects") && message.member.id != client.user.id) {
+    message.channel.send("F");
+    const logContent = `<@${message.member.id}> paid their respects`;
+    if (message.guild.id == myServerID) {
+      let logsEmbed = new Discord.RichEmbed()
+        .setDescription(logContent)
+        .addField('channel:', message.channel.name)
+        .setColor(message.member.displayHexColor)
+        .setThumbnail(message.author.avatarURL)
+        .setTimestamp();
+
+      serverLogs.send(logsEmbed);
+    } else {
+      let logsEmbed = new Discord.RichEmbed()
+        .setDescription(logContent)
+        .addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
+        .addField('channel:', message.channel.name, true)
+        .setColor(message.member.displayHexColor)
+        .setThumbnail(message.author.avatarURL)
+        .setTimestamp();
+
+      externalLogs.send(logsEmbed);
+    }
+  }
+
   if (mess.includes("kink") && message.member.id != client.user.id) {
     if (mess.includes(`${prefix}kinkshame`) && message.member.id != client.user.id) {
       return;
