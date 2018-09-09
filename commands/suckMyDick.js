@@ -21,33 +21,24 @@ module.exports.run = async (client, message, args) => {
         });
     }
 
-    if (message.guild.id == myServerID) {
-        let logsEmbed = new Discord.RichEmbed()
-            .setAuthor(client.user.username, client.user.avatarURL)
-            .setDescription(logContent)
-            .addField('channel:', message.channel.name)
-            .setColor(message.member.displayHexColor)
-            .setThumbnail(message.author.avatarURL)
-            .setTimestamp();
-
+    let logsEmbed = new Discord.RichEmbed()
+        .setAuthor(client.user.username, client.user.avatarURL)
+        .setDescription(logContent)
+        .addField('channel:', message.channel.name)
+        .setColor(message.member.displayHexColor)
+        .setThumbnail(message.author.avatarURL)
+        .setTimestamp();
+    if (message.guild.id == config.myServerID) {
         serverLogs.send(logsEmbed);
     } else {
-        let logsEmbed = new Discord.RichEmbed()
-            .setAuthor(client.user.username, client.user.avatarURL)
-            .setDescription(logContent)
-            .addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
-            .addField('channel:', message.channel.name, true)
-            .setColor(message.member.displayHexColor)
-            .setThumbnail(message.author.avatarURL)
-            .setTimestamp();
-
+        logsEmbed.addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
         externalLogs.send(logsEmbed);
     }
 }
 
 module.exports.help = {
     name: `${prefix}smd`,
-    description: `tells ninjackoff peeno to suck ur dick`,
+    description: `ADMINISTRATOR PERMISSIONS REQUIRED\ntells ninjackoff peeno to suck ur dick`,
     type: `admin`,
     usage: `${prefix}smd, ${prefix}smd [?]`
 }

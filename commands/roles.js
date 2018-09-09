@@ -9,22 +9,14 @@ const externalServerLogs = config.externalServerLogs;
 module.exports.run = async (client, message, args) => {
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
-    const logContent = `<@${message.member.id}> asked for my github link!`;
+    var logContent = `<@${message.member.id}> asked how roles work`;
 
-    if (message.member.nickname) {
-        var authorName = message.member.nickname;
-    } else {
-        var authorName = message.author.username;
-    }
-    let gitEmbed = new Discord.RichEmbed()
-        .setAuthor(authorName, message.author.avatarURL)
-        .setDescription(`here u go!!!\n<https://github.com/jprogers017/hosemachine27>`)
-        .setColor(`#73b6ff`)
-        .setThumbnail(message.author.avatarURL)
-        .setTimestamp();
-
-    message.channel.send(gitEmbed).catch(error => {
-        console.log(error);
+    message.channel.send({
+        embed: {
+            title: `assign ur own roles! (not yet tho, it's a work in progress rn)`,
+            description: `just make ur way to <#${config.rolesChannel}> and react with what games u either play or own. its up to u\nbasically...just react to what roles u want`,
+            color: 0x71bcff
+        }
     });
 
     let logsEmbed = new Discord.RichEmbed()
@@ -43,8 +35,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}github`,
-    description: `heres a link for my github page!`,
+    name: `${prefix}roles`,
+    description: `how to self assign ur roles!`,
     type: `member`,
-    usage: `${prefix}github, ${prefix}github [?]`
+    usage: `${prefix}roles`
 }
