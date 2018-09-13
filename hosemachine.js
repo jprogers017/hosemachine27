@@ -3,7 +3,9 @@ const fs = require("fs");
 const client = new Discord.Client({
   disableEveryone: true
 });
+const stupidMap = new Discord.Collection();
 client.commands = new Discord.Collection();
+
 
 //command handler
 fs.readdir("./commands/", (err, files) => {
@@ -30,48 +32,34 @@ const myServerLogs = config.myServerLogs;
 const externalServerLogs = config.externalServerLogs;
 const generalChat = config.generalChat;
 const myID = config.myID;
-const rolesEmbed = new Discord.RichEmbed()
-  .setTitle(`game roles`)
-  .setDescription(`react to each role of the games u either own or play by clicking on the corresponding reaction`)
-  .setColor(`#73b6ff`);
-
 //role react settings
-const setupCMD = `${prefix}createroles`;
-let initialMessage = `**React to the messages below to receive the associated role. If you would like to remove the role, simply remove your reaction!**`;
+const setupCMD = `${prefix}create roles`;
 const roles = ["siege", "overwatch", "pubg", "csgo", "rocksmith", "minecraft"];
-const reactions = ["483146133305294848", "483146167396335652", "483146201739296778", "483146328843485205", "483146363048296478", "483146383906439168"];
+const reactions = ["siege", "overwatch", "pubg", "csgo", "rocksmith", "minecraft"];
+if (roles.length !== reactions.length) throw "Roles list and reactions list are not the same length!";
+var messageSent;
 
-//message generation function 
-function generateMessages() {
-  var messages = [];
-  messages.push(initialMessage);
-  for (let role of roles) messages.push(`React below to get the **"${role}"** role!`);
-  return messages;
-}
+// //message generation function 
+// function handleReact(messageReaction, user, remove) {
+//   let message = messageReaction.message;
+//   if (message.id != messageSent.id || user.id == messageSent.id) return;
+//   var roleName = stupidMap.get(messageReaction.emoji.name);
+//   var role = message.guild.roles.find('name', roleName);
+//   var member = message.guild.members.get(user.id);
+//   try {
+//     if (remove) {
+//       member.removeRole(role);
+//     } else {
+//       member.addRole(role);
+//     }
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
 
-//add or remove reactions
-client.on('raw', event => {
-  if (event.t === 'MESSAGE_REACTION_ADD' || event.t == "MESSAGE_REACTION_REMOVE") {
-    let channel = client.channels.get(event.d.channel_id);
-    let message = channel.fetchMessage(event.d.message_id).then(msg => {
-      let user = msg.guild.members.get(event.d.user_id);
-      if (msg.author.id == client.user.id && msg.content != initialMessage) {
-        var re = `\\*\\*"(.+)?(?="\\*\\*)`;
-        var role = msg.content.match(re)[1];
-        if (user.id != client.user.id) {
-          var roleObj = msg.guild.roles.find('name', role);
-          var memberObj = msg.guild.members.get(user.id);
-          if (event.t === "MESSAGE_REACTION_ADD") {
-            memberObj.addRole(roleObj);
-            memberObj.addRole(msg.guild.roles.find('name', 'member'));
-          } else {
-            memberObj.removeRole(roleObj);
-          }
-        }
-      }
-    })
-  }
-});
+// //add or remove reactions
+// client.on('messageReactionAdd', (messageReaction, user) => handleReact(messageReaction, user));
+// client.on('messageReactionRemove', (messageReaction, user) => handleReact(messageReaction, user, true));
 
 //bot login
 client.login(discordToken);
@@ -137,20 +125,22 @@ client.on('message', function (message) {
     return;
   }
 
-  //role react
-  if (message.author.id == myID && message.content.toLowerCase() == setupCMD && message.guild.id == myServerID) {
-    var toSend = generateMessages();
-    let mappedArray = [
-      [toSend[0], false], ...toSend.slice(1).map((message, idx) => [message, reactions[idx]])
-    ];
-    for (let mapObj of mappedArray) {
-      message.channel.send(mapObj[0]).then(sent => {
-        if (mapObj[1]) {
-          sent.react(mapObj[1]);
-        }
-      });
-    }
-  }
+  // //role react
+  // if (/*message.author.id == myID && */message.content.toLowerCase() == setupCMD && message.guild.id == myServerID) {
+  //   let toSend = new Discord.RichEmbed()
+  //     .setTitle(`game roles`)
+  //     .setDescription(`react to each role of the games u either own or play by clicking on the corresponding reaction`)
+  //     .setColor(`#73b6ff`);
+  //   for (let i = 0; i < reactions.length; i++) stupidMap.set(reactions[i], roles[i]);
+  //   message.channel.send(toSend).then(sent => {
+  //     messageSent = sent;
+  //     stupidMap.forEach((value, key, map) => {
+  //       var reactWith = key;
+  //       if (key.substring(0, 1) != "\\") reactWith = message.guild.emojis.find('name', key);
+  //       sent.react(reactWith);
+  //     });
+  //   });
+  // }
 
   //joke filter
   if (mess.includes("heck") && message.member.id != client.user.id) {
@@ -316,25 +306,7 @@ client.on('message', function (message) {
     }
   }
 
-  if (mess.includes("yeehaw") && message.member.id != client.user.id) {
-    message.channel.send("YAWHEE :cowboy: :cowboy: :cowboy:");
-    const logContent = `<@${message.member.id}> got YAWHEE :cowboy: :cowboy: :cowboy:`;
-    let logsEmbed = new Discord.RichEmbed()
-      .setAuthor(client.user.username, client.user.avatarURL)
-      .setDescription(logContent)
-      .addField('channel:', message.channel.name)
-      .setColor(message.member.displayHexColor)
-      .setThumbnail(message.author.avatarURL)
-      .setTimestamp();
-    if (message.guild.id == config.myServerID) {
-      serverLogs.send(logsEmbed);
-    } else {
-      logsEmbed.addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
-      externalLogs.send(logsEmbed);
-    }
-  }
-
-  if (mess.includes("press f to pay respects") && message.member.id != client.user.id) {
+  if (mess.includes("f to pay") && message.member.id != client.user.id) {
     message.channel.send("F");
     const logContent = `<@${message.member.id}> paid their respects`;
     let logsEmbed = new Discord.RichEmbed()
@@ -446,4 +418,33 @@ client.on('message', function (message) {
       externalLogs.send(logsEmbed);
     }
   }
+
+  //dad JOKES BOIS HERE WE FUCKIN GO
+  if (mess.startsWith("im") || mess.startsWith("i'm") || mess.startsWith('i am')) {
+    let dadJoke = '';
+    if (mess.startsWith("i am")) dadJoke = args.slice(1).join(" ");
+    else dadJoke = args.join(" ");
+
+    // if (message.mentions.member) {
+      
+    // }
+
+    return message.channel.send(`hi ${dadJoke}, im <@${client.user.id}> :)`);
+
+    const logContent = `<@${message.member.id}> made it REAL easy for me to make a dad joke lmaoooooo`;
+    let logsEmbed = new Discord.RichEmbed()
+      .setAuthor(client.user.username, client.user.avatarURL)
+      .setDescription(logContent)
+      .addField('channel:', message.channel.name)
+      .setColor(message.member.displayHexColor)
+      .setThumbnail(message.author.avatarURL)
+      .setTimestamp();
+    if (message.guild.id == config.myServerID) {
+      serverLogs.send(logsEmbed);
+    } else {
+      logsEmbed.addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
+      externalLogs.send(logsEmbed);
+    }
+  }
+
 });
