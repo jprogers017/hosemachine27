@@ -30,14 +30,25 @@ const discordToken = config.discordToken;
 const myServerID = config.myServerID;
 const myServerLogs = config.myServerLogs;
 const externalServerLogs = config.externalServerLogs;
+const dmLogsChannel = config.dmLogsChannel;
 const generalChat = config.generalChat;
 const myID = config.myID;
+const clientName = 'hosemachine (27)';
+let clientStatuses = [
+  `type ${prefix}cowjoke, i dare u`,
+  `type ${prefix}cowjoke, i dare u`,
+  `type ${prefix}cowjoke, i dare u`,
+  `type ${prefix}cowjoke, i dare u`,
+  `try "@${clientName} ?"`,
+  `try "@${clientName} help"`,
+  `try "${prefix}help"`
+];
 //role react settings
-const setupCMD = `${prefix}create roles`;
-const roles = ["siege", "overwatch", "pubg", "csgo", "rocksmith", "minecraft"];
-const reactions = ["siege", "overwatch", "pubg", "csgo", "rocksmith", "minecraft"];
-if (roles.length !== reactions.length) throw "Roles list and reactions list are not the same length!";
-var messageSent;
+// const setupCMD = `${prefix}create roles`;
+// const roles = ["siege", "overwatch", "pubg", "csgo", "rocksmith", "minecraft"];
+// const reactions = ["siege", "overwatch", "pubg", "csgo", "rocksmith", "minecraft"];
+// if (roles.length !== reactions.length) throw "Roles list and reactions list are not the same length!";
+// var messageSent;
 
 // //message generation function 
 // function handleReact(messageReaction, user, remove) {
@@ -67,7 +78,10 @@ client.login(discordToken);
 //on message in console and activity
 client.on('ready', function () {
   console.log(`${client.user.username} is online in ${client.guilds.size} server(s)!`);
-  client.user.setActivity(`type ${prefix}cowjoke, i dare u`);
+  setInterval(function () {
+    let clientActivity = clientStatuses[Math.floor(Math.random() * clientStatuses.length)];
+    client.user.setActivity(clientActivity);
+  }, 8500)
 });
 
 //member joins
@@ -101,7 +115,7 @@ client.on('guildMemberRemove', member => {
   }
 });
 
-client.on('message', function (message) {
+client.on('message', async function (message) {
   //variables
   const mess = message.content.toLowerCase();
   let messageArray = message.content.split(/ +/);
@@ -109,19 +123,35 @@ client.on('message', function (message) {
   let args = messageArray.slice(1);
   const serverLogs = client.channels.get(myServerLogs);
   const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
+  const dmLogs = client.guilds.get(myServerID).channels.get(dmLogsChannel);
+  const clientMention = message.guild.members.get(client.user.id);
+  let help = new Discord.RichEmbed()
+    .setColor("#73b6ff");
+  if (message.member.nickname) {
+    var authorName = message.member.nickname;
+  } else {
+    var authorName = message.author.username;
+  }
+  let logsEmbed = new Discord.RichEmbed()
+    .setAuthor(client.user.username, client.user.avatarURL)
+    .setTitle(message.author.tag)
+    .addField('channel:', message.channel.name)
+    .setColor(message.member.displayHexColor)
+    .setThumbnail(message.author.avatarURL)
+    .setTimestamp();
   let commandFile = client.commands.get(command);
-  if (commandFile) commandFile.run(client, message, args);
+  if (commandFile) commandFile.run(client, message, args, authorName, logsEmbed, help);
 
   //crashing? not on my watch
   if (message.author.bot) return;
   if (message.channel.type === "dm") {
     message.channel.send("did u want an invite link? <https://discordapp.com/api/oauth2/authorize?client_id=433064995274883078&permissions=0&scope=bot>");
-    let dmEmbed = new Discord.RichEmbed()
-      .setDescription(`<@${message.author.id}> dm'd me :)\ni sent them my invite link!\n\n<https://discordapp.com/api/oauth2/authorize?client_id=433064995274883078&permissions=0&scope=bot>`)
+    let dmLogEmbed = new Discord.RichEmbed()
+      .setAuthor(`direct message content:`, message.author.displayAvatarURL)
+      .setDescription(`**From: <@${message.author.id}>**\n"${message.content}"\n\nan invite link was also sent : )`)
       .setColor(`#73b6ff`)
-      .setThumbnail(message.author.avatarURL)
       .setTimestamp();
-    externalLogs.send(dmEmbed)
+    dmLogs.send(dmLogEmbed);
     return;
   }
 
@@ -141,6 +171,34 @@ client.on('message', function (message) {
   //     });
   //   });
   // }
+
+  //help command BC I WANT IT OUT OF MY COMMANDS FOLDER BC IDK BC I CAN OK
+  if (mess.startsWith(`${prefix}help`) || mess.startsWith(`${clientMention} ?`) || mess.startsWith(`${clientMention} help`)) {
+    let helpEmbed = new Discord.RichEmbed()
+      .setAuthor(`${client.user.username}'s help page! u need help, ${authorName}?`, message.author.avatarURL, 'https://github.com/jprogers017/hosemachine27')
+      .setTitle(`usage: ${prefix}command *<required>, [optional]*`)
+      .setDescription(`[click here for my github!](https://github.com/jprogers017/hosemachine27)\n[click here for my server invitation link!](https://discordapp.com/api/oauth2/authorize?client_id=433064995274883078&permissions=0&scope=bot)\ni have a bunch of auto-reply features!!!\na..."swear" filter? it doesnt actually, it just tells u to stop fucking swearing if u say heck or something like it\nsometimes i react to words with emojis\nDAD JOKES DAD JOKES DAD JOKES DAD JOKES DAD JOKES DAD JOKES DAD JOKES DAD JOKES`)
+      .setColor(message.member.displayHexColor)
+      .setFooter(`UNDER CONSTRUCTION: for command specific help, do the command with "?" afterwards, for example, ${prefix}hello ?`, );
+    client.commands.forEach(c => {
+      helpEmbed.addField(`${c.help.name}`, `${c.help.description}\n*usage: ${c.help.usage}*`);
+    });
+    message.channel.send(helpEmbed);
+    const logContent = `<@${message.member.id}> asked for help!`;
+    let logsEmbed = new Discord.RichEmbed()
+      .setAuthor(client.user.username, client.user.avatarURL)
+      .setDescription(logContent)
+      .addField('channel:', message.channel.name)
+      .setColor(message.member.displayHexColor)
+      .setThumbnail(message.author.avatarURL)
+      .setTimestamp();
+    if (message.guild.id == config.myServerID) {
+      serverLogs.send(logsEmbed);
+    } else {
+      logsEmbed.addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
+      externalLogs.send(logsEmbed);
+    }
+  }
 
   //joke filter
   if (mess.includes("heck") && message.member.id != client.user.id) {
@@ -306,7 +364,7 @@ client.on('message', function (message) {
     }
   }
 
-  if (mess.includes("f to pay") && message.member.id != client.user.id) {
+  if ((mess.includes(" f to pay ") || mess.includes(" get an f ")) && message.member.id != client.user.id) {
     message.channel.send("F");
     const logContent = `<@${message.member.id}> paid their respects`;
     let logsEmbed = new Discord.RichEmbed()
@@ -420,17 +478,17 @@ client.on('message', function (message) {
   }
 
   //dad JOKES BOIS HERE WE FUCKIN GO
-  if (mess.startsWith("im") || mess.startsWith("i'm") || mess.startsWith('i am')) {
+  if (mess.startsWith("im ") || mess.startsWith("i'm ") || mess.startsWith("i am ")) {
     let dadJoke = '';
-    if (mess.startsWith("i am")) dadJoke = args.slice(1).join(" ");
-    else dadJoke = args.join(" ");
-
-    // if (message.mentions.member) {
-      
-    // }
-
-    return message.channel.send(`hi ${dadJoke}, im <@${client.user.id}> :)`);
-
+    let user = message.mentions.users;
+    if (mess.startsWith("i am ")) {
+      dadJoke = message.cleanContent.split(" ").slice(2);
+    } else if (args[0] === "tler") {
+      return message.channel.send("shut the fuck up, millie");
+    } else {
+      dadJoke = message.cleanContent.split(" ").slice(1);
+    }
+    return message.channel.send(`hi ${dadJoke}, i'm ${client.user.username} :)`);
     const logContent = `<@${message.member.id}> made it REAL easy for me to make a dad joke lmaoooooo`;
     let logsEmbed = new Discord.RichEmbed()
       .setAuthor(client.user.username, client.user.avatarURL)

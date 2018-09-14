@@ -6,39 +6,37 @@ const myServerID = config.myServerID;
 const myServerLogs = config.myServerLogs;
 const externalServerLogs = config.externalServerLogs;
 
-module.exports.run = async (client, message, args) => {
+module.exports.run = async (client, message, args, authorName, logsEmbed, help) => {
+    //variables
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
-    const logContent = `<@${message.member.id}> asked for my github link!`;
-
-    if (message.member.nickname) {
-        var authorName = message.member.nickname;
-    } else {
-        var authorName = message.author.username;
-    }
+    var logContent;
     let gitEmbed = new Discord.RichEmbed()
-        .setAuthor(authorName, message.author.avatarURL)
-        .setDescription(`here u go!!!\n<https://github.com/jprogers017/hosemachine27>`)
-        .setColor(`#73b6ff`)
-        .setThumbnail(message.author.avatarURL)
-        .setTimestamp();
+        .setAuthor(`jprogers017 (click here!!!)`, `https://cdn.discordapp.com/avatars/419784267506384906/1739f48f8e8e3e5a679772274b230fd1.png?size=2048`, `https://github.com/jprogers017/hosemachine27`)
+        .setColor(`#73b6ff`);
 
-    message.channel.send(gitEmbed).catch(error => {
-        console.log(error);
-    });
+    //set embeds
+    help.setTitle(exports.help.usage);
+    help.setDescription(exports.help.description);
 
-    let logsEmbed = new Discord.RichEmbed()
-        .setAuthor(client.user.username, client.user.avatarURL)
-        .setDescription(logContent)
-        .addField('channel:', message.channel.name)
-        .setColor(message.member.displayHexColor)
-        .setThumbnail(message.author.avatarURL)
-        .setTimestamp();
+    //command
+    if (args[0] === "?") {
+        logContent = `<@${message.member.id}> asked for help with my github :)`;
+        message.channel.send(help);
+    } else if (!message.guild) {
+        return;
+    } else {
+        logContent = `<@${message.member.id}> asked for my github link!`;
+        message.channel.send(gitEmbed);
+    }
+
+    //logs
+    logsEmbed.setDescription(logContent);
     if (message.guild.id == config.myServerID) {
-        serverLogs.send(logsEmbed);
+        return serverLogs.send(logsEmbed);
     } else {
         logsEmbed.addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
-        externalLogs.send(logsEmbed);
+        return externalLogs.send(logsEmbed);
     }
 }
 

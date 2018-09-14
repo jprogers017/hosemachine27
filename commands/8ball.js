@@ -6,10 +6,10 @@ const myServerID = config.myServerID;
 const myServerLogs = config.myServerLogs;
 const externalServerLogs = config.externalServerLogs;
 
-module.exports.run = async (client, message, args) => {
+module.exports.run = async (client, message, args, logsEmbed, help) => {
+    //variables
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
-
     var eightBallReplies = [
         "It is certain",
         "It is decidely so",
@@ -34,32 +34,39 @@ module.exports.run = async (client, message, args) => {
         "Very doubtful",
         "No"
     ];
+    var eightBallQuestion = args.slice().join(" ");
+    var eightBallResults = Math.floor((Math.random() * eightBallReplies.length));
+    var eightBallAnswer = eightBallReplies[eightBallResults];
+    var logContent;
 
-    if (!args[1]) {
-        message.reply("more than a one worded question").catch(error => {
-            console.log(error);
-        });
+    //set embeds
+    help.setTitle(exports.help.usage);
+    help.setDescription(exports.help.description);
+
+    //command
+    if (args[0] === "?") {
+        logContent = `<@${message.member.id}> asked for magic 8 ball help :)`;
+        message.channel.send(help);
+    } else if (!message.guild) {
+        return;
+    } else if (!args[0]) {
+        logContent = `<@${message.member.id}> tried to use the magic 8 ball, but...with no question?`;
+        message.channel.send("did u have a question? or...");
+    } else if (!args[1]) {
+        logContent = `<@${message.member.id}> tried to use the magic 8 ball, but their question was too short`;
+        message.channel.send("more than a one worded question, please");
     } else {
-        let eightBallResult = Math.floor((Math.random() * eightBallReplies.length));
-        let eightBallQuestion = args.slice().join(" ");
-        message.reply(eightBallReplies[eightBallResult]).catch(error => {
-            console.log(error);
-        });
-        const logContent = `<@${message.member.id}> asked the magic 8 ball "${eightBallQuestion}"`;
+        logContent = `<@${message.member.id}> used the magic 8 ball!\n**${eightBallQuestion}**\n${eightBallAnswer}`;
+        message.channel.send(eightBallAnswer);
+    }
 
-        let logsEmbed = new Discord.RichEmbed()
-            .setAuthor(client.user.username, client.user.avatarURL)
-            .setDescription(logContent)
-            .addField('channel:', message.channel.name)
-            .setColor(message.member.displayHexColor)
-            .setThumbnail(message.author.avatarURL)
-            .setTimestamp();
-        if (message.guild.id == config.myServerID) {
-            serverLogs.send(logsEmbed);
-        } else {
-            logsEmbed.addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
-            externalLogs.send(logsEmbed);
-        }
+    //logs
+    logsEmbed.setDescription(logContent);
+    if (message.guild.id == config.myServerID) {
+        return serverLogs.send(logsEmbed);
+    } else {
+        logsEmbed.addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
+        return externalLogs.send(logsEmbed);
     }
 }
 

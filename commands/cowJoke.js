@@ -1,4 +1,3 @@
-const Discord = require("discord.js");
 const fs = require("fs");
 const config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
 const prefix = config.prefix;
@@ -6,11 +5,11 @@ const myServerID = config.myServerID;
 const myServerLogs = config.myServerLogs;
 const externalServerLogs = config.externalServerLogs;
 
-module.exports.run = async (client, message, args) => {
+module.exports.run = async (client, message, args, logsEmbed, help) => {
+    //variables
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
-    const logContent = `<@${message.member.id}> asked for a cowjoke!`;
-
+    var logContent;
     var cowJokes = [
         "WHY DO COWS HAVE HOOVES INSTEAD OF FEET? BECAUSE THEY LACTOSE",
         "WHAT DO YOU CALL A HERD OF COWS JACKING OFF? BEEF STROKIN OFF",
@@ -83,30 +82,36 @@ module.exports.run = async (client, message, args) => {
         "WHATS A COWS FAVORITE MOOSICAL NOTE? BEEF-FLAT",
         "WHAT DO YOU CALL A COW THATS AFRAID OF THE DARK? A COWARD"
     ];
-
     var rand = cowJokes[Math.floor(Math.random() * cowJokes.length)];
-    message.channel.send(rand).catch(error => {
-        console.log(error);
-    });
 
-    let logsEmbed = new Discord.RichEmbed()
-        .setAuthor(client.user.username, client.user.avatarURL)
-        .setDescription(logContent)
-        .addField('channel:', message.channel.name)
-        .setColor(message.member.displayHexColor)
-        .setThumbnail(message.author.avatarURL)
-        .setTimestamp();
+    //set embeds
+    help.setTitle(exports.help.usage);
+    help.setDescription(exports.help.description);
+
+    //command
+    if (args[0] === "?") {
+        logContent = `<@${message.member.id}> asked for help with cow jokes :)`;
+        message.channel.send(help);
+    } else if (!message.guild) {
+        return;
+    } else {
+        logContent = `<@${message.member.id}> recieved a cow joke!\n**${rand}**`;
+        message.channel.send(rand);
+    }
+
+    //logs
+    logsEmbed.setDescription(logContent);
     if (message.guild.id == config.myServerID) {
-        serverLogs.send(logsEmbed);
+        return serverLogs.send(logsEmbed);
     } else {
         logsEmbed.addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
-        externalLogs.send(logsEmbed);
+        return externalLogs.send(logsEmbed);
     }
 }
 
 module.exports.help = {
     name: `${prefix}cowjoke`,
-    description: `sends a random cow joke, this is my pride and joy TBH`,
+    description: `sends a random cow joke, this is my pride and joy..the main reason i even MADE this bot`,
     type: `member`,
     usage: `${prefix}cowjoke, ${prefix}cowjoke [?]`
 }

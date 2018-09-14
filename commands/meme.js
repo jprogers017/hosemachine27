@@ -6,13 +6,12 @@ const myServerID = config.myServerID;
 const myServerLogs = config.myServerLogs;
 const externalServerLogs = config.externalServerLogs;
 
-module.exports.run = async (client, message, args) => {
+module.exports.run = async (client, message, args, authorName, logsEmbed, help) => {
+    //variables
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
-    const logContent = `<@${message.member.id}> asked for a meme!`;
-
-    //https://www.youtube.com/playlist?list=PLFsQleAWXsj_4yDeebiIADdH5FMayBiJo
-    var memes = [
+    var logContent;
+    var memes = [ //https://www.youtube.com/playlist?list=PLFsQleAWXsj_4yDeebiIADdH5FMayBiJo
         "https://youtu.be/yKC3F0rNnLE",
         "https://youtu.be/GPRD90nOKYQ",
         "https://youtu.be/KJLNgJoYV_8",
@@ -36,25 +35,30 @@ module.exports.run = async (client, message, args) => {
         "https://youtu.be/zMtj4yJKuzk", //stopped at 14, resume at 15
         "https://youtu.be/FdSa0c_Xj3k"
     ];
-
-
     var rand = memes[Math.floor(Math.random() * memes.length)];
-    message.channel.send(rand).catch(error => {
-        console.log(error);
-    });
 
-    let logsEmbed = new Discord.RichEmbed()
-        .setAuthor(client.user.username, client.user.avatarURL)
-        .setDescription(logContent)
-        .addField('channel:', message.channel.name)
-        .setColor(message.member.displayHexColor)
-        .setThumbnail(message.author.avatarURL)
-        .setTimestamp();
+    //set embeds
+    help.setTitle(exports.help.usage);
+    help.setDescription(exports.help.description);
+
+    //command
+    if (args[0] === "?") {
+        logContent = `<@${message.member.id}> asked for help with memes...loser`;
+        message.channel.send(help);
+    } else if (!message.guild) {
+        return;
+    } else {
+        logContent = `<@${message.member.id}> asked for a meme!\n**${rand}**`;
+        message.channel.send(rand);
+    }
+
+    //logs
+    logsEmbed.setDescription(logContent);
     if (message.guild.id == config.myServerID) {
-        serverLogs.send(logsEmbed);
+        return serverLogs.send(logsEmbed);
     } else {
         logsEmbed.addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
-        externalLogs.send(logsEmbed);
+        return externalLogs.send(logsEmbed);
     }
 }
 

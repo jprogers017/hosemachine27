@@ -6,37 +6,41 @@ const myServerID = config.myServerID;
 const myServerLogs = config.myServerLogs;
 const externalServerLogs = config.externalServerLogs;
 
-module.exports.run = async (client, message, args) => {
+module.exports.run = async (client, message, args, authorName, logsEmbed, help) => {
+    //variables
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
-    const logContent = `<@${message.member.id}> cleared ${args[0]} messages`;
+    var logContent;
 
-    if (!message.member.hasPermission("ADMINISTRATOR")) message.reply("lmao, u dont have perms for that. stupid bitch").catch(error => {
-        console.log(error);
-    });
-    if (!args[0]) message.channel.send("yo, u cant clear 0 messages, dumb fuck").catch(error => {
-        console.log(error);
-    });
-    if ((message.member.hasPermission("ADMINISTRATOR")) && (args[0])) {
+    //help
+    help.setTitle(exports.help.usage);
+    help.setDescription(exports.help.description);
+
+    //command
+    if (!message.member.hasPermission("ADMINISTRATOR")) {
+        logContent = `<@${message.member.id}> tried to use ${exports.help.name}, but doesnt have admin perms :(`;
+        message.channel.send("lmao, u dont have perms for that");
+    } else if (!message.guild) {
+        return;
+    } else if (args[0] === "?") {
+        logContent = `<@${message.member.id}> asked for help on how to purge messages :)`;
+        message.channel.send(help);
+    } else if (!args[0]) {
+        message.channel.send("yo, u cant clear 0 messages");
+    } else if ((message.member.hasPermission("ADMINISTRATOR")) && (args[0])) {
+        logContent = `<@${message.member.id}> cleared ${args[0]} messages`;
         message.channel.bulkDelete(args[0]).then(() => {
             message.channel.send(`cleared ${args[0]} messages, yikes`).then(msg => msg.delete(2500));
-        }).catch(error => {
-            console.log(error);
         });
     }
 
-    let logsEmbed = new Discord.RichEmbed()
-        .setAuthor(client.user.username, client.user.avatarURL)
-        .setDescription(logContent)
-        .addField('channel:', message.channel.name)
-        .setColor(message.member.displayHexColor)
-        .setThumbnail(message.author.avatarURL)
-        .setTimestamp();
+    //logs
+    logsEmbed.setDescription(logContent);
     if (message.guild.id == config.myServerID) {
-        serverLogs.send(logsEmbed);
+        return serverLogs.send(logsEmbed);
     } else {
         logsEmbed.addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
-        externalLogs.send(logsEmbed);
+        return externalLogs.send(logsEmbed);
     }
 }
 

@@ -6,35 +6,39 @@ const myServerID = config.myServerID;
 const myServerLogs = config.myServerLogs;
 const externalServerLogs = config.externalServerLogs;
 
-module.exports.run = async (client, message, args) => {
+module.exports.run = async (client, message, args, authorName, logsEmbed, help) => {
+    //variables
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
+    var logContent;
     const botMessage = args.join(" ");
-    const logContent = `<@${message.member.id}> just had me say "${botMessage}"`;
 
+    //set embeds
+    help.setTitle(exports.help.usage);
+    help.setDescription(exports.help.description);
+
+    //command
     if (!message.member.hasPermission("ADMINISTRATOR")) {
-        message.reply("no perms for that!!! sorry!!!").catch(error => {
-            console.log(error);
-        });
+        logContent = `<@${message.member.id}> tried to use ${exports.help.name}, but doesnt have admin perms :(`;
+        message.reply("no perms for that!!! sorry!!!");
+    } else if (!message.guild) {
+        return;
+    } else if (args[0] === "?") {
+        logContent = `<@${message.member.id}> asked how get me to repeat what they said :)`;
+        message.channel.send(help);
     } else {
+        logContent = `<@${message.member.id}> just had me say "${botMessage}" in <#${message.channel.id}>`;
         message.delete().catch();
-        message.channel.send(botMessage).catch(error => {
-            console.log(error);
-        });
+        message.channel.send(botMessage);
     }
 
-    let logsEmbed = new Discord.RichEmbed()
-        .setAuthor(client.user.username, client.user.avatarURL)
-        .setDescription(logContent)
-        .addField('channel:', message.channel.name)
-        .setColor(message.member.displayHexColor)
-        .setThumbnail(message.author.avatarURL)
-        .setTimestamp();
+    //logs
+    logsEmbed.setDescription(logContent);
     if (message.guild.id == config.myServerID) {
-        serverLogs.send(logsEmbed);
+        return serverLogs.send(logsEmbed);
     } else {
         logsEmbed.addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
-        externalLogs.send(logsEmbed);
+        return externalLogs.send(logsEmbed);
     }
 }
 

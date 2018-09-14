@@ -6,33 +6,44 @@ const myServerID = config.myServerID;
 const myServerLogs = config.myServerLogs;
 const externalServerLogs = config.externalServerLogs;
 
-module.exports.run = async (client, message, args) => {
+module.exports.run = async (client, message, args, authorName, logsEmbed, help) => {
+    //variables
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
-    const logContent = `<@${message.member.id}> asked to see their profile picture`;
+    var logContent;
+    var mentionedUser = message.guild.members.get(message.mentions.members.first());
 
-    message.reply(message.author.avatarURL).catch(error => {
-        console.log(error);
-    });
+    //set embeds
+    help.setTitle(exports.help.usage);
+    help.setDescription(exports.help.description);
 
-    let logsEmbed = new Discord.RichEmbed()
-        .setAuthor(client.user.username, client.user.avatarURL)
-        .setDescription(logContent)
-        .addField('channel:', message.channel.name)
-        .setColor(message.member.displayHexColor)
-        .setThumbnail(message.author.avatarURL)
-        .setTimestamp();
+    //command
+    if (args[0] === "?") {
+        logContent = `<@${message.member.id}> asked for help with profile pictures :)`;
+        message.channel.send(help);
+    } else if (!message.guild) {
+        return;
+    } else if (!mentionedUser) {
+        logContent = `<@${message.member.id}> asked to see their profile picture!`;
+        message.channel.send(message.author.avatarURL);
+    } else {
+        logContent = `<@${message.member.id}> asked to see ${mentionedUser}'s profile picture!`;
+        message.channel.send(mentionedUser.avatarURL);
+    }
+
+    //logs 
+    logsEmbed.setDescription(logContent);
     if (message.guild.id == config.myServerID) {
-        serverLogs.send(logsEmbed);
+        return serverLogs.send(logsEmbed);
     } else {
         logsEmbed.addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
-        externalLogs.send(logsEmbed);
+        return externalLogs.send(logsEmbed);
     }
 }
 
 module.exports.help = {
     name: `${prefix}pfp`,
-    description: `sends ur profile pic into chat, or whoever u tagged afterwards`,
+    description: `sends ur profile picture into chat, or whoever u mentioned's profile picture...but right now it only sends ur own, sorry lol`,
     type: `member`,
     usage: `${prefix}pfp [user], ${prefix}pfp [?]`
 }
