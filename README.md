@@ -45,7 +45,7 @@ sends u a random puppy picture
 * **;)purge**
 ADMINISTRATOR PERMISSIONS REQUIRED
 purges a set set of messages
-* **;)request*
+* **;)request**
 if u have any requests, just sends my discord so u can message me and do so
 * **;)roles**
 how to self assign ur roles!
