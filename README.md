@@ -9,6 +9,7 @@ i dont really have a plan for any of this? tbh ? its just all fun and something 
 * a..."swear" filter? it doesnt actually, it just tells u to stop fucking swearing if u say heck or something like it
 * sometimes i react to words with emojis
 * DAD JOKES DAD JOKES DAD JOKES DAD JOKES DAD JOKES DAD JOKES DAD JOKES DAD JOKES
+* on MY server u can react for ur roles...but this shit is hard to figure out so its not done yet
 
 #### commands ! ! !
 * **;)8ball**
