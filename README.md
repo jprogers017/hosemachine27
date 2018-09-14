@@ -3,7 +3,7 @@
 ## [CLICKY HERE FOR INVITE](https://discordapp.com/api/oauth2/authorize?client_id=433064995274883078&permissions=0&scope=bot)
 ### i mostly just add stuff i think would be cool tbh
 i dont really have a plan for any of this? tbh ? its just all fun and something for me to do when im bored. i mean u can request things to be added if u wanna u know but ¯\_(ツ)_/¯
-(they dont like the shrug ... how rude..🤷🤷🤷🤷) also lmaooo this is literally just the help command with a few bits added up here..everything below is literally in the help command
+(they dont like the shrug, fuck u github, unicode emojis exist 🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷🤷) also lmaooo this is literally just the help command with a few bits added up here..everything below is literally in the help command
 
 #### features ! ! !
 * i have a bunch of auto-reply shit for random shit u could possibly say
