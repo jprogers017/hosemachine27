@@ -6,7 +6,7 @@ const myServerID = config.myServerID;
 const myServerLogs = config.myServerLogs;
 const externalServerLogs = config.externalServerLogs;
 
-module.exports.run = async (client, message, args, logsEmbed, help) => {
+module.exports.run = async (client, message, args, logsEmbed) => {
     //variables
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
@@ -55,15 +55,8 @@ module.exports.run = async (client, message, args, logsEmbed, help) => {
     ];
     var rand = dadJokes[Math.floor(Math.random() * dadJokes.length)];
 
-    //set embeds
-    help.setTitle(exports.help.usage);
-    help.setDescription(exports.help.description);
-
     //command
-    if (args[0] === "?") {
-        logContent = `<@${message.member.id}> asked for help with dad jokes :)`;
-        message.channel.send(help);
-    } else if (!message.guild) {
+    if (!message.guild) {
         return;
     } else {
         logContent = `<@${message.member.id}> recieved a dad joke!\n**${rand}**`;
@@ -75,7 +68,7 @@ module.exports.run = async (client, message, args, logsEmbed, help) => {
     if (message.guild.id == config.myServerID) {
         return serverLogs.send(logsEmbed);
     } else {
-        logsEmbed.addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
+        logsEmbed.addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true);
         return externalLogs.send(logsEmbed);
     }
 }

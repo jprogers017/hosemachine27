@@ -6,16 +6,12 @@ const myServerID = config.myServerID;
 const myServerLogs = config.myServerLogs;
 const externalServerLogs = config.externalServerLogs;
 
-module.exports.run = async (client, message, args, authorName, logsEmbed, help) => {
+module.exports.run = async (client, message, args, authorName, logsEmbed) => {
     //variables
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
     var logContent;
     const botMessage = args.join(" ");
-
-    //set embeds
-    help.setTitle(exports.help.usage);
-    help.setDescription(exports.help.description);
 
     //command
     if (!message.member.hasPermission("ADMINISTRATOR")) {
@@ -23,9 +19,6 @@ module.exports.run = async (client, message, args, authorName, logsEmbed, help) 
         message.reply("no perms for that!!! sorry!!!");
     } else if (!message.guild) {
         return;
-    } else if (args[0] === "?") {
-        logContent = `<@${message.member.id}> asked how get me to repeat what they said :)`;
-        message.channel.send(help);
     } else {
         logContent = `<@${message.member.id}> just had me say "${botMessage}" in <#${message.channel.id}>`;
         message.delete().catch();
@@ -37,7 +30,7 @@ module.exports.run = async (client, message, args, authorName, logsEmbed, help) 
     if (message.guild.id == config.myServerID) {
         return serverLogs.send(logsEmbed);
     } else {
-        logsEmbed.addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
+        logsEmbed.addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true);
         return externalLogs.send(logsEmbed);
     }
 }

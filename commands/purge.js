@@ -6,25 +6,18 @@ const myServerID = config.myServerID;
 const myServerLogs = config.myServerLogs;
 const externalServerLogs = config.externalServerLogs;
 
-module.exports.run = async (client, message, args, authorName, logsEmbed, help) => {
+module.exports.run = async (client, message, args, authorName, logsEmbed) => {
     //variables
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
     var logContent;
 
-    //help
-    help.setTitle(exports.help.usage);
-    help.setDescription(exports.help.description);
-
     //command
-    if (!message.member.hasPermission("ADMINISTRATOR")) {
+    if (!message.guild) {
+        return;
+    } else if (!message.member.hasPermission("ADMINISTRATOR")) {
         logContent = `<@${message.member.id}> tried to use ${exports.help.name}, but doesnt have admin perms :(`;
         message.channel.send("lmao, u dont have perms for that");
-    } else if (!message.guild) {
-        return;
-    } else if (args[0] === "?") {
-        logContent = `<@${message.member.id}> asked for help on how to purge messages :)`;
-        message.channel.send(help);
     } else if (!args[0]) {
         message.channel.send("yo, u cant clear 0 messages");
     } else if ((message.member.hasPermission("ADMINISTRATOR")) && (args[0])) {
@@ -39,7 +32,7 @@ module.exports.run = async (client, message, args, authorName, logsEmbed, help) 
     if (message.guild.id == config.myServerID) {
         return serverLogs.send(logsEmbed);
     } else {
-        logsEmbed.addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
+        logsEmbed.addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true);
         return externalLogs.send(logsEmbed);
     }
 }

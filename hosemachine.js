@@ -3,7 +3,7 @@ const fs = require("fs");
 const client = new Discord.Client({
   disableEveryone: true
 });
-const stupidMap = new Discord.Collection();
+// const rolesMap = new Discord.Collection();
 client.commands = new Discord.Collection();
 
 
@@ -33,16 +33,11 @@ const externalServerLogs = config.externalServerLogs;
 const dmLogsChannel = config.dmLogsChannel;
 const generalChat = config.generalChat;
 const myID = config.myID;
-const clientName = 'hosemachine (27)';
 let clientStatuses = [
-  `type ${prefix}cowjoke, i dare u`,
-  `type ${prefix}cowjoke, i dare u`,
-  `type ${prefix}cowjoke, i dare u`,
-  `type ${prefix}cowjoke, i dare u`,
-  `try "@${clientName} ?"`,
-  `try "@${clientName} help"`,
-  `try "${prefix}help"`
+  `try ${prefix}cowjoke, i dare u`,
+  `try "${prefix}help", i dare u`
 ];
+
 //role react settings
 // const setupCMD = `${prefix}create roles`;
 // const roles = ["siege", "overwatch", "pubg", "csgo", "rocksmith", "minecraft"];
@@ -54,7 +49,7 @@ let clientStatuses = [
 // function handleReact(messageReaction, user, remove) {
 //   let message = messageReaction.message;
 //   if (message.id != messageSent.id || user.id == messageSent.id) return;
-//   var roleName = stupidMap.get(messageReaction.emoji.name);
+//   var roleName = rolesMap.get(messageReaction.emoji.name);
 //   var role = message.guild.roles.find('name', roleName);
 //   var member = message.guild.members.get(user.id);
 //   try {
@@ -117,30 +112,36 @@ client.on('guildMemberRemove', member => {
 
 client.on('message', async function (message) {
   //variables
-  const mess = message.content.toLowerCase();
   let messageArray = message.content.split(/ +/);
   let command = messageArray[0];
   let args = messageArray.slice(1);
+  let authorName;
+  let logContent;
+  (!message.member.nickname) ? authorName = message.author.username: authorName = message.member.nickname;
+  const mess = message.content.toLowerCase();
   const serverLogs = client.channels.get(myServerLogs);
   const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
   const dmLogs = client.guilds.get(myServerID).channels.get(dmLogsChannel);
   const clientMention = message.guild.members.get(client.user.id);
-  let help = new Discord.RichEmbed()
-    .setColor("#73b6ff");
-  if (message.member.nickname) {
-    var authorName = message.member.nickname;
-  } else {
-    var authorName = message.author.username;
-  }
-  let logsEmbed = new Discord.RichEmbed()
+  const commandFile = client.commands.get(command);
+  const logsEmbed = new Discord.RichEmbed()
     .setAuthor(client.user.username, client.user.avatarURL)
     .setTitle(message.author.tag)
+    .setDescription(logContent)
     .addField('channel:', message.channel.name)
     .setColor(message.member.displayHexColor)
     .setThumbnail(message.author.avatarURL)
     .setTimestamp();
-  let commandFile = client.commands.get(command);
-  if (commandFile) commandFile.run(client, message, args, authorName, logsEmbed, help);
+  // if (args[0] == "?") {
+  //   let help = new Discord.RichEmbed()
+  //     .setColor("#73b6ff")
+  //     .setTitle(commandFile.help.usage)
+  //     .setDescription(commandFile.help.description);
+  //   message.channel.send(help);
+  // } else 
+  if (commandFile) {
+    commandFile.run(client, message, args, authorName, logsEmbed, logContent);
+  }
 
   //crashing? not on my watch
   if (message.author.bot) return;
@@ -161,10 +162,10 @@ client.on('message', async function (message) {
   //     .setTitle(`game roles`)
   //     .setDescription(`react to each role of the games u either own or play by clicking on the corresponding reaction`)
   //     .setColor(`#73b6ff`);
-  //   for (let i = 0; i < reactions.length; i++) stupidMap.set(reactions[i], roles[i]);
+  //   for (let i = 0; i < reactions.length; i++) rolesMap.set(reactions[i], roles[i]);
   //   message.channel.send(toSend).then(sent => {
   //     messageSent = sent;
-  //     stupidMap.forEach((value, key, map) => {
+  //     rolesMap.forEach((value, key, map) => {
   //       var reactWith = key;
   //       if (key.substring(0, 1) != "\\") reactWith = message.guild.emojis.find('name', key);
   //       sent.react(reactWith);
@@ -179,19 +180,12 @@ client.on('message', async function (message) {
       .setTitle(`usage: ${prefix}command *<required>, [optional]*`)
       .setDescription(`[click here for my github!](https://github.com/jprogers017/hosemachine27)\n[click here for my server invitation link!](https://discordapp.com/api/oauth2/authorize?client_id=433064995274883078&permissions=0&scope=bot)\ni have a bunch of auto-reply features!!!\na..."swear" filter? it doesnt actually, it just tells u to stop fucking swearing if u say heck or something like it\nsometimes i react to words with emojis\nDAD JOKES DAD JOKES DAD JOKES DAD JOKES DAD JOKES DAD JOKES DAD JOKES DAD JOKES`)
       .setColor(message.member.displayHexColor)
-      .setFooter(`UNDER CONSTRUCTION: for command specific help, do the command with "?" afterwards, for example, ${prefix}hello ?`, );
+      .setFooter(`for command specific help, do the command with "?" afterwards, for example, ${prefix}hello ?`, );
     client.commands.forEach(c => {
       helpEmbed.addField(`${c.help.name}`, `${c.help.description}\n*usage: ${c.help.usage}*`);
     });
     message.channel.send(helpEmbed);
-    const logContent = `<@${message.member.id}> asked for help!`;
-    let logsEmbed = new Discord.RichEmbed()
-      .setAuthor(client.user.username, client.user.avatarURL)
-      .setDescription(logContent)
-      .addField('channel:', message.channel.name)
-      .setColor(message.member.displayHexColor)
-      .setThumbnail(message.author.avatarURL)
-      .setTimestamp();
+    logContent = `<@${message.member.id}> asked for help!`;
     if (message.guild.id == config.myServerID) {
       serverLogs.send(logsEmbed);
     } else {
@@ -203,14 +197,7 @@ client.on('message', async function (message) {
   //joke filter
   if (mess.includes("heck") && message.member.id != client.user.id) {
     message.channel.send("watch ur FUCKIN language");
-    const logContent = `told <@${message.member.id}> to watch their FUCKIN language: heck`;
-    let logsEmbed = new Discord.RichEmbed()
-      .setAuthor(client.user.username, client.user.avatarURL)
-      .setDescription(logContent)
-      .addField('channel:', message.channel.name)
-      .setColor(message.member.displayHexColor)
-      .setThumbnail(message.author.avatarURL)
-      .setTimestamp();
+    logContent = `told <@${message.member.id}> to watch their FUCKIN language: heck`;
     if (message.guild.id == config.myServerID) {
       serverLogs.send(logsEmbed);
     } else {
@@ -221,14 +208,7 @@ client.on('message', async function (message) {
 
   if (mess.includes("hecc") && message.member.id != client.user.id) {
     message.channel.send("watch ur FUCKIN language");
-    const logContent = `told <@${message.member.id}> to watch their FUCKIN language: hecc`;
-    let logsEmbed = new Discord.RichEmbed()
-      .setAuthor(client.user.username, client.user.avatarURL)
-      .setDescription(logContent)
-      .addField('channel:', message.channel.name)
-      .setColor(message.member.displayHexColor)
-      .setThumbnail(message.author.avatarURL)
-      .setTimestamp();
+    logContent = `told <@${message.member.id}> to watch their FUCKIN language: hecc`;
     if (message.guild.id == config.myServerID) {
       serverLogs.send(logsEmbed);
     } else {
@@ -239,14 +219,7 @@ client.on('message', async function (message) {
 
   if (mess.includes("frick") && message.member.id != client.user.id) {
     message.channel.send("watch ur FUCKIN language");
-    const logContent = `told <@${message.member.id}> to watch their FUCKIN language: frick`;
-    let logsEmbed = new Discord.RichEmbed()
-      .setAuthor(client.user.username, client.user.avatarURL)
-      .setDescription(logContent)
-      .addField('channel:', message.channel.name)
-      .setColor(message.member.displayHexColor)
-      .setThumbnail(message.author.avatarURL)
-      .setTimestamp();
+    logContent = `told <@${message.member.id}> to watch their FUCKIN language: frick`;
     if (message.guild.id == config.myServerID) {
       serverLogs.send(logsEmbed);
     } else {
@@ -257,14 +230,7 @@ client.on('message', async function (message) {
 
   if (mess.includes("darn") && message.member.id != client.user.id) {
     message.channel.send("watch ur FUCKIN language");
-    const logContent = `told <@${message.member.id}> to watch their FUCKIN language: darn`;
-    let logsEmbed = new Discord.RichEmbed()
-      .setAuthor(client.user.username, client.user.avatarURL)
-      .setDescription(logContent)
-      .addField('channel:', message.channel.name)
-      .setColor(message.member.displayHexColor)
-      .setThumbnail(message.author.avatarURL)
-      .setTimestamp();
+    logContent = `told <@${message.member.id}> to watch their FUCKIN language: darn`;
     if (message.guild.id == config.myServerID) {
       serverLogs.send(logsEmbed);
     } else {
@@ -275,14 +241,7 @@ client.on('message', async function (message) {
 
   if (mess.includes("dang") && message.member.id != client.user.id) {
     message.channel.send("watch ur FUCKIN language");
-    const logContent = `told <@${message.member.id}> to watch their FUCKIN language: dang`;
-    let logsEmbed = new Discord.RichEmbed()
-      .setAuthor(client.user.username, client.user.avatarURL)
-      .setDescription(logContent)
-      .addField('channel:', message.channel.name)
-      .setColor(message.member.displayHexColor)
-      .setThumbnail(message.author.avatarURL)
-      .setTimestamp();
+    logContent = `told <@${message.member.id}> to watch their FUCKIN language: dang`;
     if (message.guild.id == config.myServerID) {
       serverLogs.send(logsEmbed);
     } else {
@@ -293,14 +252,7 @@ client.on('message', async function (message) {
 
   if (mess.includes("binch") && message.member.id != client.user.id) {
     message.channel.send("watch ur FUCKIN language");
-    const logContent = `told <@${message.member.id}> to watch their FUCKIN language: binch`;
-    let logsEmbed = new Discord.RichEmbed()
-      .setAuthor(client.user.username, client.user.avatarURL)
-      .setDescription(logContent)
-      .addField('channel:', message.channel.name)
-      .setColor(message.member.displayHexColor)
-      .setThumbnail(message.author.avatarURL)
-      .setTimestamp();
+    logContent = `told <@${message.member.id}> to watch their FUCKIN language: binch`;
     if (message.guild.id == config.myServerID) {
       serverLogs.send(logsEmbed);
     } else {
@@ -312,14 +264,7 @@ client.on('message', async function (message) {
   //stupid reply shit for fun lmfao
   if (mess.includes("fuck me") && message.member.id != client.user.id) {
     message.channel.send(":weary: :ok_hand: :sweat_drops:");
-    const logContent = `told <@${message.member.id}> got :weary: :ok_hand: :sweat_drops:`;
-    let logsEmbed = new Discord.RichEmbed()
-      .setAuthor(client.user.username, client.user.avatarURL)
-      .setDescription(logContent)
-      .addField('channel:', message.channel.name)
-      .setColor(message.member.displayHexColor)
-      .setThumbnail(message.author.avatarURL)
-      .setTimestamp();
+    logContent = `told <@${message.member.id}> got :weary: :ok_hand: :sweat_drops:`;
     if (message.guild.id == config.myServerID) {
       serverLogs.send(logsEmbed);
     } else {
@@ -330,14 +275,7 @@ client.on('message', async function (message) {
 
   if (mess.includes("yeehaw") && message.member.id != client.user.id) {
     message.channel.send("YAWHEE :cowboy: :cowboy: :cowboy:");
-    const logContent = `<@${message.member.id}> got YAWHEE :cowboy: :cowboy: :cowboy:`;
-    let logsEmbed = new Discord.RichEmbed()
-      .setAuthor(client.user.username, client.user.avatarURL)
-      .setDescription(logContent)
-      .addField('channel:', message.channel.name)
-      .setColor(message.member.displayHexColor)
-      .setThumbnail(message.author.avatarURL)
-      .setTimestamp();
+    logContent = `<@${message.member.id}> got YAWHEE :cowboy: :cowboy: :cowboy:`;
     if (message.guild.id == config.myServerID) {
       serverLogs.send(logsEmbed);
     } else {
@@ -348,14 +286,7 @@ client.on('message', async function (message) {
 
   if (mess.includes("whomst") && message.member.id != client.user.id) {
     message.channel.send("the FUCK");
-    const logContent = `<@${message.member.id}> : WHOMST THE FUCK`;
-    let logsEmbed = new Discord.RichEmbed()
-      .setAuthor(client.user.username, client.user.avatarURL)
-      .setDescription(logContent)
-      .addField('channel:', message.channel.name)
-      .setColor(message.member.displayHexColor)
-      .setThumbnail(message.author.avatarURL)
-      .setTimestamp();
+    logContent = `<@${message.member.id}> : WHOMST THE FUCK`;
     if (message.guild.id == config.myServerID) {
       serverLogs.send(logsEmbed);
     } else {
@@ -366,14 +297,7 @@ client.on('message', async function (message) {
 
   if ((mess.includes(" f to pay ") || mess.includes(" get an f ")) && message.member.id != client.user.id) {
     message.channel.send("F");
-    const logContent = `<@${message.member.id}> paid their respects`;
-    let logsEmbed = new Discord.RichEmbed()
-      .setAuthor(client.user.username, client.user.avatarURL)
-      .setDescription(logContent)
-      .addField('channel:', message.channel.name)
-      .setColor(message.member.displayHexColor)
-      .setThumbnail(message.author.avatarURL)
-      .setTimestamp();
+    logContent = `<@${message.member.id}> paid their respects`;
     if (message.guild.id == config.myServerID) {
       serverLogs.send(logsEmbed);
     } else {
@@ -387,14 +311,7 @@ client.on('message', async function (message) {
       return;
     } else {
       message.channel.send("should i be kinkshaming u for this?");
-      const logContent = `<@${message.member.id}> might be getting kinkshamed :eyes:`;
-      let logsEmbed = new Discord.RichEmbed()
-        .setAuthor(client.user.username, client.user.avatarURL)
-        .setDescription(logContent)
-        .addField('channel:', message.channel.name)
-        .setColor(message.member.displayHexColor)
-        .setThumbnail(message.author.avatarURL)
-        .setTimestamp();
+      logContent = `<@${message.member.id}> might be getting kinkshamed :eyes:`;
       if (message.guild.id == config.myServerID) {
         serverLogs.send(logsEmbed);
       } else {
@@ -406,14 +323,7 @@ client.on('message', async function (message) {
 
   if (mess.includes("knock knock") && message.member.id != client.user.id) {
     message.channel.send("whos there?");
-    const logContent = `<@${message.member.id}> said knock knock !!!`;
-    let logsEmbed = new Discord.RichEmbed()
-      .setAuthor(client.user.username, client.user.avatarURL)
-      .setDescription(logContent)
-      .addField('channel:', message.channel.name)
-      .setColor(message.member.displayHexColor)
-      .setThumbnail(message.author.avatarURL)
-      .setTimestamp();
+    logContent = `<@${message.member.id}> said knock knock !!!`;
     if (message.guild.id == config.myServerID) {
       serverLogs.send(logsEmbed);
     } else {
@@ -425,14 +335,7 @@ client.on('message', async function (message) {
   //stupid react shit for fun lmfao
   if (mess.includes("gay") && message.member.id != client.user.id) {
     message.react('🏳️‍🌈');
-    const logContent = `<@${message.member.id}> got a :gay_pride_flag: !!!`;
-    let logsEmbed = new Discord.RichEmbed()
-      .setAuthor(client.user.username, client.user.avatarURL)
-      .setDescription(logContent)
-      .addField('channel:', message.channel.name)
-      .setColor(message.member.displayHexColor)
-      .setThumbnail(message.author.avatarURL)
-      .setTimestamp();
+    logContent = `<@${message.member.id}> got a :gay_pride_flag: !!!`;
     if (message.guild.id == config.myServerID) {
       serverLogs.send(logsEmbed);
     } else {
@@ -443,14 +346,7 @@ client.on('message', async function (message) {
 
   if (mess.includes("eyes emoji") && message.member.id != client.user.id) {
     message.react("👀");
-    const logContent = `<@${message.member.id}> got :eyes:`;
-    let logsEmbed = new Discord.RichEmbed()
-      .setAuthor(client.user.username, client.user.avatarURL)
-      .setDescription(logContent)
-      .addField('channel:', message.channel.name)
-      .setColor(message.member.displayHexColor)
-      .setThumbnail(message.author.avatarURL)
-      .setTimestamp();
+    logContent = `<@${message.member.id}> got :eyes:`;
     if (message.guild.id == config.myServerID) {
       serverLogs.send(logsEmbed);
     } else {
@@ -461,14 +357,7 @@ client.on('message', async function (message) {
 
   if (mess.includes("wet") && message.member.id != client.user.id) {
     message.react("💦");
-    const logContent = `<@${message.member.id}> got some :sweat_drops:`;
-    let logsEmbed = new Discord.RichEmbed()
-      .setAuthor(client.user.username, client.user.avatarURL)
-      .setDescription(logContent)
-      .addField('channel:', message.channel.name)
-      .setColor(message.member.displayHexColor)
-      .setThumbnail(message.author.avatarURL)
-      .setTimestamp();
+    logContent = `<@${message.member.id}> got some :sweat_drops:`;
     if (message.guild.id == config.myServerID) {
       serverLogs.send(logsEmbed);
     } else {
@@ -480,23 +369,15 @@ client.on('message', async function (message) {
   //dad JOKES BOIS HERE WE FUCKIN GO
   if (mess.startsWith("im ") || mess.startsWith("i'm ") || mess.startsWith("i am ")) {
     let dadJoke = '';
-    let user = message.mentions.users;
     if (mess.startsWith("i am ")) {
-      dadJoke = message.cleanContent.split(" ").slice(2);
+      dadJoke = args.join(" ").slice(3);
     } else if (args[0] === "tler") {
       return message.channel.send("shut the fuck up, millie");
     } else {
-      dadJoke = message.cleanContent.split(" ").slice(1);
+      dadJoke = args.join(" ");
     }
     return message.channel.send(`hi ${dadJoke}, i'm ${client.user.username} :)`);
-    const logContent = `<@${message.member.id}> made it REAL easy for me to make a dad joke lmaoooooo`;
-    let logsEmbed = new Discord.RichEmbed()
-      .setAuthor(client.user.username, client.user.avatarURL)
-      .setDescription(logContent)
-      .addField('channel:', message.channel.name)
-      .setColor(message.member.displayHexColor)
-      .setThumbnail(message.author.avatarURL)
-      .setTimestamp();
+    logContent = `<@${message.member.id}> made it REAL easy for me to make a dad joke lmaoooooo`;
     if (message.guild.id == config.myServerID) {
       serverLogs.send(logsEmbed);
     } else {
@@ -504,5 +385,4 @@ client.on('message', async function (message) {
       externalLogs.send(logsEmbed);
     }
   }
-
 });

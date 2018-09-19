@@ -6,22 +6,15 @@ const myServerID = config.myServerID;
 const myServerLogs = config.myServerLogs;
 const externalServerLogs = config.externalServerLogs;
 
-module.exports.run = async (client, message, args, authorName, logsEmbed, help) => {
+module.exports.run = async (client, message, args, authorName, logsEmbed) => {
     //variables
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
     var logContent;
     var mentionedUser = message.guild.members.get(message.mentions.members.first());
 
-    //set embeds
-    help.setTitle(exports.help.usage);
-    help.setDescription(exports.help.description);
-
     //command
-    if (args[0] === "?") {
-        logContent = `<@${message.member.id}> asked for help with profile pictures :)`;
-        message.channel.send(help);
-    } else if (!message.guild) {
+    if (!message.guild) {
         return;
     } else if (!mentionedUser) {
         logContent = `<@${message.member.id}> asked to see their profile picture!`;
@@ -36,7 +29,7 @@ module.exports.run = async (client, message, args, authorName, logsEmbed, help) 
     if (message.guild.id == config.myServerID) {
         return serverLogs.send(logsEmbed);
     } else {
-        logsEmbed.addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
+        logsEmbed.addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true);
         return externalLogs.send(logsEmbed);
     }
 }

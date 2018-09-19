@@ -6,22 +6,15 @@ const myServerID = config.myServerID;
 const myServerLogs = config.myServerLogs;
 const externalServerLogs = config.externalServerLogs;
 
-module.exports.run = async (client, message, args, logsEmbed, help) => {
+module.exports.run = async (client, message, args, logsEmbed) => {
     //variables
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
     var logContent;
     var chance = Math.floor(Math.random() * 2);
 
-    //set embeds
-    help.setTitle(exports.help.usage);
-    help.setDescription(exports.help.description);
-
     //command
-    if (args[0] === "?") {
-        logContent = `<@${message.member.id}> asked..how to flip a coin?`;
-        message.channel.send(help);
-    } else if (!message.guild) {
+    if (!message.guild) {
         return;
     } else if (chance == 0) {
         logContent = `<@${message.member.id}> flipped a coin and got heads!`;
